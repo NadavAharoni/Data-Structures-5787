@@ -1,5 +1,7 @@
 # Rendered Quarto output (re-render with: quarto render <file>.md)
+# The rendered slides are committed, so students can view them without Quarto.
 *.html
+!data-structures.html
 *_files/
 .quarto/
 __pycache__/
