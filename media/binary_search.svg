@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="950" height="372" viewBox="0 0 950 372" font-family="Consolas, monospace" font-size="20">
+<text x="150" y="22" font-size="18" fill="#555">index</text>
+<text x="176.0" y="42" text-anchor="middle" font-size="15" fill="#555">0</text>
+<text x="228.0" y="42" text-anchor="middle" font-size="15" fill="#555">1</text>
+<text x="280.0" y="42" text-anchor="middle" font-size="15" fill="#555">2</text>
+<text x="332.0" y="42" text-anchor="middle" font-size="15" fill="#555">3</text>
+<text x="384.0" y="42" text-anchor="middle" font-size="15" fill="#555">4</text>
+<text x="436.0" y="42" text-anchor="middle" font-size="15" fill="#555">5</text>
+<text x="488.0" y="42" text-anchor="middle" font-size="15" fill="#555">6</text>
+<text x="540.0" y="42" text-anchor="middle" font-size="15" fill="#555">7</text>
+<text x="592.0" y="42" text-anchor="middle" font-size="15" fill="#555">8</text>
+<text x="644.0" y="42" text-anchor="middle" font-size="15" fill="#555">9</text>
+<text x="696.0" y="42" text-anchor="middle" font-size="15" fill="#555">10</text>
+<text x="748.0" y="42" text-anchor="middle" font-size="15" fill="#555">11</text>
+<text x="800.0" y="42" text-anchor="middle" font-size="15" fill="#555">12</text>
+<text x="852.0" y="42" text-anchor="middle" font-size="15" fill="#555">13</text>
+<text x="904.0" y="42" text-anchor="middle" font-size="15" fill="#555">14</text>
+<text x="10" y="79.0" font-size="18" fill="#1f3a68">step 1</text>
+<rect x="150" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="176.0" y="79.0" text-anchor="middle" fill="#000">3</text>
+<rect x="202" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="228.0" y="79.0" text-anchor="middle" fill="#000">8</text>
+<rect x="254" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="280.0" y="79.0" text-anchor="middle" fill="#000">12</text>
+<rect x="306" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="332.0" y="79.0" text-anchor="middle" fill="#000">17</text>
+<rect x="358" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="384.0" y="79.0" text-anchor="middle" fill="#000">21</text>
+<rect x="410" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="436.0" y="79.0" text-anchor="middle" fill="#000">25</text>
+<rect x="462" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="488.0" y="79.0" text-anchor="middle" fill="#000">30</text>
+<rect x="514" y="50" width="52" height="44" fill="#ffd27f" stroke="#1f3a68"/>
+<text x="540.0" y="79.0" text-anchor="middle" fill="#000">34</text>
+<rect x="566" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="592.0" y="79.0" text-anchor="middle" fill="#000">41</text>
+<rect x="618" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="644.0" y="79.0" text-anchor="middle" fill="#000">47</text>
+<rect x="670" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="696.0" y="79.0" text-anchor="middle" fill="#000">52</text>
+<rect x="722" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="748.0" y="79.0" text-anchor="middle" fill="#000">58</text>
+<rect x="774" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="800.0" y="79.0" text-anchor="middle" fill="#000">63</text>
+<rect x="826" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="852.0" y="79.0" text-anchor="middle" fill="#000">70</text>
+<rect x="878" y="50" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="904.0" y="79.0" text-anchor="middle" fill="#000">77</text>
+<text x="150" y="116" font-size="17" fill="#333">lo=0  hi=15  mid=7    41 &gt; 34: go right</text>
+<text x="10" y="157.0" font-size="18" fill="#1f3a68">step 2</text>
+<rect x="150" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="176.0" y="157.0" text-anchor="middle" fill="#aaa">3</text>
+<rect x="202" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="228.0" y="157.0" text-anchor="middle" fill="#aaa">8</text>
+<rect x="254" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="280.0" y="157.0" text-anchor="middle" fill="#aaa">12</text>
+<rect x="306" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="332.0" y="157.0" text-anchor="middle" fill="#aaa">17</text>
+<rect x="358" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="384.0" y="157.0" text-anchor="middle" fill="#aaa">21</text>
+<rect x="410" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="436.0" y="157.0" text-anchor="middle" fill="#aaa">25</text>
+<rect x="462" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="488.0" y="157.0" text-anchor="middle" fill="#aaa">30</text>
+<rect x="514" y="128" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="540.0" y="157.0" text-anchor="middle" fill="#aaa">34</text>
+<rect x="566" y="128" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="592.0" y="157.0" text-anchor="middle" fill="#000">41</text>
+<rect x="618" y="128" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="644.0" y="157.0" text-anchor="middle" fill="#000">47</text>
+<rect x="670" y="128" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="696.0" y="157.0" text-anchor="middle" fill="#000">52</text>
+<rect x="722" y="128" width="52" height="44" fill="#ffd27f" stroke="#1f3a68"/>
+<text x="748.0" y="157.0" text-anchor="middle" fill="#000">58</text>
+<rect x="774" y="128" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="800.0" y="157.0" text-anchor="middle" fill="#000">63</text>
+<rect x="826" y="128" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="852.0" y="157.0" text-anchor="middle" fill="#000">70</text>
+<rect x="878" y="128" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="904.0" y="157.0" text-anchor="middle" fill="#000">77</text>
+<text x="150" y="194" font-size="17" fill="#333">lo=8  hi=15  mid=11    41 &lt; 58: go left</text>
+<text x="10" y="235.0" font-size="18" fill="#1f3a68">step 3</text>
+<rect x="150" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="176.0" y="235.0" text-anchor="middle" fill="#aaa">3</text>
+<rect x="202" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="228.0" y="235.0" text-anchor="middle" fill="#aaa">8</text>
+<rect x="254" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="280.0" y="235.0" text-anchor="middle" fill="#aaa">12</text>
+<rect x="306" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="332.0" y="235.0" text-anchor="middle" fill="#aaa">17</text>
+<rect x="358" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="384.0" y="235.0" text-anchor="middle" fill="#aaa">21</text>
+<rect x="410" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="436.0" y="235.0" text-anchor="middle" fill="#aaa">25</text>
+<rect x="462" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="488.0" y="235.0" text-anchor="middle" fill="#aaa">30</text>
+<rect x="514" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="540.0" y="235.0" text-anchor="middle" fill="#aaa">34</text>
+<rect x="566" y="206" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="592.0" y="235.0" text-anchor="middle" fill="#000">41</text>
+<rect x="618" y="206" width="52" height="44" fill="#ffd27f" stroke="#1f3a68"/>
+<text x="644.0" y="235.0" text-anchor="middle" fill="#000">47</text>
+<rect x="670" y="206" width="52" height="44" fill="#dbe6f6" stroke="#1f3a68"/>
+<text x="696.0" y="235.0" text-anchor="middle" fill="#000">52</text>
+<rect x="722" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="748.0" y="235.0" text-anchor="middle" fill="#aaa">58</text>
+<rect x="774" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="800.0" y="235.0" text-anchor="middle" fill="#aaa">63</text>
+<rect x="826" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="852.0" y="235.0" text-anchor="middle" fill="#aaa">70</text>
+<rect x="878" y="206" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="904.0" y="235.0" text-anchor="middle" fill="#aaa">77</text>
+<text x="150" y="272" font-size="17" fill="#333">lo=8  hi=11  mid=9    41 &lt; 47: go left</text>
+<text x="10" y="313.0" font-size="18" fill="#1f3a68">step 4</text>
+<rect x="150" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="176.0" y="313.0" text-anchor="middle" fill="#aaa">3</text>
+<rect x="202" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="228.0" y="313.0" text-anchor="middle" fill="#aaa">8</text>
+<rect x="254" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="280.0" y="313.0" text-anchor="middle" fill="#aaa">12</text>
+<rect x="306" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="332.0" y="313.0" text-anchor="middle" fill="#aaa">17</text>
+<rect x="358" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="384.0" y="313.0" text-anchor="middle" fill="#aaa">21</text>
+<rect x="410" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="436.0" y="313.0" text-anchor="middle" fill="#aaa">25</text>
+<rect x="462" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="488.0" y="313.0" text-anchor="middle" fill="#aaa">30</text>
+<rect x="514" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="540.0" y="313.0" text-anchor="middle" fill="#aaa">34</text>
+<rect x="566" y="284" width="52" height="44" fill="#ffd27f" stroke="#1f3a68"/>
+<text x="592.0" y="313.0" text-anchor="middle" fill="#000">41</text>
+<rect x="618" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="644.0" y="313.0" text-anchor="middle" fill="#aaa">47</text>
+<rect x="670" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="696.0" y="313.0" text-anchor="middle" fill="#aaa">52</text>
+<rect x="722" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="748.0" y="313.0" text-anchor="middle" fill="#aaa">58</text>
+<rect x="774" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="800.0" y="313.0" text-anchor="middle" fill="#aaa">63</text>
+<rect x="826" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="852.0" y="313.0" text-anchor="middle" fill="#aaa">70</text>
+<rect x="878" y="284" width="52" height="44" fill="#f2f2f2" stroke="#cccccc"/>
+<text x="904.0" y="313.0" text-anchor="middle" fill="#aaa">77</text>
+<text x="150" y="350" font-size="17" fill="#333">lo=8  hi=9  mid=8    a[8] = 41 = 41  found</text>
+</svg>
