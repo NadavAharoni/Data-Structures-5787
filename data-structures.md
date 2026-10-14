@@ -170,7 +170,7 @@ math.log10(1_000_000)   # 6.0
 2 ** 64                 # 18446744073709551616  (Python ints have no size limit)
 ```
 
-## Class exercise
+## Exercises
 
 Exercises 1–3 in the exercises file.
 
@@ -242,7 +242,7 @@ $$
 
 which is the claim for $k + 1$. ✓
 
-## Class exercise
+## Exercises
 
 Exercises 4–5 in the exercises file.
 
@@ -370,6 +370,104 @@ bisect.bisect_left(a, 4)    # 4  4 is not in a: this is where it would go
 
 See `code/search_timing.py` (exact times depend on the computer).
 
-## Class exercise
+## Exercises
 
 Exercises 6–9 in the exercises file.
+
+# Sorting
+
+## Sorting in Python
+
+```python
+grades = [("Dana", 90), ("Noa", 85), ("Tamar", 90),
+          ("Rivka", 85), ("Lea", 95)]
+
+sorted(grades, key=lambda g: g[1])
+# [('Noa', 85), ('Rivka', 85), ('Dana', 90), ('Tamar', 90), ('Lea', 95)]
+
+sorted(grades, key=lambda g: g[1], reverse=True)
+# [('Lea', 95), ('Dana', 90), ('Tamar', 90), ('Noa', 85), ('Rivka', 85)]
+```
+
+- `sorted(a)` returns a **new** sorted list; `a.sort()` sorts `a` **in place** (and returns `None`).
+- Both take `key` and `reverse`.
+- Two keys: `key=lambda g: (-g[1], g[0])` — by grade descending, then by name.
+
+## Stability
+
+A sort is **stable** if items with equal keys keep their original order.
+
+```python
+grades = [("Dana", 90), ("Noa", 85), ("Tamar", 90),
+          ("Rivka", 85), ("Lea", 95)]
+sorted(grades, key=lambda g: g[1])
+# [('Noa', 85), ('Rivka', 85), ('Dana', 90), ('Tamar', 90), ('Lea', 95)]
+```
+
+- Noa before Rivka, Dana before Tamar — as in the input.
+- Python's `sorted` is always stable.
+- Why it matters: sort by name, then (stably) by grade → sorted by grade, and by name within each grade.
+
+## Insertion sort: the idea
+
+Like sorting cards in your hand:
+
+- The left part of the list is already sorted (at first: one item).
+- Take the next item, and move it left until the item before it is not larger.
+- Larger items shift one place to the right to make room.
+- Repeat until the sorted part is the whole list.
+
+## Insertion sort: an example
+
+![](media/insertion_sort.svg){height=520px}
+
+## Insertion sort: the code
+
+```python
+def insertion_sort(a, key=lambda x: x):
+    for i in range(1, len(a)):
+        item = a[i]          # a[0:i] is sorted; insert a[i] into it
+        j = i - 1
+        while j >= 0 and key(a[j]) > key(item):
+            a[j + 1] = a[j]  # shift a larger item one place to the right
+            j -= 1
+        a[j + 1] = item
+```
+
+- Sorts **in place**: no new list, only a few extra variables.
+- **Stable**: `>` (not `>=`) — an item never moves past an equal one.
+- `j >= 0` is checked **first**: `and` stops as soon as it is false.
+
+## Insertion sort: how many steps?
+
+Count the comparisons `key(a[j]) > key(item)`:
+
+| input | comparisons | shifts |
+|---|---|---|
+| already sorted (best case) | $n - 1$ | $0$ |
+| reversed (worst case) | $\dfrac{n(n-1)}{2}$ | $\dfrac{n(n-1)}{2}$ |
+| random (average) | about $\dfrac{n^2}{4}$ | about $\dfrac{n^2}{4}$ |
+
+- Worst case: item number $i$ moves all the way left: $1 + 2 + \dots + (n-1)$ — an arithmetic series.
+- Average: each item moves about half way.
+- Fast on lists that are **almost** sorted.
+
+## Insertion sort: timing
+
+Random floats, insertion sort vs Python's `sorted`:
+
+| $n$ | insertion sort | `sorted` |
+|---|---|---|
+| 1,000 | ~18 ms | ~0.07 ms |
+| 2,000 | ~75 ms | ~0.15 ms |
+| 4,000 | ~330 ms | ~0.3 ms |
+| 8,000 | ~1,200 ms | ~0.7 ms |
+
+- Double $n$ → insertion sort takes about **4 times** longer ($n^2$).
+- `sorted` takes a little more than twice as long — it uses a faster method, based on merge sort (the next topic).
+
+See `code/insertion_sort.py` (exact times depend on the computer).
+
+## Exercises
+
+Exercises 11–15 in the exercises file (16 is a bonus).
