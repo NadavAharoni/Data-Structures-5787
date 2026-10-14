@@ -97,7 +97,8 @@ $2^{64} = 2^{4} \cdot (2^{10})^6 \approx 16 \cdot (10^3)^6 = 16 \cdot 10^{18}$
 
 ## Logarithms
 
-$\log_b x$ answers: **to what power do we raise $b$ to get $x$?**
+$\log_b x$ :\
+**to what power do we raise $b$ to get $x$?**
 
 $$
 \log_b x = y \iff b^y = x
@@ -118,9 +119,20 @@ $$
 \log_b (x \cdot y) = \log_b x + \log_b y
 $$
 
-Proof: write $x = b^m$, $y = b^n$. Then $x \cdot y = b^m \cdot b^n = b^{m+n}$, so $\log_b(x \cdot y) = m + n$.
+Proof:
 
-. . .
+Define: $m=\log_b x$, and $n=\log_b y$.
+
+$\Rightarrow x = b^m$, $y = b^n$.
+
+$\Rightarrow x \cdot y = b^m \cdot b^n = b^{m+n}$
+
+$\Rightarrow\log_b(x \cdot y) = m + n$.
+
+$\blacksquare$
+
+
+## Logarithm rules (contd.)
 
 $$
 \log_b \frac{x}{y} = \log_b x - \log_b y

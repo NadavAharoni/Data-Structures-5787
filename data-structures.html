@@ -1202,7 +1202,8 @@ a^m \cdot a^n = a^{m+n} \qquad \frac{a^m}{a^n} = a^{m-n} \qquad (a^m)^n = a^{m \
 </section>
 <section id="logarithms" class="slide level2">
 <h2>Logarithms</h2>
-<p><span class="math inline">\(\log_b x\)</span> answers: <strong>to what power do we raise <span class="math inline">\(b\)</span> to get <span class="math inline">\(x\)</span>?</strong></p>
+<p><span class="math inline">\(\log_b x\)</span> :<br>
+<strong>to what power do we raise <span class="math inline">\(b\)</span> to get <span class="math inline">\(x\)</span>?</strong></p>
 <p><span class="math display">\[
 \log_b x = y \iff b^y = x
 \]</span></p>
@@ -1220,15 +1221,21 @@ a^m \cdot a^n = a^{m+n} \qquad \frac{a^m}{a^n} = a^{m-n} \qquad (a^m)^n = a^{m \
 <p><span class="math display">\[
 \log_b (x \cdot y) = \log_b x + \log_b y
 \]</span></p>
-<p>Proof: write <span class="math inline">\(x = b^m\)</span>, <span class="math inline">\(y = b^n\)</span>. Then <span class="math inline">\(x \cdot y = b^m \cdot b^n = b^{m+n}\)</span>, so <span class="math inline">\(\log_b(x \cdot y) = m + n\)</span>.</p>
-<div class="fragment">
+<p>Proof:</p>
+<p>Define: <span class="math inline">\(m=\log_b x\)</span>, and <span class="math inline">\(n=\log_b y\)</span>.</p>
+<p><span class="math inline">\(\Rightarrow x = b^m\)</span>, <span class="math inline">\(y = b^n\)</span>.</p>
+<p><span class="math inline">\(\Rightarrow x \cdot y = b^m \cdot b^n = b^{m+n}\)</span></p>
+<p><span class="math inline">\(\Rightarrow\log_b(x \cdot y) = m + n\)</span>.</p>
+<p><span class="math inline">\(\blacksquare\)</span></p>
+</section>
+<section id="logarithm-rules-contd." class="slide level2">
+<h2>Logarithm rules (contd.)</h2>
 <p><span class="math display">\[
 \log_b \frac{x}{y} = \log_b x - \log_b y
 \qquad
 \log_b x^k = k \cdot \log_b x
 \]</span></p>
 <p>Example: <span class="math inline">\(\log_2 (1000 \cdot 1000) = \log_2 1000 + \log_2 1000 \approx 10 + 10 = 20\)</span></p>
-</div>
 </section>
 <section id="change-of-base" class="slide level2">
 <h2>Change of base</h2>
