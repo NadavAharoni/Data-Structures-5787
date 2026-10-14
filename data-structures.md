@@ -50,12 +50,12 @@ Find one name in a list of 1,000,000 names:
 - Asymptotic notation: $O$, $\Omega$, $\Theta$
 - Heaps and priority queues, quickselect
 - Linked lists, stacks and queues (linked list, circular buffer)
-- Binary search trees, AVL trees, red-black trees
+- Binary search trees
 - Hash tables
 
 ## Python
 
-- All code in the course is in Python.
+- Example code and exercises will be in Python.
 - Python already has lists, `sorted`, `dict`, `set`, `bisect`, `heapq`...
 - We implement the algorithms ourselves to understand **how** they work and **what they cost**.
 - Then we know which built-in tool to choose, and why.
@@ -91,7 +91,7 @@ The rules decide what non-natural powers mean:
 | 30 | 1,073,741,824 | $10^9$ (billion) |
 | 64 | 18,446,744,073,709,551,616 | $16 \cdot 10^{18}$ |
 
-$2^{10} \approx 10^3$ is the most useful approximation in this course.
+$2^{10} \approx 10^3$ is a useful approximation in this course.
 
 $2^{64} = 2^{4} \cdot (2^{10})^6 \approx 16 \cdot (10^3)^6 = 16 \cdot 10^{18}$
 
