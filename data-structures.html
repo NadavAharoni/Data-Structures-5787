@@ -1278,8 +1278,8 @@ k = \log_2 n
 <span id="cb1-6"><a href aria-hidden="true" tabindex="-1"></a>math.log10(<span class="dv">1_000_000</span>)   <span class="co"># 6.0</span></span>
 <span id="cb1-7"><a href aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">**</span> <span class="dv">64</span>                 <span class="co"># 18446744073709551616  (Python ints have no size limit)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="class-exercise" class="slide level2">
-<h2>Class exercise</h2>
+<section id="exercises" class="slide level2">
+<h2>Exercises</h2>
 <p>Exercises 1–3 in the exercises file.</p>
 </section></section>
 <section>
@@ -1342,8 +1342,8 @@ k = \log_2 n
 \]</span></p>
 <p>which is the claim for <span class="math inline">\(k + 1\)</span>. ✓</p>
 </section>
-<section id="class-exercise-1" class="slide level2">
-<h2>Class exercise</h2>
+<section id="exercises-1" class="slide level2">
+<h2>Exercises</h2>
 <p>Exercises 4–5 in the exercises file.</p>
 </section></section>
 <section>
@@ -1505,9 +1505,152 @@ k = \log_2 n
 </ul>
 <p>See <code>code/search_timing.py</code> (exact times depend on the computer).</p>
 </section>
-<section id="class-exercise-2" class="slide level2">
-<h2>Class exercise</h2>
+<section id="exercises-2" class="slide level2">
+<h2>Exercises</h2>
 <p>Exercises 6–9 in the exercises file.</p>
+</section></section>
+<section>
+<section id="sorting" class="title-slide slide level1 center">
+<h1>Sorting</h1>
+
+</section>
+<section id="sorting-in-python" class="slide level2">
+<h2>Sorting in Python</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> [(<span class="st">&quot;Dana&quot;</span>, <span class="dv">90</span>), (<span class="st">&quot;Noa&quot;</span>, <span class="dv">85</span>), (<span class="st">&quot;Tamar&quot;</span>, <span class="dv">90</span>),</span>
+<span id="cb8-2"><a href aria-hidden="true" tabindex="-1"></a>          (<span class="st">&quot;Rivka&quot;</span>, <span class="dv">85</span>), (<span class="st">&quot;Lea&quot;</span>, <span class="dv">95</span>)]</span>
+<span id="cb8-3"><a href aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(grades, key<span class="op">=</span><span class="kw">lambda</span> g: g[<span class="dv">1</span>])</span>
+<span id="cb8-5"><a href aria-hidden="true" tabindex="-1"></a><span class="co"># [(&#39;Noa&#39;, 85), (&#39;Rivka&#39;, 85), (&#39;Dana&#39;, 90), (&#39;Tamar&#39;, 90), (&#39;Lea&#39;, 95)]</span></span>
+<span id="cb8-6"><a href aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(grades, key<span class="op">=</span><span class="kw">lambda</span> g: g[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-8"><a href aria-hidden="true" tabindex="-1"></a><span class="co"># [(&#39;Lea&#39;, 95), (&#39;Dana&#39;, 90), (&#39;Tamar&#39;, 90), (&#39;Noa&#39;, 85), (&#39;Rivka&#39;, 85)]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>sorted(a)</code> returns a <strong>new</strong> sorted list; <code>a.sort()</code> sorts <code>a</code> <strong>in place</strong> (and returns <code>None</code>).</li>
+<li>Both take <code>key</code> and <code>reverse</code>.</li>
+<li>Two keys: <code>key=lambda g: (-g[1], g[0])</code> — by grade descending, then by name.</li>
+</ul>
+</section>
+<section id="stability" class="slide level2">
+<h2>Stability</h2>
+<p>A sort is <strong>stable</strong> if items with equal keys keep their original order.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> [(<span class="st">&quot;Dana&quot;</span>, <span class="dv">90</span>), (<span class="st">&quot;Noa&quot;</span>, <span class="dv">85</span>), (<span class="st">&quot;Tamar&quot;</span>, <span class="dv">90</span>),</span>
+<span id="cb9-2"><a href aria-hidden="true" tabindex="-1"></a>          (<span class="st">&quot;Rivka&quot;</span>, <span class="dv">85</span>), (<span class="st">&quot;Lea&quot;</span>, <span class="dv">95</span>)]</span>
+<span id="cb9-3"><a href aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(grades, key<span class="op">=</span><span class="kw">lambda</span> g: g[<span class="dv">1</span>])</span>
+<span id="cb9-4"><a href aria-hidden="true" tabindex="-1"></a><span class="co"># [(&#39;Noa&#39;, 85), (&#39;Rivka&#39;, 85), (&#39;Dana&#39;, 90), (&#39;Tamar&#39;, 90), (&#39;Lea&#39;, 95)]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Noa before Rivka, Dana before Tamar — as in the input.</li>
+<li>Python&#39;s <code>sorted</code> is always stable.</li>
+<li>Why it matters: sort by name, then (stably) by grade → sorted by grade, and by name within each grade.</li>
+</ul>
+</section>
+<section id="insertion-sort-the-idea" class="slide level2">
+<h2>Insertion sort: the idea</h2>
+<p>Like sorting cards in your hand:</p>
+<ul>
+<li>The left part of the list is already sorted (at first: one item).</li>
+<li>Take the next item, and move it left until the item before it is not larger.</li>
+<li>Larger items shift one place to the right to make room.</li>
+<li>Repeat until the sorted part is the whole list.</li>
+</ul>
+</section>
+<section id="insertion-sort-an-example" class="slide level2">
+<h2>Insertion sort: an example</h2>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NjIiIGhlaWdodD0iMzk4IiB2aWV3Qm94PSIwIDAgNDYyIDM5OCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIxMCIgeT0iNDkiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPnN0YXJ0PC90ZXh0Pgo8cmVjdCB4PSIxMzAiIHk9IjIwIiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIxNTYuMCIgeT0iNDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjU8L3RleHQ+CjxyZWN0IHg9IjE4MiIgeT0iMjAiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjIwOC4wIiB5PSI0OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MjwvdGV4dD4KPHJlY3QgeD0iMjM0IiB5PSIyMCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMjYwLjAiIHk9IjQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj40PC90ZXh0Pgo8cmVjdCB4PSIyODYiIHk9IjIwIiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIzMTIuMCIgeT0iNDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjY8L3RleHQ+CjxyZWN0IHg9IjMzOCIgeT0iMjAiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjM2NC4wIiB5PSI0OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MTwvdGV4dD4KPHJlY3QgeD0iMzkwIiB5PSIyMCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iNDE2LjAiIHk9IjQ5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj4zPC90ZXh0Pgo8dGV4dCB4PSIxMCIgeT0iMTA3IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5pID0gMTwvdGV4dD4KPHJlY3QgeD0iMTMwIiB5PSI3OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMTU2LjAiIHk9IjEwNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MjwvdGV4dD4KPHJlY3QgeD0iMTgyIiB5PSI3OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMjA4LjAiIHk9IjEwNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+NTwvdGV4dD4KPHJlY3QgeD0iMjM0IiB5PSI3OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMjYwLjAiIHk9IjEwNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+NDwvdGV4dD4KPHJlY3QgeD0iMjg2IiB5PSI3OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzEyLjAiIHk9IjEwNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+NjwvdGV4dD4KPHJlY3QgeD0iMzM4IiB5PSI3OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzY0LjAiIHk9IjEwNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MTwvdGV4dD4KPHJlY3QgeD0iMzkwIiB5PSI3OCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iNDE2LjAiIHk9IjEwNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MzwvdGV4dD4KPHRleHQgeD0iMTAiIHk9IjE2NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+aSA9IDI8L3RleHQ+CjxyZWN0IHg9IjEzMCIgeT0iMTM2IiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIxNTYuMCIgeT0iMTY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj4yPC90ZXh0Pgo8cmVjdCB4PSIxODIiIHk9IjEzNiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMjA4LjAiIHk9IjE2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+NDwvdGV4dD4KPHJlY3QgeD0iMjM0IiB5PSIxMzYiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjI2MC4wIiB5PSIxNjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjU8L3RleHQ+CjxyZWN0IHg9IjI4NiIgeT0iMTM2IiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIzMTIuMCIgeT0iMTY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj42PC90ZXh0Pgo8cmVjdCB4PSIzMzgiIHk9IjEzNiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzY0LjAiIHk9IjE2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MTwvdGV4dD4KPHJlY3QgeD0iMzkwIiB5PSIxMzYiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjQxNi4wIiB5PSIxNjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjM8L3RleHQ+Cjx0ZXh0IHg9IjEwIiB5PSIyMjMiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPmkgPSAzPC90ZXh0Pgo8cmVjdCB4PSIxMzAiIHk9IjE5NCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMTU2LjAiIHk9IjIyMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MjwvdGV4dD4KPHJlY3QgeD0iMTgyIiB5PSIxOTQiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjIwOC4wIiB5PSIyMjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjQ8L3RleHQ+CjxyZWN0IHg9IjIzNCIgeT0iMTk0IiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIyNjAuMCIgeT0iMjIzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj41PC90ZXh0Pgo8cmVjdCB4PSIyODYiIHk9IjE5NCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzEyLjAiIHk9IjIyMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+NjwvdGV4dD4KPHJlY3QgeD0iMzM4IiB5PSIxOTQiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjM2NC4wIiB5PSIyMjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjE8L3RleHQ+CjxyZWN0IHg9IjM5MCIgeT0iMTk0IiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSI0MTYuMCIgeT0iMjIzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj4zPC90ZXh0Pgo8dGV4dCB4PSIxMCIgeT0iMjgxIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5pID0gNDwvdGV4dD4KPHJlY3QgeD0iMTMwIiB5PSIyNTIiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZDI3ZiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjE1Ni4wIiB5PSIyODEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjE8L3RleHQ+CjxyZWN0IHg9IjE4MiIgeT0iMjUyIiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIyMDguMCIgeT0iMjgxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj4yPC90ZXh0Pgo8cmVjdCB4PSIyMzQiIHk9IjI1MiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMjYwLjAiIHk9IjI4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+NDwvdGV4dD4KPHJlY3QgeD0iMjg2IiB5PSIyNTIiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjMxMi4wIiB5PSIyODEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjU8L3RleHQ+CjxyZWN0IHg9IjMzOCIgeT0iMjUyIiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIzNjQuMCIgeT0iMjgxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj42PC90ZXh0Pgo8cmVjdCB4PSIzOTAiIHk9IjI1MiIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iNDE2LjAiIHk9IjI4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MzwvdGV4dD4KPHRleHQgeD0iMTAiIHk9IjMzOSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+aSA9IDU8L3RleHQ+CjxyZWN0IHg9IjEzMCIgeT0iMzEwIiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIxNTYuMCIgeT0iMzM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj4xPC90ZXh0Pgo8cmVjdCB4PSIxODIiIHk9IjMxMCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMjA4LjAiIHk9IjMzOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+MjwvdGV4dD4KPHJlY3QgeD0iMjM0IiB5PSIzMTAiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2ZmZDI3ZiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjI2MC4wIiB5PSIzMzkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjM8L3RleHQ+CjxyZWN0IHg9IjI4NiIgeT0iMzEwIiB3aWR0aD0iNTIiIGhlaWdodD0iNDQiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIzMTIuMCIgeT0iMzM5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwIj40PC90ZXh0Pgo8cmVjdCB4PSIzMzgiIHk9IjMxMCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzY0LjAiIHk9IjMzOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+NTwvdGV4dD4KPHJlY3QgeD0iMzkwIiB5PSIzMTAiIHdpZHRoPSI1MiIgaGVpZ2h0PSI0NCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjQxNi4wIiB5PSIzMzkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAiPjY8L3RleHQ+CjxyZWN0IHg9IjEzMCIgeT0iMzY3IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIxNTQiIHk9IjM4MCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzU1NSI+c29ydGVkIHBhcnQ8L3RleHQ+CjxyZWN0IHg9IjI3MCIgeT0iMzY3IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIvPgo8dGV4dCB4PSIyOTQiIHk9IjM4MCIgZm9udC1zaXplPSIxNSIgZmlsbD0iIzU1NSI+anVzdCBpbnNlcnRlZDwvdGV4dD4KPC9zdmc+Cg==" height="520"></p>
+</section>
+<section id="insertion-sort-the-code" class="slide level2">
+<h2>Insertion sort: the code</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertion_sort(a, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span>
+<span id="cb10-2"><a href aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(a)):</span>
+<span id="cb10-3"><a href aria-hidden="true" tabindex="-1"></a>        item <span class="op">=</span> a[i]          <span class="co"># a[0:i] is sorted; insert a[i] into it</span></span>
+<span id="cb10-4"><a href aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> i <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb10-5"><a href aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> key(a[j]) <span class="op">&gt;</span> key(item):</span>
+<span id="cb10-6"><a href aria-hidden="true" tabindex="-1"></a>            a[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> a[j]  <span class="co"># shift a larger item one place to the right</span></span>
+<span id="cb10-7"><a href aria-hidden="true" tabindex="-1"></a>            j <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb10-8"><a href aria-hidden="true" tabindex="-1"></a>        a[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> item</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Sorts <strong>in place</strong>: no new list, only a few extra variables.</li>
+<li><strong>Stable</strong>: <code>&gt;</code> (not <code>&gt;=</code>) — an item never moves past an equal one.</li>
+<li><code>j &gt;= 0</code> is checked <strong>first</strong>: <code>and</code> stops as soon as it is false.</li>
+</ul>
+</section>
+<section id="insertion-sort-how-many-steps" class="slide level2">
+<h2>Insertion sort: how many steps?</h2>
+<p>Count the comparisons <code>key(a[j]) &gt; key(item)</code>:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>input</th>
+<th>comparisons</th>
+<th>shifts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>already sorted (best case)</td>
+<td><span class="math inline">\(n - 1\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td>reversed (worst case)</td>
+<td><span class="math inline">\(\dfrac{n(n-1)}{2}\)</span></td>
+<td><span class="math inline">\(\dfrac{n(n-1)}{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>random (average)</td>
+<td>about <span class="math inline">\(\dfrac{n^2}{4}\)</span></td>
+<td>about <span class="math inline">\(\dfrac{n^2}{4}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Worst case: item number <span class="math inline">\(i\)</span> moves all the way left: <span class="math inline">\(1 + 2 + \dots + (n-1)\)</span> — an arithmetic series.</li>
+<li>Average: each item moves about half way.</li>
+<li>Fast on lists that are <strong>almost</strong> sorted.</li>
+</ul>
+</section>
+<section id="insertion-sort-timing" class="slide level2">
+<h2>Insertion sort: timing</h2>
+<p>Random floats, insertion sort vs Python&#39;s <code>sorted</code>:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th>insertion sort</th>
+<th><code>sorted</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,000</td>
+<td>~18 ms</td>
+<td>~0.07 ms</td>
+</tr>
+<tr class="even">
+<td>2,000</td>
+<td>~75 ms</td>
+<td>~0.15 ms</td>
+</tr>
+<tr class="odd">
+<td>4,000</td>
+<td>~330 ms</td>
+<td>~0.3 ms</td>
+</tr>
+<tr class="even">
+<td>8,000</td>
+<td>~1,200 ms</td>
+<td>~0.7 ms</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Double <span class="math inline">\(n\)</span> → insertion sort takes about <strong>4 times</strong> longer (<span class="math inline">\(n^2\)</span>).</li>
+<li><code>sorted</code> takes a little more than twice as long — it uses a faster method, based on merge sort (the next topic).</li>
+</ul>
+<p>See <code>code/insertion_sort.py</code> (exact times depend on the computer).</p>
+</section>
+<section id="exercises-3" class="slide level2">
+<h2>Exercises</h2>
+<p>Exercises 11–15 in the exercises file (16 is a bonus).</p>
 
 </section></section>
     </div>
