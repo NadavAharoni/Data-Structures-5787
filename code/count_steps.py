@@ -4,11 +4,13 @@
 import math
 
 
-def halvings(n):
-    """How many times can n be divided by 2 (integer division) until it reaches 1?"""
+def num_divisions_to_1(n, k):
+    """How many times must n be divided by k (integer division) until it reaches 1?"""
+    if k <= 1:
+        raise ValueError("k must be greater than 1")
     count = 0
     while n > 1:
-        n = n // 2
+        n = n // k
         count += 1
     return count
 
@@ -21,9 +23,11 @@ def nested(n):
     return count
 
 
-print(f"{'n':>15} {'halvings':>9} {'log2(n)':>9}")
+print(f"{'n':>15} {'k':>3} {'divisions':>9} {'log_k(n)':>9}")
 for n in [8, 10, 100, 1000, 1024, 10**6, 10**9]:
-    print(f"{n:>15,} {halvings(n):>9} {math.log2(n):>9.2f}")
+    print(f"{n:>15,} {2:>3} {num_divisions_to_1(n, 2):>9} {math.log2(n):>9.2f}")
+for n in [1000, 10**6]:
+    print(f"{n:>15,} {10:>3} {num_divisions_to_1(n, 10):>9} {math.log10(n):>9.2f}")
 
 print()
 print(f"{'n':>6} {'nested':>10} {'n(n-1)/2':>10}")
