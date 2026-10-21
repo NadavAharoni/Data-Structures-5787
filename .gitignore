@@ -8,3 +8,7 @@ __pycache__/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# Local scratch folders (not for students)
+/Exercises/
+/examples/
