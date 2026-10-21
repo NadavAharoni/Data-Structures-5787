@@ -230,17 +230,6 @@ $$
 
 In binary: `1 + 10 + 100 + 1000 = 1111`, and `1111 + 1 = 10000`.
 
-. . .
-
-In general, for $q \ne 1$:
-
-$$
-\sum_{i=0}^{k} q^i = \frac{q^{k+1} - 1}{q - 1}
-$$
-
-- $q = 2$: $\dfrac{2^{k+1} - 1}{1}$
-- $q = \frac{1}{2}$: $1 + \frac12 + \frac14 + \dots < 2$ — always.
-
 ## Proof by induction
 
 Claim: $\sum_{i=0}^{k} 2^i = 2^{k+1} - 1$ for every $k \ge 0$.
@@ -253,6 +242,17 @@ $$
 $$
 
 which is the claim for $k + 1$. ✓
+
+## Geometric series: any ratio
+
+In general, for $q \ne 1$:
+
+$$
+\sum_{i=0}^{k} q^i = \frac{q^{k+1} - 1}{q - 1}
+$$
+
+- $q = 2$: $\dfrac{2^{k+1} - 1}{1}$
+- $q = \frac{1}{2}$: $1 + \frac12 + \frac14 + \dots < 2$ — always.
 
 ## Exercises
 
