@@ -275,26 +275,108 @@ def linear_search(a, target):
 - Average (target is in the list, every position equally likely): about $n/2$.
 - Python's `target in a` and `a.index(target)` are linear searches too.
 
-## Searching by key
+## Lists of records
 
-Often we search records by one field:
+Often the items are records, and we search by one field:
 
 ```python
-scientists = [("Curie", "Marie", 1898), ("Darwin", "Charles", 1859),
-              ("Lovelace", "Ada", 1843), ("Newton", "Isaac", 1687)]
+scientists = [("Curie", "Marie", 1898),
+              ("Darwin", "Charles", 1859),
+              ("Lovelace", "Ada", 1843),
+              ("Newton", "Isaac", 1687)]
+```
 
+In this example we use a Python tuple as a record.
+
+If we want to search for a scientist with the first name `"Isaac"`, the previous function will not work.
+
+`linear_search(scientists, "Isaac")` returns `None`.
+
+💡 Why?
+
+## Searching by a field (1)
+
+If we want to search by a specific field, we first need to define a function that gets a record and returns the field we search by:
+
+```python
+def last_name(s):
+    return s[0]
+
+def first_name(s):
+    return s[1]
+
+last_name(scientists[0])    # 'Curie'
+first_name(scientists[3])   # 'Isaac'
+```
+
+## Searching by a field (2)
+
+Then we add an additional parameter to `linear_search`, which is the "field" function.
+
+The standard name for such a function is `key`.
+
+```python
+def linear_search(a, target, key):
+    for i in range(len(a)):
+        if key(a[i]) == target:
+            return i
+    return None
+
+linear_search(scientists, "Newton", last_name)   # 3
+linear_search(scientists, "Ada", first_name)     # 2
+linear_search(scientists, "Curie", first_name)   # None
+```
+
+- `linear_search` does not know which field it compares: `key` decides.
+
+## Python functions are values
+
+In Python a function is a value, like a number or a string: it can be assigned to a variable and passed to another function.
+
+```python
+f = last_name                     # no parentheses: f is the same function
+f(scientists[0])                  # 'Curie'
+
+print(last_name)                  # <function last_name at 0x...>
+print(last_name(scientists[0]))   # Curie
+```
+
+- `last_name` (no parentheses) is a reference to the function; it does not call it.
+- `last_name(s)` calls it.
+
+## Lambda: a function without a name
+
+A short function can be written in one expression:
+
+```python
+def year(s):
+    return s[2]
+
+year = lambda s: s[2]       # the same function
+```
+
+- In `lambda s: s[2]`, the parameter is `s` and the value returned is `s[2]` (no `return`).
+- Usually written directly in the call, without a name:
+
+```python
+linear_search(scientists, 1843, lambda s: s[2])     # 2
+```
+
+## A default key
+
+```python
 def linear_search(a, target, key=lambda x: x):
     for i in range(len(a)):
         if key(a[i]) == target:
             return i
     return None
 
-linear_search(scientists, 1843, key=lambda s: s[2])     # 2
-linear_search(scientists, "Newton", key=lambda s: s[0]) # 3
+linear_search([7, 3, 9], 9)                          # 2
+linear_search(scientists, 1843, key=lambda s: s[2])  # 2
 ```
 
-`key` is a function: it gets an item and returns the value to compare.
-Python's `sorted`, `min` and `max` have the same `key` parameter.
+- The default `key` is the identity function: it returns the item itself.
+- Python's `sorted`, `min` and `max` have the same `key` parameter.
 
 ## Binary search: the idea
 
