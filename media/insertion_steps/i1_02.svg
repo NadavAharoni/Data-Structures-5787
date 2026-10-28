@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" font-family="Consolas, monospace" font-size="24">
+<rect width="760" height="330" fill="#ffffff"/>
+<text x="20" y="28" font-size="20" fill="#1f3a68">i = 1    item = 2    j = 0</text>
+<rect x="236" y="44" width="72" height="56" rx="6" fill="#ffd27f" stroke="#1f3a68" stroke-width="2"/>
+<text x="272.0" y="81" text-anchor="middle">2</text>
+<text x="228" y="79" text-anchor="end" font-size="18" fill="#888888">item</text>
+<path d="M 200.0 128 C 200.0 98, 272.0 98, 272.0 122" fill="none" stroke="#c0392b" stroke-width="3"/>
+<path d="M 265.0 114 L 272.0 126 L 279.0 114" fill="none" stroke="#c0392b" stroke-width="3"/>
+<rect x="164" y="132" width="72" height="56" fill="#dbe6f6" stroke="#c0392b" stroke-width="4"/>
+<text x="200.0" y="169" text-anchor="middle">5</text>
+<rect x="236" y="132" width="72" height="56" fill="#f4f4f4" stroke="#888888" stroke-width="2" stroke-dasharray="6 4"/>
+<rect x="308" y="132" width="72" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="344.0" y="169" text-anchor="middle">4</text>
+<rect x="380" y="132" width="72" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="416.0" y="169" text-anchor="middle">6</text>
+<rect x="452" y="132" width="72" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="488.0" y="169" text-anchor="middle">1</text>
+<rect x="524" y="132" width="72" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="560.0" y="169" text-anchor="middle">3</text>
+<text x="200.0" y="210" text-anchor="middle" font-size="16" fill="#888888">0</text>
+<text x="272.0" y="210" text-anchor="middle" font-size="16" fill="#888888">1</text>
+<text x="344.0" y="210" text-anchor="middle" font-size="16" fill="#888888">2</text>
+<text x="416.0" y="210" text-anchor="middle" font-size="16" fill="#888888">3</text>
+<text x="488.0" y="210" text-anchor="middle" font-size="16" fill="#888888">4</text>
+<text x="560.0" y="210" text-anchor="middle" font-size="16" fill="#888888">5</text>
+<path d="M 200.0 220 L 191.0 234 L 209.0 234 Z" fill="#1f3a68"/>
+<text x="200.0" y="256" text-anchor="middle" font-size="20" fill="#1f3a68">j</text>
+<text x="380.0" y="314" text-anchor="middle" font-size="22" fill="#1f3a68">a[0] = 5 &gt; 2: shift 5 one place right.</text>
+</svg>

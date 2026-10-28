@@ -511,7 +511,75 @@ Like sorting cards in your hand:
 - Larger items shift one place to the right to make room.
 - Repeat until the sorted part is the whole list.
 
-## Insertion sort: an example
+## Insertion sort: step i = 1
+
+::: {.r-stack}
+![](media/insertion_steps/i1_00.svg){width=100%}
+
+![](media/insertion_steps/i1_01.svg){.fragment width=100%}
+
+![](media/insertion_steps/i1_02.svg){.fragment width=100%}
+
+![](media/insertion_steps/i1_03.svg){.fragment width=100%}
+
+![](media/insertion_steps/i1_04.svg){.fragment width=100%}
+
+![](media/insertion_steps/i1_05.svg){.fragment width=100%}
+:::
+
+## Insertion sort: step i = 2
+
+::: {.r-stack}
+![](media/insertion_steps/i2_00.svg){width=100%}
+
+![](media/insertion_steps/i2_01.svg){.fragment width=100%}
+
+![](media/insertion_steps/i2_02.svg){.fragment width=100%}
+
+![](media/insertion_steps/i2_03.svg){.fragment width=100%}
+
+![](media/insertion_steps/i2_04.svg){.fragment width=100%}
+
+![](media/insertion_steps/i2_05.svg){.fragment width=100%}
+:::
+
+## Insertion sort: step i = 3
+
+::: {.r-stack}
+![](media/insertion_steps/i3_00.svg){width=100%}
+
+![](media/insertion_steps/i3_01.svg){.fragment width=100%}
+
+![](media/insertion_steps/i3_02.svg){.fragment width=100%}
+
+![](media/insertion_steps/i3_03.svg){.fragment width=100%}
+:::
+
+## Insertion sort: step i = 5
+
+::: {.r-stack}
+![](media/insertion_steps/i5_00.svg){width=100%}
+
+![](media/insertion_steps/i5_01.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_02.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_03.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_04.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_05.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_06.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_07.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_08.svg){.fragment width=100%}
+
+![](media/insertion_steps/i5_09.svg){.fragment width=100%}
+:::
+
+## Insertion sort: all the steps
 
 ![](media/insertion_sort.svg){height=520px}
 
@@ -565,3 +633,237 @@ See `code/insertion_sort.py` (exact times depend on the computer).
 ## Exercises
 
 Exercises 11–15 in the exercises file (16 is a bonus).
+
+# Merge sort
+
+## Merge sort: the idea
+
+- Insertion sort needs about $n^2/4$ steps: for a million items, about 250 billion.
+- A different idea — **divide and conquer**:
+  1. Split the list into two halves.
+  2. Sort each half — the same way (recursion).
+  3. **Merge** the two sorted halves into one sorted list.
+- A list of 0 or 1 items is already sorted: nothing to do.
+
+First: how do we merge two sorted lists?
+
+## Merging two sorted lists
+
+Two sorted piles of cards, face up:
+
+- Compare the two top cards, and take the smaller one.
+- Repeat until one of the piles is empty.
+- Then take the rest of the other pile, as it is.
+
+Each comparison moves **one** item to the result.
+
+## Merging: step by step
+
+::: {.r-stack}
+![](media/merge_steps/merge_00.svg){width=100%}
+
+![](media/merge_steps/merge_01.svg){.fragment width=100%}
+
+![](media/merge_steps/merge_02.svg){.fragment width=100%}
+
+![](media/merge_steps/merge_03.svg){.fragment width=100%}
+
+![](media/merge_steps/merge_04.svg){.fragment width=100%}
+
+![](media/merge_steps/merge_05.svg){.fragment width=100%}
+
+![](media/merge_steps/merge_06.svg){.fragment width=100%}
+
+![](media/merge_steps/merge_07.svg){.fragment width=100%}
+
+![](media/merge_steps/merge_08.svg){.fragment width=100%}
+:::
+
+## merge: the code
+
+```python
+def merge(a, b, key=lambda x: x):
+    result = []
+    i = 0
+    j = 0
+    while i < len(a) and j < len(b):
+        if key(a[i]) <= key(b[j]):   # <= : on equal keys take from a first
+            result.append(a[i])
+            i += 1
+        else:
+            result.append(b[j])
+            j += 1
+    result.extend(a[i:])             # one of the lists is used up:
+    result.extend(b[j:])             # copy the rest of the other one
+    return result
+```
+
+- `<=`: on equal keys, the item from `a` goes first, so merging is **stable**.
+- `extend` adds all the items of a list; `a[i:]` is empty if `a` is used up.
+
+## merge: how many steps?
+
+`a` and `b` together have $n$ items:
+
+- Every item is copied to the result **once**: $n$ copies.
+- Every comparison copies one item, and the last items are copied without comparing: at most $n - 1$ comparisons.
+- In the example: 8 items, 6 comparisons.
+- Extra memory: the new list, $n$ items.
+
+`merge` is **linear**: the number of steps is proportional to $n$.
+
+## Recursion: a reminder
+
+A function that calls itself, on a **smaller** input:
+
+```python
+def largest(a):
+    """The largest item of a non-empty list."""
+    if len(a) == 1:              # base case: answer directly
+        return a[0]
+    mid = len(a) // 2
+    return max(largest(a[:mid]), largest(a[mid:]))
+```
+
+- **Base case**: a small input with a direct answer. Without it, the calls never stop.
+- Each call gets a smaller list, so the calls always reach the base case.
+- `largest([6, 5, 3, 1, 8, 7, 2, 4])` is the larger of `largest([6, 5, 3, 1])` and `largest([8, 7, 2, 4])`.
+
+## Merge sort: the code
+
+```python
+def merge_sort(a, key=lambda x: x):
+    """Return a new sorted list, like sorted(a, key=key)."""
+    if len(a) <= 1:
+        return a[:]              # 0 or 1 items: already sorted
+    mid = len(a) // 2
+    left = merge_sort(a[:mid], key)
+    right = merge_sort(a[mid:], key)
+    return merge(left, right, key)
+```
+
+- The same structure as `largest`: a base case, two calls on the halves, then combine the answers.
+- Returns a **new** list, like `sorted`: `a` itself does not change.
+- **Stable**, because `merge` is stable.
+
+## Merge sort: an example
+
+::: {.r-stack}
+![](media/merge_sort_tree/tree_00.svg){height=540px}
+
+![](media/merge_sort_tree/tree_01.svg){.fragment height=540px}
+
+![](media/merge_sort_tree/tree_02.svg){.fragment height=540px}
+
+![](media/merge_sort_tree/tree_03.svg){.fragment height=540px}
+
+![](media/merge_sort_tree/tree_04.svg){.fragment height=540px}
+
+![](media/merge_sort_tree/tree_05.svg){.fragment height=540px}
+
+![](media/merge_sort_tree/tree_06.svg){.fragment height=540px}
+:::
+
+## Merge sort: the calls
+
+```text
+merge_sort([6, 5, 3, 1])
+    merge_sort([6, 5])
+        merge_sort([6])
+        merge_sort([5])
+    -> merge([6], [5]) = [5, 6]
+    merge_sort([3, 1])
+        merge_sort([3])
+        merge_sort([1])
+    -> merge([3], [1]) = [1, 3]
+-> merge([5, 6], [1, 3]) = [1, 3, 5, 6]
+```
+
+- Indentation = depth of the recursion.
+- The left half is sorted completely before the right half starts.
+
+See `merge_sort_traced` in `code/merge_sort.py`.
+
+## Merge sort: how many steps?
+
+- In the example, each **merge level** copies all $n$ items once: $n$ copies per level.
+- The number of levels: how many times can we halve $n$? $\log_2 n$.
+- Total: $n \log_2 n$ copies (exactly, when $n$ is a power of 2), and fewer comparisons.
+
+| $n$ | merge sort: $n \log_2 n$ | insertion sort: about $n^2/4$ |
+|---|---|---|
+| 8 | 24 | 16 |
+| 1,024 | 10,240 | 262,144 |
+| 1,048,576 | 20,971,520 | 274,877,906,944 |
+
+For small lists insertion sort is fine; for large lists $n^2$ grows much faster.
+
+## The recurrence
+
+$T(n)$ = the number of copies when sorting $n$ items:
+
+$$
+T(1) = 0 \qquad\qquad T(n) = \underbrace{2\,T(n/2)}_{\text{sort the two halves}} + \underbrace{n}_{\text{merge}}
+$$
+
+For $n = 8$:
+
+$$
+\begin{aligned}
+T(2) &= 2\,T(1) + 2 = 2 \\
+T(4) &= 2\,T(2) + 4 = 8 \\
+T(8) &= 2\,T(4) + 8 = 24 = 8 \cdot 3 = 8 \log_2 8
+\end{aligned}
+$$
+
+## Solving the recurrence
+
+Substitute $T(n/2) = 2\,T(n/4) + n/2$, and so on ($n$ a power of 2):
+
+$$
+\begin{aligned}
+T(n) &= 2\,T(n/2) + n \\
+     &= 4\,T(n/4) + 2n \\
+     &= 8\,T(n/8) + 3n \\
+     &\;\;\vdots \\
+     &= 2^k\,T(n/2^k) + k\,n
+\end{aligned}
+$$
+
+Stop when $n/2^k = 1$, that is $k = \log_2 n$:
+
+$$
+T(n) = n \cdot T(1) + n \log_2 n = n \log_2 n
+$$
+
+## Merge sort: memory
+
+- `merge` builds a new list: $n$ extra items at the top level.
+- The slices `a[:mid]` and `a[mid:]` are copies too.
+- Recursion depth: $\log_2 n$ calls wait for each other, each with its own variables.
+- Extra memory proportional to $n$. Insertion sort sorts **in place**: only a few extra variables.
+
+## Insertion sort vs merge sort
+
+| | insertion sort | merge sort |
+|---|---|---|
+| already sorted | $n - 1$ comparisons | $\frac{1}{2} n \log_2 n$ comparisons |
+| average | about $n^2/4$ | about $n \log_2 n$ |
+| worst case | about $n^2/2$ | about $n \log_2 n$ |
+| extra memory | a few variables | proportional to $n$ |
+| stable | yes | yes |
+
+## Merge sort: timing
+
+| $n$ | insertion sort | merge sort | `sorted` |
+|---|---|---|---|
+| 1,000 | ~24 ms | ~2 ms | ~0.1 ms |
+| 2,000 | ~100 ms | ~5 ms | ~0.2 ms |
+| 4,000 | ~420 ms | ~9 ms | ~0.3 ms |
+| 8,000 | ~1,600 ms | ~18 ms | ~0.8 ms |
+
+- Double $n$: merge sort takes a little more than **twice** as long, insertion sort **4 times**.
+- A million numbers: merge sort ~5 seconds; insertion sort about 7 hours.
+- `sorted` uses Timsort: merge sort, with insertion sort for short pieces, written in C.
+
+See `code/merge_sort.py` (exact times depend on the computer).

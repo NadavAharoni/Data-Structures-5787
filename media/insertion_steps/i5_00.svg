@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" font-family="Consolas, monospace" font-size="24">
+<rect width="760" height="330" fill="#ffffff"/>
+<text x="20" y="28" font-size="20" fill="#1f3a68">i = 5</text>
+<rect x="164" y="132" width="72" height="56" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="200.0" y="169" text-anchor="middle">1</text>
+<rect x="236" y="132" width="72" height="56" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="272.0" y="169" text-anchor="middle">2</text>
+<rect x="308" y="132" width="72" height="56" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="344.0" y="169" text-anchor="middle">4</text>
+<rect x="380" y="132" width="72" height="56" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="416.0" y="169" text-anchor="middle">5</text>
+<rect x="452" y="132" width="72" height="56" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="488.0" y="169" text-anchor="middle">6</text>
+<rect x="524" y="132" width="72" height="56" fill="#ffd27f" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="560.0" y="169" text-anchor="middle">3</text>
+<text x="200.0" y="210" text-anchor="middle" font-size="16" fill="#888888">0</text>
+<text x="272.0" y="210" text-anchor="middle" font-size="16" fill="#888888">1</text>
+<text x="344.0" y="210" text-anchor="middle" font-size="16" fill="#888888">2</text>
+<text x="416.0" y="210" text-anchor="middle" font-size="16" fill="#888888">3</text>
+<text x="488.0" y="210" text-anchor="middle" font-size="16" fill="#888888">4</text>
+<text x="560.0" y="210" text-anchor="middle" font-size="16" fill="#888888">5</text>
+<text x="380.0" y="314" text-anchor="middle" font-size="22" fill="#1f3a68">a[0:5] = [1, 2, 4, 5, 6] is sorted. Next: insert a[5] = 3.</text>
+</svg>

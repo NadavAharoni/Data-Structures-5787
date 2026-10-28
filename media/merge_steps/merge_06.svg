@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="330" viewBox="0 0 760 330" font-family="Consolas, monospace" font-size="24">
+<rect width="760" height="330" fill="#ffffff"/>
+<text x="96" y="91" text-anchor="end" font-size="22" fill="#1f3a68">a</text>
+<text x="396" y="91" text-anchor="end" font-size="22" fill="#1f3a68">b</text>
+<text x="126" y="233" text-anchor="end" font-size="20" fill="#1f3a68">result</text>
+<text x="20" y="28" font-size="20" fill="#1f3a68">i = 3    j = 2</text>
+<rect x="110" y="58" width="60" height="50" fill="#eeeeee" stroke="#999999" stroke-width="1.5"/>
+<text x="140.0" y="91.0" text-anchor="middle" fill="#999999">1</text>
+<rect x="170" y="58" width="60" height="50" fill="#eeeeee" stroke="#999999" stroke-width="1.5"/>
+<text x="200.0" y="91.0" text-anchor="middle" fill="#999999">3</text>
+<rect x="230" y="58" width="60" height="50" fill="#eeeeee" stroke="#999999" stroke-width="1.5"/>
+<text x="260.0" y="91.0" text-anchor="middle" fill="#999999">5</text>
+<rect x="290" y="58" width="60" height="50" fill="#dbe6f6" stroke="#2e8b57" stroke-width="4"/>
+<text x="320.0" y="91.0" text-anchor="middle" fill="#000000">6</text>
+<rect x="410" y="58" width="60" height="50" fill="#eeeeee" stroke="#999999" stroke-width="1.5"/>
+<text x="440.0" y="91.0" text-anchor="middle" fill="#999999">2</text>
+<rect x="470" y="58" width="60" height="50" fill="#eeeeee" stroke="#999999" stroke-width="1.5"/>
+<text x="500.0" y="91.0" text-anchor="middle" fill="#999999">4</text>
+<rect x="530" y="58" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="3.5"/>
+<text x="560.0" y="91.0" text-anchor="middle" fill="#000000">7</text>
+<rect x="590" y="58" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="620.0" y="91.0" text-anchor="middle" fill="#000000">8</text>
+<path d="M 320.0 114 L 311.0 128 L 329.0 128 Z" fill="#1f3a68"/>
+<text x="320.0" y="150" text-anchor="middle" font-size="20" fill="#1f3a68">i</text>
+<path d="M 560.0 114 L 551.0 128 L 569.0 128 Z" fill="#1f3a68"/>
+<text x="560.0" y="150" text-anchor="middle" font-size="20" fill="#1f3a68">j</text>
+<rect x="140" y="200" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="170.0" y="233.0" text-anchor="middle" fill="#000000">1</text>
+<rect x="200" y="200" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="230.0" y="233.0" text-anchor="middle" fill="#000000">2</text>
+<rect x="260" y="200" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="290.0" y="233.0" text-anchor="middle" fill="#000000">3</text>
+<rect x="320" y="200" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="350.0" y="233.0" text-anchor="middle" fill="#000000">4</text>
+<rect x="380" y="200" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="410.0" y="233.0" text-anchor="middle" fill="#000000">5</text>
+<rect x="440" y="200" width="60" height="50" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="470.0" y="233.0" text-anchor="middle" fill="#000000">6</text>
+<rect x="500" y="200" width="60" height="50" fill="#ffffff" stroke="#999999" stroke-dasharray="6 4"/>
+<rect x="560" y="200" width="60" height="50" fill="#ffffff" stroke="#999999" stroke-dasharray="6 4"/>
+<line x1="320.0" y1="154" x2="470.0" y2="196" stroke="#2e8b57" stroke-width="2.5"/>
+<path d="M 464.0 188 L 470.0 198 L 476.0 188" fill="none" stroke="#2e8b57" stroke-width="2.5"/>
+<text x="380.0" y="314" text-anchor="middle" font-size="22" fill="#1f3a68">a[3] = 6 ≤ b[2] = 7: take 6 from a.</text>
+</svg>
