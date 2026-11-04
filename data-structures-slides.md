@@ -861,6 +861,17 @@ merge_sort([6, 5, 3, 1])
 
 See `merge_sort_traced` in `code/merge_sort.py`.
 
+## Merge sort: number of steps
+
+**Claim**: the number of steps merge sort needs to sort a list of $n$ items ($n$ a power of 2) is
+
+$$
+T(n) = n \log_2 n
+$$
+
+- First an intuition: count the copies.
+- Then a proof: a recurrence formula, and induction.
+
 ## Merge sort: counting the copies
 
 ::: {.r-stack}
@@ -875,7 +886,7 @@ See `merge_sort_traced` in `code/merge_sort.py`.
 ![](media/merge_sort_cost/cost_04.svg){.fragment height=480px}
 :::
 
-## Merge sort: number of steps
+## Merge sort: counting the number of steps
 
 - Each **merge level** copies $n$ items.\
   Number of comparisons can be less, because "tails" can be merged without comparison.
@@ -895,7 +906,7 @@ See `merge_sort_traced` in `code/merge_sort.py`.
 
 For small lists insertion sort is fine; for large lists $n^2$ grows much faster.
 
-## The recurrence
+## Recurrence formula for merge sort
 
 $T(n)$ = number of steps when sorting $n$ items:
 
@@ -936,41 +947,87 @@ $$
      (for color vision). \class{fragment}{...} shows one line per click and keeps the lines aligned. -->
 
 
-## Solving the recurrence
+## Recurrence formulas
+
+The number of steps of a recursive algorithm is often given by a **recurrence formula**.
+
+- A recurrence formula defines a function by its own values on **smaller** inputs.
+- It must also give the **base** value (or values): these are given directly, without the function.
+
+Example: the Fibonacci numbers.
+
+$$
+\begin{aligned}
+F(0) &= 0, \quad F(1) = 1 && \text{the base values} \\
+F(n) &= F(n-1) + F(n-2) && \text{for } n \ge 2
+\end{aligned}
+$$
+
+$F$: $\;0, 1, 1, 2, 3, 5, 8, 13, 21, \dots$
+
+## Recurrence formulas (contd.)
+
+For many recurrence formulas there is no **closed formula** (a formula without $H$ on the right side).
+
+Example: the harmonic numbers.
+
+$$
+H(1) = 1 \qquad\qquad H(n) = H(n-1) + \frac{1}{n}
+$$
+
+$$
+H(n) = 1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{n}
+$$
+
+- There is no closed formula for this sum.
+- But we can bound it: $\;\ln n < H(n) \le \ln n + 1$.
+
+## The iteration method
+
+The iteration method helps to **guess** a closed formula for a recurrence formula:
+substitute the formula into itself again and again, and look for a pattern.
+
+Let's use it to guess a closed formula for merge sort:
+
+$$
+T(1) = 0 \qquad\qquad T(n) = 2\,T(n/2) + n
+$$
+
+The guess is not a proof: then we prove it by induction.
+
+
+## The iteration method for merge sort
 
 Substitute $T(n/2) = 2\,T(n/4) + n/2$, and so on ($n$ a power of 2):
 
 $$
 \begin{aligned}
-T(n) &= 2\,T(n/2) + n \\
-     &= 4\,T(n/4) + 2n \\
-     &= 8\,T(n/8) + 3n \\
-     &\;\;\vdots \\
-     &= 2^k\,T(n/2^k) + k\,n
+T(n) &= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n/2)}} + n \\
+&\class{fragment}{= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{(2\,T(n/4) + n/2)}} + n} \\
+&\class{fragment}{= (4\,T(n/4) + n) + n} \\
+&\class{fragment}{= 4\,\bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{T(n/4)}} + 2n} \\
+&\class{fragment}{= 4\,\bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{(2\,T(n/8) + n/4)}} + 2n} \\
+&\class{fragment}{= (8\,T(n/8) + n) + 2n} \\
+&\class{fragment}{= 8\,T(n/8) + 3n} \\
+&\class{fragment}{\;\;\vdots} \\
+&\class{fragment}{= 2^k\,T(n/2^k) + k\,n \qquad \text{stop when } n/2^k = 1 \text{, that is } k = \log_2 n} \\
+&\class{fragment}{= n \cdot T(1) + n \log_2 n = n \log_2 n}
 \end{aligned}
-$$
-
-Stop when $n/2^k = 1$, that is $k = \log_2 n$:
-
-$$
-T(n) = n \cdot T(1) + n \log_2 n = n \log_2 n
 $$
 
 ## Proof by induction: the claim
 
-Let $n = 2^k$, that is $k = \log_2 n$. Then
+We guessed that $T(n) = n \log_2 n$. Now we prove it by induction, for $n$ a power of 2.
 
-$$
-T(n) = T(2^k)
-$$
+Guess, then prove by induction: this is called the **substitution method**.
+
+Let $n = 2^k$, that is $k = \log_2 n$.
 
 **Claim**: for every $k \ge 0$,
 
 $$
-T(2^k) = k \cdot 2^k
+T(n) = T(2^k) = k \cdot 2^k = n \log_2 n
 $$
-
-which is the same as $T(n) = n \log_2 n$.
 
 We prove it by induction on $k$.
 
@@ -1062,3 +1119,590 @@ $n \log_2 n \le T(n) \le n \lceil \log_2 n \rceil$ (checked for every $n$ up to 
 - `sorted` uses Timsort: merge sort, with insertion sort for short pieces, written in C.
 
 See `code/merge_sort.py` (exact times depend on the computer).
+
+# Another recurrence
+
+## $T(n) = n + T(n - 1)$
+
+$$
+T(1) = 1 \qquad\qquad T(n) = n + T(n - 1)
+$$
+
+- Do $n$ steps of work, then solve the same problem for **one item less**.
+- Merge sort is different: it solves two problems of **half** the size.
+- Example: insertion sort, written recursively. Sort the first $n - 1$ items, then insert the last one:
+  in the worst case $n - 1$ comparisons, so $T(n) = T(n - 1) + (n - 1)$. Almost the same recurrence.
+
+## Solving it by iteration
+
+$$
+\begin{aligned}
+T(n) &= n + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n - 1)}} \\
+&\class{fragment}{= n + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{(n - 1) + T(n - 2)}}} \\
+&\class{fragment}{= n + (n - 1) + \bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{T(n - 2)}}} \\
+&\class{fragment}{= n + (n - 1) + \bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{(n - 2) + T(n - 3)}}} \\
+&\class{fragment}{\;\;\vdots} \\
+&\class{fragment}{= n + (n - 1) + (n - 2) + \dots + 2 + \bbox[2px,border:1px solid #c25a00]{\color{#c25a00}{T(1)}}} \\
+&\class{fragment}{= n + (n - 1) + (n - 2) + \dots + 2 + \bbox[2px,border:1px solid #c25a00]{\color{#c25a00}{1}}} \\
+&\class{fragment}{= \frac{n(n + 1)}{2}} && \class{fragment}{\text{arithmetic series (see "Sums")}}
+\end{aligned}
+$$
+
+## Halves vs. one less
+
+| | merge sort | $n + T(n - 1)$ |
+|---|---|---|
+| recurrence | $T(n) = 2\,T(n/2) + n$ | $T(n) = n + T(n - 1)$ |
+| levels | $\log_2 n$ | $n$ |
+| work per level | $n$ | $n, n - 1, \dots, 1$ |
+| total | $n \log_2 n$ | $\frac{n(n + 1)}{2}$, about $\frac{n^2}{2}$ |
+| $n = 1{,}000$ | 9,966 | 500,500 |
+
+Cutting the problem in **half** at each level is what makes merge sort fast.
+
+# Asymptotic notation
+
+## Why not count exactly?
+
+- Insertion sort, worst case: $\frac{n(n-1)}{2}$ comparisons.
+- Merge sort: $n \log_2 n$ copies, and fewer comparisons.
+- The exact count depends on details: what we count (comparisons? copies?), the computer, the language.
+
+What matters for large inputs is **how fast the count grows** with $n$.
+
+Asymptotic notation keeps the growth rate, and drops the details: constant factors and lower-order terms.
+
+## Growth beats constants
+
+| $n$ | $100\,n$ | $n^2 / 100$ |
+|---|---|---|
+| 10 | 1,000 | 1 |
+| 100 | 10,000 | 100 |
+| 1,000 | 100,000 | 10,000 |
+| 10,000 | 1,000,000 | 1,000,000 |
+| 100,000 | 10,000,000 | 100,000,000 |
+| 1,000,000 | 100,000,000 | 10,000,000,000 |
+
+- For small $n$, $n^2/100$ is smaller. From $n = 10{,}000$ on, $100\,n$ is smaller, and the gap keeps growing.
+- For large $n$, a slower-growing function wins, whatever the constants.
+
+## What happens when $n$ doubles?
+
+| steps | from $n$ to $2n$ |
+|---|---|
+| $\log_2 n$ | $+1$ |
+| $n$ | $\times 2$ |
+| $n \log_2 n$ | a little more than $\times 2$ |
+| $n^2$ | $\times 4$ |
+| $n^3$ | $\times 8$ |
+| $2^n$ | squared: $2^{2n} = (2^n)^2$ |
+
+Compare with "Merge sort: timing": merge sort takes a little more than twice as long, insertion sort 4 times.
+
+## $O$: an upper bound
+
+$f(n) = O(g(n))$ ("$f$ is big O of $g$") if there are constants $c > 0$ and $n_0$ such that
+
+$$
+f(n) \le c \cdot g(n) \quad \text{for all } n \ge n_0
+$$
+
+- From some point on ($n_0$), $f$ is at most a constant times $g$.
+- $f$ grows **at most** as fast as $g$.
+
+## $O$: a picture
+
+![](media/asymptotic/big_o.svg){height=420px}
+
+$2n^2 + 3n + 10 = O(n^2)$, with $c = 3$ and $n_0 = 5$.
+
+## Example: finding $c$ and $n_0$
+
+Show that $2n^2 + 3n + 10 = O(n^2)$.
+
+For $n \ge 1$: $\;3n \le 3n^2$ and $10 \le 10n^2$. So
+
+$$
+2n^2 + 3n + 10 \;\le\; 2n^2 + 3n^2 + 10n^2 \;=\; 15\,n^2 \quad \text{for all } n \ge 1
+$$
+
+- $c = 15$, $n_0 = 1$ works.
+- The picture used $c = 3$, $n_0 = 5$. Both are correct: we need only **one** pair.
+
+## Example: insertion sort
+
+Worst case: $f(n) = \frac{n(n-1)}{2}$ comparisons.
+
+$$
+\frac{n(n-1)}{2} = \frac{n^2 - n}{2} \;\le\; \frac{1}{2}\,n^2 \quad \text{for all } n \ge 1
+$$
+
+So $f(n) = O(n^2)$, with $c = \frac{1}{2}$ and $n_0 = 1$.
+
+## $O$ is only an upper bound
+
+- $n = O(n^2)$, and $n^2 = O(n^3)$: $O$ means "at most".
+- $f = O(g)$ and $g = O(f)$ can both be true. For example $f(n) = 2n^2$ and $g(n) = n^2 + n$:
+
+$$
+\begin{aligned}
+2n^2 &\le 2\,(n^2 + n) && \text{for all } n \ge 0, \text{ so } f = O(g) \\
+n^2 + n &\le 2\,n^2 && \text{for all } n \ge 1, \text{ so } g = O(f)
+\end{aligned}
+$$
+
+Then $f$ and $g$ grow at the same rate (see $\Theta$ below).
+
+## Proving that $f$ is not $O(g)$
+
+Claim: $n^3$ is **not** $O(n^2)$.
+
+Suppose it were: there are $c$ and $n_0$ such that
+
+$$
+n^3 \le c \cdot n^2 \quad \text{for all } n \ge n_0
+$$
+
+Divide by $n^2$ (for $n > 0$): $\;n \le c$ for all $n \ge n_0$.
+
+But $n = \max(n_0, c + 1)$ is $\ge n_0$ and $> c$. A contradiction. ✓
+
+## $\Omega$: a lower bound
+
+$f(n) = \Omega(g(n))$ ("$f$ is Omega of $g$") if there are constants $c > 0$ and $n_0$ such that
+
+$$
+f(n) \ge c \cdot g(n) \quad \text{for all } n \ge n_0
+$$
+
+- $f$ grows **at least** as fast as $g$.
+- $f = \Omega(g)$ exactly when $g = O(f)$.
+- Insertion sort, worst case: $\frac{n(n-1)}{2} \ge \frac{1}{4}\,n^2$ for all $n \ge 2$, so it is $\Omega(n^2)$.
+
+## $\Theta$: a tight bound
+
+$f(n) = \Theta(g(n))$ if $f = O(g)$ **and** $f = \Omega(g)$: there are constants $c_1, c_2 > 0$ and $n_0$ such that
+
+$$
+c_1 \cdot g(n) \;\le\; f(n) \;\le\; c_2 \cdot g(n) \quad \text{for all } n \ge n_0
+$$
+
+- $f$ and $g$ grow at the same rate.
+- Insertion sort, worst case: $\frac{n(n-1)}{2} = \Theta(n^2)$, with $c_1 = \frac{1}{4}$, $c_2 = \frac{1}{2}$, $n_0 = 2$.
+
+## $\Theta$: a picture
+
+![](media/asymptotic/big_theta.svg){height=420px}
+
+$2n^2 + 3n + 10 = \Theta(n^2)$, with $c_1 = 2$, $c_2 = 3$ and $n_0 = 5$.
+
+## Example: merge sort is $\Theta(n \log n)$
+
+- $n = 2^k$: $\;T(n) = n \log_2 n$, so $c_1 = c_2 = 1$.
+- Any $n$: at least $\lfloor \log_2 n \rfloor$ levels copy all $n$ items (every list there has 2 items or more), and there are at most $\lceil \log_2 n \rceil$ levels:
+
+$$
+n \lfloor \log_2 n \rfloor \;\le\; T(n) \;\le\; n \lceil \log_2 n \rceil
+$$
+
+- For $n \ge 4$: $\;\frac{1}{2}\, n \log_2 n \;\le\; T(n) \;\le\; 2\, n \log_2 n$.
+
+## The base of the logarithm does not matter
+
+$$
+\log_2 n = \frac{\log_{10} n}{\log_{10} 2} \approx 3.32 \cdot \log_{10} n
+$$
+
+- Changing the base multiplies by a constant (see exercise 2).
+- So $\Theta(\log_2 n) = \Theta(\log_{10} n)$: we write $O(\log n)$ and $\Theta(n \log n)$, without a base.
+
+## Polynomials: keep the highest power
+
+For $n \ge 1$:
+
+$$
+5n^4 \;\le\; 5n^4 + 8n^3 + 7 \;\le\; 5n^4 + 8n^4 + 7n^4 = 20\,n^4
+$$
+
+So $5n^4 + 8n^3 + 7 = \Theta(n^4)$, with $c_1 = 5$, $c_2 = 20$, $n_0 = 1$.
+
+- A polynomial of degree $k$ (with a positive leading coefficient) is $\Theta(n^k)$.
+- For two such polynomials, $f$ of degree $k$ and $g$ of degree $m$: $\;f = O(g)$ exactly when $k \le m$.
+
+## Common growth rates
+
+$$
+1 \;<\; \log n \;<\; \sqrt{n} \;<\; n \;<\; n \log n \;<\; n^2 \;<\; n^3 \;<\; 2^n
+$$
+
+| | $n = 1{,}000$ | $n = 1{,}000{,}000$ |
+|---|---|---|
+| $\log_2 n$ | 10 | 20 |
+| $\sqrt{n}$ | 32 | 1,000 |
+| $n \log_2 n$ | 9,966 | about $2 \cdot 10^7$ |
+| $n^2$ | $10^6$ | $10^{12}$ |
+| $n^3$ | $10^9$ | $10^{18}$ |
+| $2^n$ | a number with 302 digits | a number with 301,030 digits |
+
+Here $f < g$ means $f = O(g)$, but not $f = \Theta(g)$.
+
+## Our algorithms so far
+
+| | best case | worst case | extra memory |
+|---|---|---|---|
+| linear search | $\Theta(1)$ | $\Theta(n)$ | $\Theta(1)$ |
+| binary search | $\Theta(1)$ | $\Theta(\log n)$ | $\Theta(1)$ |
+| insertion sort | $\Theta(n)$ | $\Theta(n^2)$ | $\Theta(1)$ |
+| `merge` | $\Theta(n)$ | $\Theta(n)$ | $\Theta(n)$ |
+| merge sort | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n)$ |
+
+## Careful with the notation
+
+- $O(g)$ is a **set** of functions: $f = O(g)$ really means $f \in O(g)$.
+- The "=" goes one way: $n = O(n^2)$, but "$O(n^2) = n$" means nothing.
+- Best and worst case are a separate question: insertion sort is $\Theta(n^2)$ in the worst case and $\Theta(n)$ in the best case.
+- In practice people often write $O$ when they mean $\Theta$ ("merge sort is $O(n \log n)$").
+
+## Summary
+
+| notation | meaning, for all $n \ge n_0$ | like |
+|---|---|---|
+| $f = O(g)$ | $f(n) \le c \cdot g(n)$ | $\le$ |
+| $f = \Omega(g)$ | $f(n) \ge c \cdot g(n)$ | $\ge$ |
+| $f = \Theta(g)$ | $c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)$ | $=$ |
+
+Constant factors and lower-order terms do not matter: $3n^2 + 100\,n = \Theta(n^2)$.
+
+# More recurrences
+
+## Binary search: $T(n) = 1 + T(n/2)$
+
+One step, then the same search in half of the list. $\;T(1) = 1$.
+
+$$
+\begin{aligned}
+T(n) &= 1 + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n/2)}} \\
+&\class{fragment}{= 1 + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{1 + T(n/4)}}} \\
+&\class{fragment}{= 1 + 1 + 1 + T(n/8)} \\
+&\class{fragment}{\;\;\vdots} \\
+&\class{fragment}{= k + T(n/2^k)} \\
+&\class{fragment}{= \log_2 n + T(1) = \log_2 n + 1} && \class{fragment}{\text{stop when } n/2^k = 1 \text{, that is } k = \log_2 n}
+\end{aligned}
+$$
+
+::: {.fragment}
+$T(n) = \Theta(\log n)$, as in "Binary search: how many steps?".
+:::
+
+## `largest`: $T(n) = 2\,T(n/2) + 1$
+
+`largest` (in "Recursion: a reminder") makes two calls on halves, and one comparison (`max` of two). $\;T(1) = 0$.
+
+$$
+\begin{aligned}
+T(n) &= 1 + 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n/2)}} \\
+&\class{fragment}{= 1 + 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{(1 + 2\,T(n/4))}} = 1 + 2 + 4\,T(n/4)} \\
+&\class{fragment}{= 1 + 2 + 4 + 8\,T(n/8)} \\
+&\class{fragment}{\;\;\vdots} \\
+&\class{fragment}{= 1 + 2 + \dots + 2^{k-1} + 2^k\,T(n/2^k)} \\
+&\class{fragment}{= (2^k - 1) + n \cdot T(1) = n - 1} && \class{fragment}{\text{geometric series, } k = \log_2 n}
+\end{aligned}
+$$
+
+::: {.fragment}
+$T(n) = n - 1 = \Theta(n)$: the same number of comparisons as a simple loop.
+:::
+
+## $T(n) = n + T(n/2)$
+
+$n$ steps, then the same problem on half. $\;T(1) = 1$.
+
+$$
+T(n) = n + \frac{n}{2} + \frac{n}{4} + \dots + 1 = n \left(1 + \frac{1}{2} + \frac{1}{4} + \dots + \frac{1}{n}\right)
+$$
+
+- The series in the parentheses is less than 2 (see "Geometric series: any ratio").
+- So $\;n \le T(n) < 2n$. For $n = 2^k$, exactly $T(n) = 2n - 1$.
+- $T(n) = \Theta(n)$: the first level does most of the work.
+
+## $T(n) = n + T(3n/4)$
+
+$n$ steps, then the same problem on three quarters (ignoring rounding).
+
+$$
+T(n) \le n + \frac{3}{4}\,n + \left(\frac{3}{4}\right)^2 n + \dots = n \sum_{i=0}^{\infty} \left(\frac{3}{4}\right)^i = n \cdot \frac{1}{1 - 3/4} = 4n
+$$
+
+- So $\;n \le T(n) \le 4n$, and $T(n) = \Theta(n)$.
+- Any fixed fraction less than 1 gives $\Theta(n)$; only the constant changes.
+- We will meet this recurrence again in quickselect.
+
+## Recurrences: summary
+
+| recurrence | solution | example |
+|---|---|---|
+| $T(n) = 1 + T(n/2)$ | $\Theta(\log n)$ | binary search |
+| $T(n) = 2\,T(n/2) + 1$ | $\Theta(n)$ | `largest` |
+| $T(n) = n + T(n/2)$ | $\Theta(n)$ | |
+| $T(n) = n + T(3n/4)$ | $\Theta(n)$ | quickselect (later) |
+| $T(n) = 2\,T(n/2) + n$ | $\Theta(n \log n)$ | merge sort |
+| $T(n) = n + T(n - 1)$ | $\Theta(n^2)$ | insertion sort, recursive |
+
+- Half the size at each level: only $\log_2 n$ levels.
+- One item less at each level: $n$ levels.
+- The total is the sum over the levels: substitute, then sum the series.
+
+# Quicksort
+
+## Quicksort: the idea
+
+1. Choose one item: the **pivot**.
+2. **Partition**: move the items smaller than the pivot to its left, and the larger ones to its right.
+   Now the pivot is in its final place.
+3. Sort the left part and the right part, recursively.
+
+- No merge step: after the two recursive calls, the list is sorted.
+- Merge sort does the work **after** the recursive calls (`merge`); quicksort does it **before** (`partition`).
+- Everything happens inside the list (**in place**): no new lists.
+
+## Partition: what it does
+
+Pivot: the last item, 4.
+
+```text
+before:  [5, 6, 1, 8, 3, 7, 2, 4]
+after:   [1, 3, 2, 4, 6, 7, 5, 8]
+          ≤ 4      ^   > 4
+             pivot, index 3
+```
+
+- The items on each side of the pivot are **not** sorted yet.
+- The pivot is in the place it will have in the sorted list: `sorted(a)[3]` is 4.
+
+## Lomuto partition: the code
+
+```python
+def partition_lomuto(a, lo, hi, key=lambda x: x):
+    """Partition a[lo:hi] around the pivot a[hi - 1] (the last item)."""
+    pivot = key(a[hi - 1])
+    i = lo                          # a[lo:i] holds the items <= pivot
+    for j in range(lo, hi - 1):
+        if key(a[j]) <= pivot:
+            a[i], a[j] = a[j], a[i]
+            i += 1
+    a[i], a[hi - 1] = a[hi - 1], a[i]   # the pivot goes between the parts
+    return i
+```
+
+- Half-open, as in binary search: the function works on `a[lo:hi]`.
+- `a[lo:i]`: $\le$ pivot. `a[i:j]`: $>$ pivot. `a[j:hi - 1]`: not seen yet.
+
+## Lomuto partition: step by step
+
+::: {.r-stack}
+![](media/partition_lomuto/lomuto_00.svg){width=100%}
+
+![](media/partition_lomuto/lomuto_01.svg){.fragment width=100%}
+
+![](media/partition_lomuto/lomuto_02.svg){.fragment width=100%}
+
+![](media/partition_lomuto/lomuto_03.svg){.fragment width=100%}
+
+![](media/partition_lomuto/lomuto_04.svg){.fragment width=100%}
+
+![](media/partition_lomuto/lomuto_05.svg){.fragment width=100%}
+
+![](media/partition_lomuto/lomuto_06.svg){.fragment width=100%}
+
+![](media/partition_lomuto/lomuto_07.svg){.fragment width=100%}
+
+![](media/partition_lomuto/lomuto_08.svg){.fragment width=100%}
+:::
+
+## Lomuto partition: how many steps?
+
+For $n$ items (`hi - lo` $= n$):
+
+- Comparisons: exactly $n - 1$ (every item except the pivot, once).
+- Swaps: at most $n$.
+- So partition is $\Theta(n)$.
+- Extra memory: a few variables, $\Theta(1)$.
+
+## Hoare partition: the code
+
+```python
+def partition_hoare(a, lo, hi, key=lambda x: x):
+    """Partition a[lo:hi] around the pivot a[lo] (the first item)."""
+    pivot = key(a[lo])
+    i = lo - 1
+    j = hi
+    while True:
+        i += 1
+        while key(a[i]) < pivot:    # from the left: an item >= pivot
+            i += 1
+        j -= 1
+        while key(a[j]) > pivot:    # from the right: an item <= pivot
+            j -= 1
+        if i >= j:                  # the indexes met
+            return j
+        a[i], a[j] = a[j], a[i]
+```
+
+## Hoare partition: step by step
+
+::: {.r-stack}
+![](media/partition_hoare/hoare_00.svg){width=100%}
+
+![](media/partition_hoare/hoare_01.svg){.fragment width=100%}
+
+![](media/partition_hoare/hoare_02.svg){.fragment width=100%}
+
+![](media/partition_hoare/hoare_03.svg){.fragment width=100%}
+
+![](media/partition_hoare/hoare_04.svg){.fragment width=100%}
+:::
+
+## Hoare partition: the result
+
+```text
+before:  [5, 6, 1, 8, 3, 7, 2, 4]      pivot 5
+after:   [4, 2, 1, 3, 8, 7, 6, 5]      return 3
+          ≤ 5         ≥ 5
+```
+
+- Every item of `a[lo:p + 1]` is $\le$ every item of `a[p + 1:hi]`.
+- But the pivot is **not** necessarily between the two parts: here 5 ended up last.
+- So quicksort with Hoare sorts `a[lo:p + 1]` and `a[p + 1:hi]`: the pivot is still inside one of them.
+
+## Lomuto vs Hoare
+
+| | Lomuto | Hoare |
+|---|---|---|
+| pivot | last item | first item |
+| indexes | `i` and `j`, both from the left | `i` from the left, `j` from the right |
+| the pivot after partition | in its final place, `a[p]` | somewhere in one of the parts |
+| quicksort recurses on | `a[lo:p]` and `a[p + 1:hi]` | `a[lo:p + 1]` and `a[p + 1:hi]` |
+| steps | $\Theta(n)$ | $\Theta(n)$, usually fewer swaps |
+| extra memory | $\Theta(1)$ | $\Theta(1)$ |
+
+## Quicksort: the code
+
+```python
+def quick_sort(a, lo=0, hi=None, key=lambda x: x):
+    """Sort a[lo:hi] in place (Lomuto partition)."""
+    if hi is None:
+        hi = len(a)
+    if hi - lo <= 1:                     # 0 or 1 items: already sorted
+        return
+    p = partition_lomuto(a, lo, hi, key) # the pivot is now in a[p]
+    quick_sort(a, lo, p, key)            # the items before it
+    quick_sort(a, p + 1, hi, key)        # the items after it
+```
+
+- `hi=None`: the first call is just `quick_sort(a)`; then `hi` becomes `len(a)`.
+- Nothing is returned: the list `a` itself is sorted.
+
+## Quicksort: the calls
+
+```text
+quick_sort([5, 6, 1, 8, 3, 7, 2, 4]), pivot 4
+-> [1, 3, 2] 4 [6, 7, 5, 8]
+    quick_sort([1, 3, 2]), pivot 2
+    -> [1] 2 [3]
+        quick_sort([1])
+        quick_sort([3])
+    quick_sort([6, 7, 5, 8]), pivot 8
+    -> [6, 7, 5] 8 []
+        quick_sort([6, 7, 5]), pivot 5
+        -> [] 5 [7, 6]
+            ...
+```
+
+- The parts are not halves: their sizes depend on the pivot.
+
+See `quick_sort_traced` in `code/quick_sort.py`.
+
+## Best case: the pivot in the middle
+
+Every partition splits the items into two halves:
+
+$$
+T(n) = 2\,T(n/2) + n
+$$
+
+- The same recurrence as merge sort: $T(n) = \Theta(n \log n)$.
+- Recursion depth: $\log_2 n$.
+
+## Worst case: the pivot at an end
+
+Every partition leaves all the other items on one side: sizes $n - 1$ and $0$.
+
+$$
+T(n) = n + T(n - 1)
+$$
+
+- The recurrence from "Another recurrence": $T(n) = \Theta(n^2)$, about $\frac{n^2}{2}$ comparisons.
+- With the last item as the pivot, this happens for an input that is **already sorted**!
+- Recursion depth: $n$. In Python, `quick_sort(list(range(1000)))` raises `RecursionError` (the default limit is 1000 calls).
+
+## Random input: the average case
+
+| $n$ | input | comparisons | recursion depth | $\frac{n(n-1)}{2}$ |
+|---|---|---|---|---|
+| 1,000 | random | about 11,000 | about 22 | 499,500 |
+| 1,000 | sorted | 499,500 | 1,000 | 499,500 |
+| 4,000 | random | about 54,000 | about 27 | 7,998,000 |
+| 4,000 | sorted | 7,998,000 | 4,000 | 7,998,000 |
+
+- On random input, quicksort makes a little more comparisons than $n \log_2 n$: the average is $\Theta(n \log n)$.
+- A split does not have to be in the middle: if both parts have at least $\frac{1}{4}$ of the items, the larger part has at most $\frac{3}{4}\,n$ (see $T(n) = n + T(3n/4)$).
+
+## A random pivot
+
+```python
+r = random.randrange(lo, hi)           # a random index in a[lo:hi]
+a[r], a[hi - 1] = a[hi - 1], a[r]      # move that item to the end
+p = partition_lomuto(a, lo, hi, key)   # then partition as before
+```
+
+| $n$ | last item, random input | last item, sorted input | random pivot, sorted input |
+|---|---|---|---|
+| 2,000 | 2 ms | 190 ms | 2 ms |
+| 4,000 | 4 ms | 800 ms | 4 ms |
+| 8,000 | 8 ms | 3,200 ms | 9 ms |
+
+- No input is always bad: the worst case is still $\Theta(n^2)$, but it is very unlikely.
+
+## Quicksort: memory and stability
+
+- **Memory**: in place, only the recursion: $\Theta(\log n)$ extra memory in the best and average case, $\Theta(n)$ in the worst case.
+  Merge sort needs $\Theta(n)$ extra memory for the new lists.
+- **Not stable**: partition swaps items over long distances.
+
+```python
+a = [(1, "a"), (1, "b"), (0, "c")]
+quick_sort(a, key=lambda r: r[0])
+print(a)        # [(0, 'c'), (1, 'b'), (1, 'a')]: 'b' is now before 'a'
+```
+
+## Quicksort: timing
+
+| $n$ | quicksort | random pivot | Hoare | merge sort | `sorted` |
+|---|---|---|---|---|---|
+| 10,000 | ~10 ms | ~12 ms | ~12 ms | ~16 ms | ~1 ms |
+| 20,000 | ~23 ms | ~26 ms | ~25 ms | ~37 ms | ~2 ms |
+| 40,000 | ~48 ms | ~57 ms | ~54 ms | ~78 ms | ~4 ms |
+| 80,000 | ~106 ms | ~123 ms | ~112 ms | ~170 ms | ~10 ms |
+
+- Double $n$: a little more than twice the time, like merge sort.
+- In practice quicksort is usually faster than merge sort: no new lists.
+
+See `code/quick_sort.py` (exact times depend on the computer).
+
+## Sorting: summary
+
+| | best case | average case | worst case | extra memory | stable |
+|---|---|---|---|---|---|
+| insertion sort | $\Theta(n)$ | $\Theta(n^2)$ | $\Theta(n^2)$ | $\Theta(1)$ | yes |
+| merge sort | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n)$ | yes |
+| quicksort | $\Theta(n \log n)$ | $\Theta(n \log n)$ | $\Theta(n^2)$ | $\Theta(\log n)$ to $\Theta(n)$ | no |

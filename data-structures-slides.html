@@ -1930,6 +1930,17 @@ k = \log_2 n
 </ul>
 <p>See <code>merge_sort_traced</code> in <code>code/merge_sort.py</code>.</p>
 </section>
+<section id="merge-sort-number-of-steps" class="slide level2">
+<h2>Merge sort: number of steps</h2>
+<p><strong>Claim</strong>: the number of steps merge sort needs to sort a list of <span class="math inline">\(n\)</span> items (<span class="math inline">\(n\)</span> a power of 2) is</p>
+<p><span class="math display">\[
+T(n) = n \log_2 n
+\]</span></p>
+<ul>
+<li>First an intuition: count the copies.</li>
+<li>Then a proof: a recurrence formula, and induction.</li>
+</ul>
+</section>
 <section id="merge-sort-counting-the-copies" class="slide level2">
 <h2>Merge sort: counting the copies</h2>
 <div class="r-stack">
@@ -1940,8 +1951,8 @@ k = \log_2 n
 <p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MjgiIGhlaWdodD0iMzk4IiB2aWV3Qm94PSIwIDAgOTI4IDM5OCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjQiPgo8cmVjdCB3aWR0aD0iOTI4IiBoZWlnaHQ9IjM5OCIgZmlsbD0iI2ZmZmZmZiIvPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAzNCkiPgo8dGV4dCB4PSI2NzgiIHk9IjIiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxZjNhNjgiIGZvbnQtd2VpZ2h0PSJib2xkIj5jb3BpZXM8L3RleHQ+Cjx0ZXh0IHg9IjIwIiB5PSI0NCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+ZGVwdGggMDwvdGV4dD4KPHRleHQgeD0iMjAiIHk9IjEwNiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+ZGVwdGggMTwvdGV4dD4KPHRleHQgeD0iMjAiIHk9IjE2OCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+ZGVwdGggMjwvdGV4dD4KPHRleHQgeD0iMjAiIHk9IjIzMCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+ZGVwdGggMzwvdGV4dD4KPHJlY3QgeD0iMjAwLjAiIHk9IjE2IiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMjIzLjAiIHk9IjQ0LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAwMDAiPjE8L3RleHQ+CjxyZWN0IHg9IjI0Ni4wIiB5PSIxNiIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI2OS4wIiB5PSI0NC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4yPC90ZXh0Pgo8cmVjdCB4PSIyOTIuMCIgeT0iMTYiIHdpZHRoPSI0NiIgaGVpZ2h0PSI0MCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIzMTUuMCIgeT0iNDQuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMDAwMCI+MzwvdGV4dD4KPHJlY3QgeD0iMzM4LjAiIHk9IjE2IiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMzYxLjAiIHk9IjQ0LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAwMDAiPjQ8L3RleHQ+CjxyZWN0IHg9IjM4NC4wIiB5PSIxNiIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQwNy4wIiB5PSI0NC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj41PC90ZXh0Pgo8cmVjdCB4PSI0MzAuMCIgeT0iMTYiIHdpZHRoPSI0NiIgaGVpZ2h0PSI0MCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0NTMuMCIgeT0iNDQuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMDAwMCI+NjwvdGV4dD4KPHJlY3QgeD0iNDc2LjAiIHk9IjE2IiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDk5LjAiIHk9IjQ0LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAwMDAiPjc8L3RleHQ+CjxyZWN0IHg9IjUyMi4wIiB5PSIxNiIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU0NS4wIiB5PSI0NC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj44PC90ZXh0Pgo8bGluZSB4MT0iMzg0LjAiIHkxPSI1NiIgeDI9IjI4Mi4wIiB5Mj0iNzgiIHN0cm9rZT0iIzk5OTk5OSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPGxpbmUgeDE9IjM4NC4wIiB5MT0iNTYiIHgyPSI0ODYuMCIgeTI9Ijc4IiBzdHJva2U9IiM5OTk5OTkiIHN0cm9rZS13aWR0aD0iMS41Ii8+CjxyZWN0IHg9IjE5MC4wIiB5PSI3OCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIxMy4wIiB5PSIxMDYuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMDAwMCI+MTwvdGV4dD4KPHJlY3QgeD0iMjM2LjAiIHk9Ijc4IiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMjU5LjAiIHk9IjEwNi4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4zPC90ZXh0Pgo8cmVjdCB4PSIyODIuMCIgeT0iNzgiIHdpZHRoPSI0NiIgaGVpZ2h0PSI0MCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIzMDUuMCIgeT0iMTA2LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAwMDAiPjU8L3RleHQ+CjxyZWN0IHg9IjMyOC4wIiB5PSI3OCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM1MS4wIiB5PSIxMDYuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMDAwMCI+NjwvdGV4dD4KPHJlY3QgeD0iMzk0LjAiIHk9Ijc4IiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDE3LjAiIHk9IjEwNi4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4yPC90ZXh0Pgo8cmVjdCB4PSI0NDAuMCIgeT0iNzgiIHdpZHRoPSI0NiIgaGVpZ2h0PSI0MCIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0NjMuMCIgeT0iMTA2LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDAwMDAiPjQ8L3RleHQ+CjxyZWN0IHg9IjQ4Ni4wIiB5PSI3OCIgd2lkdGg9IjQ2IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjUwOS4wIiB5PSIxMDYuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMDAwMCI+NzwvdGV4dD4KPHJlY3QgeD0iNTMyLjAiIHk9Ijc4IiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNTU1LjAiIHk9IjEwNi4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj44PC90ZXh0Pgo8bGluZSB4MT0iMjgyLjAiIHkxPSIxMTgiIHgyPSIyMTYuMCIgeTI9IjE0MCIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMjgyLjAiIHkxPSIxMTgiIHgyPSIzMjguMCIgeTI9IjE0MCIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNDg2LjAiIHkxPSIxMTgiIHgyPSI0NDAuMCIgeTI9IjE0MCIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNDg2LjAiIHkxPSIxMTgiIHgyPSI1NTIuMCIgeTI9IjE0MCIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8cmVjdCB4PSIxNzAuMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMTkzLjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj41PC90ZXh0Pgo8cmVjdCB4PSIyMTYuMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMjM5LjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj42PC90ZXh0Pgo8cmVjdCB4PSIyODIuMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMzA1LjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4xPC90ZXh0Pgo8cmVjdCB4PSIzMjguMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMzUxLjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4zPC90ZXh0Pgo8cmVjdCB4PSIzOTQuMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDE3LjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj43PC90ZXh0Pgo8cmVjdCB4PSI0NDAuMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDYzLjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj44PC90ZXh0Pgo8cmVjdCB4PSI1MDYuMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNTI5LjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4yPC90ZXh0Pgo8cmVjdCB4PSI1NTIuMCIgeT0iMTQwIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNTc1LjAiIHk9IjE2OC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj40PC90ZXh0Pgo8bGluZSB4MT0iMjE2LjAiIHkxPSIxODAiIHgyPSIxNTMuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMjE2LjAiIHkxPSIxODAiIHgyPSIyMTkuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMzI4LjAiIHkxPSIxODAiIHgyPSIyODUuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iMzI4LjAiIHkxPSIxODAiIHgyPSIzNTEuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNDQwLjAiIHkxPSIxODAiIHgyPSI0MTcuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNDQwLjAiIHkxPSIxODAiIHgyPSI0ODMuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNTUyLjAiIHkxPSIxODAiIHgyPSI1NDkuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNTUyLjAiIHkxPSIxODAiIHgyPSI2MTUuMCIgeTI9IjIwMiIgc3Ryb2tlPSIjOTk5OTk5IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8cmVjdCB4PSIxMzAuMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMTUzLjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj42PC90ZXh0Pgo8cmVjdCB4PSIxOTYuMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMjE5LjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj41PC90ZXh0Pgo8cmVjdCB4PSIyNjIuMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMjg1LjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4zPC90ZXh0Pgo8cmVjdCB4PSIzMjguMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMzUxLjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4xPC90ZXh0Pgo8cmVjdCB4PSIzOTQuMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDE3LjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj44PC90ZXh0Pgo8cmVjdCB4PSI0NjAuMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDgzLjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj43PC90ZXh0Pgo8cmVjdCB4PSI1MjYuMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNTQ5LjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj4yPC90ZXh0Pgo8cmVjdCB4PSI1OTIuMCIgeT0iMjAyIiB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNjE1LjAiIHk9IjIzMC4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDAwMDAwIj40PC90ZXh0Pgo8dGV4dCB4PSI2NzgiIHk9IjE2OCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzJlOGI1NyI+NCBtZXJnZXMgw5cgMiA9IDg8L3RleHQ+Cjx0ZXh0IHg9IjY3OCIgeT0iMTA2IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMmU4YjU3Ij4yIG1lcmdlcyDDlyA0ID0gODwvdGV4dD4KPHRleHQgeD0iNjc4IiB5PSI0NCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzJlOGI1NyI+MSBtZXJnZSDDlyA4ID0gODwvdGV4dD4KPHRleHQgeD0iNDY0LjAiIHk9IjMyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCIgZm9udC13ZWlnaHQ9ImJvbGQiPnRvdGFsOiA4ICsgOCArIDggPSAyNCA9IDggwrcgMzwvdGV4dD4KPHRleHQgeD0iNDY0LjAiIHk9IjM1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCIgZm9udC13ZWlnaHQ9ImJvbGQiPj0gbiDCtyAoZGVwdGggb2YgdGhlIHJlY3Vyc2lvbikgPSBuIMK3IGxvZ+KCgiBuPC90ZXh0Pgo8L2c+Cjwvc3ZnPgo=" class="fragment" height="480"></p>
 </div>
 </section>
-<section id="merge-sort-number-of-steps" class="slide level2">
-<h2>Merge sort: number of steps</h2>
+<section id="merge-sort-counting-the-number-of-steps" class="slide level2">
+<h2>Merge sort: counting the number of steps</h2>
 <ul>
 <li>Each <strong>merge level</strong> copies <span class="math inline">\(n\)</span> items.<br>
 Number of comparisons can be less, because &quot;tails&quot; can be merged without comparison.</li>
@@ -1982,8 +1993,8 @@ Comparisons: fewer.</li>
 </table>
 <p>For small lists insertion sort is fine; for large lists <span class="math inline">\(n^2\)</span> grows much faster.</p>
 </section>
-<section id="the-recurrence" class="slide level2">
-<h2>The recurrence</h2>
+<section id="recurrence-formula-for-merge-sort" class="slide level2">
+<h2>Recurrence formula for merge sort</h2>
 <p><span class="math inline">\(T(n)\)</span> = number of steps when sorting <span class="math inline">\(n\)</span> items:</p>
 <p><span class="math display">\[
 T(1) = 0 \qquad\qquad T(n) = \underbrace{2\,T(n/2)}_{\text{sort the two halves}} + \underbrace{n}_{\text{merge}}
@@ -2015,34 +2026,73 @@ T(8) &amp;= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(4)}} + 8 \\
 <!-- Each expanded term and its expansion on the next line share a color, with a thin box of the same color
      (for color vision). \class{fragment}{...} shows one line per click and keeps the lines aligned. -->
 </section>
-<section id="solving-the-recurrence" class="slide level2">
-<h2>Solving the recurrence</h2>
+<section id="recurrence-formulas" class="slide level2">
+<h2>Recurrence formulas</h2>
+<p>The number of steps of a recursive algorithm is often given by a <strong>recurrence formula</strong>.</p>
+<ul>
+<li>A recurrence formula defines a function by its own values on <strong>smaller</strong> inputs.</li>
+<li>It must also give the <strong>base</strong> value (or values): these are given directly, without the function.</li>
+</ul>
+<p>Example: the Fibonacci numbers.</p>
+<p><span class="math display">\[
+\begin{aligned}
+F(0) &amp;= 0, \quad F(1) = 1 &amp;&amp; \text{the base values} \\
+F(n) &amp;= F(n-1) + F(n-2) &amp;&amp; \text{for } n \ge 2
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(F\)</span>: <span class="math inline">\(\;0, 1, 1, 2, 3, 5, 8, 13, 21, \dots\)</span></p>
+</section>
+<section id="recurrence-formulas-contd." class="slide level2">
+<h2>Recurrence formulas (contd.)</h2>
+<p>For many recurrence formulas there is no <strong>closed formula</strong> (a formula without <span class="math inline">\(H\)</span> on the right side).</p>
+<p>Example: the harmonic numbers.</p>
+<p><span class="math display">\[
+H(1) = 1 \qquad\qquad H(n) = H(n-1) + \frac{1}{n}
+\]</span></p>
+<p><span class="math display">\[
+H(n) = 1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{n}
+\]</span></p>
+<ul>
+<li>There is no closed formula for this sum.</li>
+<li>But we can bound it: <span class="math inline">\(\;\ln n &lt; H(n) \le \ln n + 1\)</span>.</li>
+</ul>
+</section>
+<section id="the-iteration-method" class="slide level2">
+<h2>The iteration method</h2>
+<p>The iteration method helps to <strong>guess</strong> a closed formula for a recurrence formula: substitute the formula into itself again and again, and look for a pattern.</p>
+<p>Let&#39;s use it to guess a closed formula for merge sort:</p>
+<p><span class="math display">\[
+T(1) = 0 \qquad\qquad T(n) = 2\,T(n/2) + n
+\]</span></p>
+<p>The guess is not a proof: then we prove it by induction.</p>
+</section>
+<section id="the-iteration-method-for-merge-sort" class="slide level2">
+<h2>The iteration method for merge sort</h2>
 <p>Substitute <span class="math inline">\(T(n/2) = 2\,T(n/4) + n/2\)</span>, and so on (<span class="math inline">\(n\)</span> a power of 2):</p>
 <p><span class="math display">\[
 \begin{aligned}
-T(n) &amp;= 2\,T(n/2) + n \\
-     &amp;= 4\,T(n/4) + 2n \\
-     &amp;= 8\,T(n/8) + 3n \\
-     &amp;\;\;\vdots \\
-     &amp;= 2^k\,T(n/2^k) + k\,n
+T(n) &amp;= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n/2)}} + n \\
+&amp;\class{fragment}{= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{(2\,T(n/4) + n/2)}} + n} \\
+&amp;\class{fragment}{= (4\,T(n/4) + n) + n} \\
+&amp;\class{fragment}{= 4\,\bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{T(n/4)}} + 2n} \\
+&amp;\class{fragment}{= 4\,\bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{(2\,T(n/8) + n/4)}} + 2n} \\
+&amp;\class{fragment}{= (8\,T(n/8) + n) + 2n} \\
+&amp;\class{fragment}{= 8\,T(n/8) + 3n} \\
+&amp;\class{fragment}{\;\;\vdots} \\
+&amp;\class{fragment}{= 2^k\,T(n/2^k) + k\,n \qquad \text{stop when } n/2^k = 1 \text{, that is } k = \log_2 n} \\
+&amp;\class{fragment}{= n \cdot T(1) + n \log_2 n = n \log_2 n}
 \end{aligned}
-\]</span></p>
-<p>Stop when <span class="math inline">\(n/2^k = 1\)</span>, that is <span class="math inline">\(k = \log_2 n\)</span>:</p>
-<p><span class="math display">\[
-T(n) = n \cdot T(1) + n \log_2 n = n \log_2 n
 \]</span></p>
 </section>
 <section id="proof-by-induction-the-claim" class="slide level2">
 <h2>Proof by induction: the claim</h2>
-<p>Let <span class="math inline">\(n = 2^k\)</span>, that is <span class="math inline">\(k = \log_2 n\)</span>. Then</p>
-<p><span class="math display">\[
-T(n) = T(2^k)
-\]</span></p>
+<p>We guessed that <span class="math inline">\(T(n) = n \log_2 n\)</span>. Now we prove it by induction, for <span class="math inline">\(n\)</span> a power of 2.</p>
+<p>Guess, then prove by induction: this is called the <strong>substitution method</strong>.</p>
+<p>Let <span class="math inline">\(n = 2^k\)</span>, that is <span class="math inline">\(k = \log_2 n\)</span>.</p>
 <p><strong>Claim</strong>: for every <span class="math inline">\(k \ge 0\)</span>,</p>
 <p><span class="math display">\[
-T(2^k) = k \cdot 2^k
+T(n) = T(2^k) = k \cdot 2^k = n \log_2 n
 \]</span></p>
-<p>which is the same as <span class="math inline">\(T(n) = n \log_2 n\)</span>.</p>
 <p>We prove it by induction on <span class="math inline">\(k\)</span>.</p>
 <ul>
 <li><strong>Base</strong>: <span class="math inline">\(k = 0\)</span>, that is <span class="math inline">\(n = 2^0 = 1\)</span>:</li>
@@ -2232,6 +2282,967 @@ T(n) \le n \lceil \log_2 n \rceil &lt; n\,(\log_2 n + 1)
 <li><code>sorted</code> uses Timsort: merge sort, with insertion sort for short pieces, written in C.</li>
 </ul>
 <p>See <code>code/merge_sort.py</code> (exact times depend on the computer).</p>
+</section></section>
+<section>
+<section id="another-recurrence" class="title-slide slide level1 center">
+<h1>Another recurrence</h1>
+
+</section>
+<section id="tn-n-tn---1" class="slide level2">
+<h2><span class="math inline">\(T(n) = n + T(n - 1)\)</span></h2>
+<p><span class="math display">\[
+T(1) = 1 \qquad\qquad T(n) = n + T(n - 1)
+\]</span></p>
+<ul>
+<li>Do <span class="math inline">\(n\)</span> steps of work, then solve the same problem for <strong>one item less</strong>.</li>
+<li>Merge sort is different: it solves two problems of <strong>half</strong> the size.</li>
+<li>Example: insertion sort, written recursively. Sort the first <span class="math inline">\(n - 1\)</span> items, then insert the last one: in the worst case <span class="math inline">\(n - 1\)</span> comparisons, so <span class="math inline">\(T(n) = T(n - 1) + (n - 1)\)</span>. Almost the same recurrence.</li>
+</ul>
+</section>
+<section id="solving-it-by-iteration" class="slide level2">
+<h2>Solving it by iteration</h2>
+<p><span class="math display">\[
+\begin{aligned}
+T(n) &amp;= n + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n - 1)}} \\
+&amp;\class{fragment}{= n + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{(n - 1) + T(n - 2)}}} \\
+&amp;\class{fragment}{= n + (n - 1) + \bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{T(n - 2)}}} \\
+&amp;\class{fragment}{= n + (n - 1) + \bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{(n - 2) + T(n - 3)}}} \\
+&amp;\class{fragment}{\;\;\vdots} \\
+&amp;\class{fragment}{= n + (n - 1) + (n - 2) + \dots + 2 + \bbox[2px,border:1px solid #c25a00]{\color{#c25a00}{T(1)}}} \\
+&amp;\class{fragment}{= n + (n - 1) + (n - 2) + \dots + 2 + \bbox[2px,border:1px solid #c25a00]{\color{#c25a00}{1}}} \\
+&amp;\class{fragment}{= \frac{n(n + 1)}{2}} &amp;&amp; \class{fragment}{\text{arithmetic series (see &quot;Sums&quot;)}}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="halves-vs.-one-less" class="slide level2">
+<h2>Halves vs. one less</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>merge sort</th>
+<th><span class="math inline">\(n + T(n - 1)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>recurrence</td>
+<td><span class="math inline">\(T(n) = 2\,T(n/2) + n\)</span></td>
+<td><span class="math inline">\(T(n) = n + T(n - 1)\)</span></td>
+</tr>
+<tr class="even">
+<td>levels</td>
+<td><span class="math inline">\(\log_2 n\)</span></td>
+<td><span class="math inline">\(n\)</span></td>
+</tr>
+<tr class="odd">
+<td>work per level</td>
+<td><span class="math inline">\(n\)</span></td>
+<td><span class="math inline">\(n, n - 1, \dots, 1\)</span></td>
+</tr>
+<tr class="even">
+<td>total</td>
+<td><span class="math inline">\(n \log_2 n\)</span></td>
+<td><span class="math inline">\(\frac{n(n + 1)}{2}\)</span>, about <span class="math inline">\(\frac{n^2}{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n = 1{,}000\)</span></td>
+<td>9,966</td>
+<td>500,500</td>
+</tr>
+</tbody>
+</table>
+<p>Cutting the problem in <strong>half</strong> at each level is what makes merge sort fast.</p>
+</section></section>
+<section>
+<section id="asymptotic-notation" class="title-slide slide level1 center">
+<h1>Asymptotic notation</h1>
+
+</section>
+<section id="why-not-count-exactly" class="slide level2">
+<h2>Why not count exactly?</h2>
+<ul>
+<li>Insertion sort, worst case: <span class="math inline">\(\frac{n(n-1)}{2}\)</span> comparisons.</li>
+<li>Merge sort: <span class="math inline">\(n \log_2 n\)</span> copies, and fewer comparisons.</li>
+<li>The exact count depends on details: what we count (comparisons? copies?), the computer, the language.</li>
+</ul>
+<p>What matters for large inputs is <strong>how fast the count grows</strong> with <span class="math inline">\(n\)</span>.</p>
+<p>Asymptotic notation keeps the growth rate, and drops the details: constant factors and lower-order terms.</p>
+</section>
+<section id="growth-beats-constants" class="slide level2">
+<h2>Growth beats constants</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th><span class="math inline">\(100\,n\)</span></th>
+<th><span class="math inline">\(n^2 / 100\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10</td>
+<td>1,000</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td>10,000</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>1,000</td>
+<td>100,000</td>
+<td>10,000</td>
+</tr>
+<tr class="even">
+<td>10,000</td>
+<td>1,000,000</td>
+<td>1,000,000</td>
+</tr>
+<tr class="odd">
+<td>100,000</td>
+<td>10,000,000</td>
+<td>100,000,000</td>
+</tr>
+<tr class="even">
+<td>1,000,000</td>
+<td>100,000,000</td>
+<td>10,000,000,000</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>For small <span class="math inline">\(n\)</span>, <span class="math inline">\(n^2/100\)</span> is smaller. From <span class="math inline">\(n = 10{,}000\)</span> on, <span class="math inline">\(100\,n\)</span> is smaller, and the gap keeps growing.</li>
+<li>For large <span class="math inline">\(n\)</span>, a slower-growing function wins, whatever the constants.</li>
+</ul>
+</section>
+<section id="what-happens-when-n-doubles" class="slide level2">
+<h2>What happens when <span class="math inline">\(n\)</span> doubles?</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>steps</th>
+<th>from <span class="math inline">\(n\)</span> to <span class="math inline">\(2n\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\log_2 n\)</span></td>
+<td><span class="math inline">\(+1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(n\)</span></td>
+<td><span class="math inline">\(\times 2\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n \log_2 n\)</span></td>
+<td>a little more than <span class="math inline">\(\times 2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(n^2\)</span></td>
+<td><span class="math inline">\(\times 4\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n^3\)</span></td>
+<td><span class="math inline">\(\times 8\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2^n\)</span></td>
+<td>squared: <span class="math inline">\(2^{2n} = (2^n)^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Compare with &quot;Merge sort: timing&quot;: merge sort takes a little more than twice as long, insertion sort 4 times.</p>
+</section>
+<section id="o-an-upper-bound" class="slide level2">
+<h2><span class="math inline">\(O\)</span>: an upper bound</h2>
+<p><span class="math inline">\(f(n) = O(g(n))\)</span> (&quot;<span class="math inline">\(f\)</span> is big O of <span class="math inline">\(g\)</span>&quot;) if there are constants <span class="math inline">\(c &gt; 0\)</span> and <span class="math inline">\(n_0\)</span> such that</p>
+<p><span class="math display">\[
+f(n) \le c \cdot g(n) \quad \text{for all } n \ge n_0
+\]</span></p>
+<ul>
+<li>From some point on (<span class="math inline">\(n_0\)</span>), <span class="math inline">\(f\)</span> is at most a constant times <span class="math inline">\(g\)</span>.</li>
+<li><span class="math inline">\(f\)</span> grows <strong>at most</strong> as fast as <span class="math inline">\(g\)</span>.</li>
+</ul>
+</section>
+<section id="o-a-picture" class="slide level2">
+<h2><span class="math inline">\(O\)</span>: a picture</h2>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNzYwIDQyMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjQyMCIgZmlsbD0iI2ZmZmZmZiIvPgo8cmVjdCB4PSIzOTUuMCIgeT0iMjAiIHdpZHRoPSIzMjUuMCIgaGVpZ2h0PSIzNTAuMCIgZmlsbD0iI2VlZjNmYiIvPgo8bGluZSB4MT0iNzAuMCIgeTE9IjM3MC4wIiB4Mj0iNzIwLjAiIHkyPSIzNzAuMCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNzAuMCIgeTE9IjM3MC4wIiB4Mj0iNzAuMCIgeTI9IjIwIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjcyMC4wIiB5PSI0MTAuMCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCIgdGV4dC1hbmNob3I9ImVuZCI+bjwvdGV4dD4KPGxpbmUgeDE9IjM5NS4wIiB5MT0iMzcwLjAiIHgyPSIzOTUuMCIgeTI9IjIwIiBzdHJva2U9IiM5OTk5OTkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI2IDQiLz4KPHRleHQgeD0iMzk1LjAiIHk9IjM5Ni4wIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMWYzYTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5u4oKAID0gNTwvdGV4dD4KPHRleHQgeD0iNTU3LjUiIHk9IjQ2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5mb3IgYWxsIG4g4omlIG7igoA8L3RleHQ+Cjx0ZXh0IHg9IjcwLjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4wPC90ZXh0Pgo8dGV4dCB4PSIxMzUuMCIgeT0iMzkyLjAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+Cjx0ZXh0IHg9IjIwMC4wIiB5PSIzOTIuMCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHRleHQgeD0iMjY1LjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0Pgo8dGV4dCB4PSIzMzAuMCIgeT0iMzkyLjAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+Cjx0ZXh0IHg9IjQ2MC4wIiB5PSIzOTIuMCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHRleHQgeD0iNTI1LjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj43PC90ZXh0Pgo8dGV4dCB4PSI1OTAuMCIgeT0iMzkyLjAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjg8L3RleHQ+Cjx0ZXh0IHg9IjY1NS4wIiB5PSIzOTIuMCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+OTwvdGV4dD4KPHRleHQgeD0iNzIwLjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xMDwvdGV4dD4KPHBvbHlsaW5lIHBvaW50cz0iNzAuMCwzNzAuMCA3Ni41LDM3MC4wIDgzLjAsMzY5LjkgODkuNSwzNjkuNyA5Ni4wLDM2OS41IDEwMi41LDM2OS4yIDEwOS4wLDM2OC44IDExNS41LDM2OC40IDEyMi4wLDM2Ny45IDEyOC41LDM2Ny4zIDEzNS4wLDM2Ni43IDE0MS41LDM2Ni4wIDE0OC4wLDM2NS4zIDE1NC41LDM2NC41IDE2MS4wLDM2My42IDE2Ny41LDM2Mi42IDE3NC4wLDM2MS42IDE4MC41LDM2MC41IDE4Ny4wLDM1OS40IDE5My41LDM1OC4yIDIwMC4wLDM1Ni45IDIwNi41LDM1NS41IDIxMy4wLDM1NC4xIDIxOS41LDM1Mi42IDIyNi4wLDM1MS4xIDIzMi41LDM0OS41IDIzOS4wLDM0Ny44IDI0NS41LDM0Ni4xIDI1Mi4wLDM0NC4zIDI1OC41LDM0Mi40IDI2NS4wLDM0MC41IDI3MS41LDMzOC41IDI3OC4wLDMzNi40IDI4NC41LDMzNC4zIDI5MS4wLDMzMi4xIDI5Ny41LDMyOS44IDMwNC4wLDMyNy41IDMxMC41LDMyNS4xIDMxNy4wLDMyMi42IDMyMy41LDMyMC4xIDMzMC4wLDMxNy41IDMzNi41LDMxNC44IDM0My4wLDMxMi4xIDM0OS41LDMwOS4zIDM1Ni4wLDMwNi41IDM2Mi41LDMwMy42IDM2OS4wLDMwMC42IDM3NS41LDI5Ny41IDM4Mi4wLDI5NC40IDM4OC41LDI5MS4yIDM5NS4wLDI4OC4wIDQwMS41LDI4NC43IDQwOC4wLDI4MS4zIDQxNC41LDI3Ny44IDQyMS4wLDI3NC4zIDQyNy41LDI3MC43IDQzNC4wLDI2Ny4xIDQ0MC41LDI2My40IDQ0Ny4wLDI1OS42IDQ1My41LDI1NS44IDQ2MC4wLDI1MS45IDQ2Ni41LDI0Ny45IDQ3My4wLDI0My45IDQ3OS41LDIzOS44IDQ4Ni4wLDIzNS42IDQ5Mi41LDIzMS40IDQ5OS4wLDIyNy4xIDUwNS41LDIyMi43IDUxMi4wLDIxOC4zIDUxOC41LDIxMy44IDUyNS4wLDIwOS4yIDUzMS41LDIwNC42IDUzOC4wLDE5OS45IDU0NC41LDE5NS4xIDU1MS4wLDE5MC4zIDU1Ny41LDE4NS40IDU2NC4wLDE4MC41IDU3MC41LDE3NS41IDU3Ny4wLDE3MC40IDU4My41LDE2NS4yIDU5MC4wLDE2MC4wIDU5Ni41LDE1NC43IDYwMy4wLDE0OS40IDYwOS41LDE0NC4wIDYxNi4wLDEzOC41IDYyMi41LDEzMi45IDYyOS4wLDEyNy4zIDYzNS41LDEyMS42IDY0Mi4wLDExNS45IDY0OC41LDExMC4xIDY1NS4wLDEwNC4yIDY2MS41LDk4LjMgNjY4LjAsOTIuMyA2NzQuNSw4Ni4yIDY4MS4wLDgwLjEgNjg3LjUsNzMuOSA2OTQuMCw2Ny42IDcwMC41LDYxLjMgNzA3LjAsNTQuOSA3MTMuNSw0OC40IDcyMC4wLDQxLjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzJlOGI1NyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSIxMCA2Ii8+Cjxwb2x5bGluZSBwb2ludHM9IjcwLjAsMzU5LjEgNzYuNSwzNTguNyA4My4wLDM1OC4zIDg5LjUsMzU3LjkgOTYuMCwzNTcuNCAxMDIuNSwzNTYuOSAxMDkuMCwzNTYuMyAxMTUuNSwzNTUuNyAxMjIuMCwzNTUuMCAxMjguNSwzNTQuMyAxMzUuMCwzNTMuNiAxNDEuNSwzNTIuOCAxNDguMCwzNTIuMCAxNTQuNSwzNTEuMSAxNjEuMCwzNTAuMiAxNjcuNSwzNDkuMiAxNzQuMCwzNDguMiAxODAuNSwzNDcuMiAxODcuMCwzNDYuMSAxOTMuNSwzNDQuOSAyMDAuMCwzNDMuOCAyMDYuNSwzNDIuNSAyMTMuMCwzNDEuMyAyMTkuNSwzMzkuOSAyMjYuMCwzMzguNiAyMzIuNSwzMzcuMiAyMzkuMCwzMzUuNyAyNDUuNSwzMzQuMyAyNTIuMCwzMzIuNyAyNTguNSwzMzEuMSAyNjUuMCwzMjkuNSAyNzEuNSwzMjcuOSAyNzguMCwzMjYuMiAyODQuNSwzMjQuNCAyOTEuMCwzMjIuNiAyOTcuNSwzMjAuOCAzMDQuMCwzMTguOSAzMTAuNSwzMTcuMCAzMTcuMCwzMTUuMCAzMjMuNSwzMTMuMCAzMzAuMCwzMTAuOSAzMzYuNSwzMDguOCAzNDMuMCwzMDYuNyAzNDkuNSwzMDQuNSAzNTYuMCwzMDIuMyAzNjIuNSwzMDAuMCAzNjkuMCwyOTcuNyAzNzUuNSwyOTUuMyAzODIuMCwyOTIuOSAzODguNSwyOTAuNSAzOTUuMCwyODguMCA0MDEuNSwyODUuNCA0MDguMCwyODIuOSA0MTQuNSwyODAuMiA0MjEuMCwyNzcuNiA0MjcuNSwyNzQuOCA0MzQuMCwyNzIuMSA0NDAuNSwyNjkuMyA0NDcuMCwyNjYuNCA0NTMuNSwyNjMuNiA0NjAuMCwyNjAuNiA0NjYuNSwyNTcuNyA0NzMuMCwyNTQuNiA0NzkuNSwyNTEuNiA0ODYuMCwyNDguNSA0OTIuNSwyNDUuMyA0OTkuMCwyNDIuMSA1MDUuNSwyMzguOSA1MTIuMCwyMzUuNiA1MTguNSwyMzIuMyA1MjUuMCwyMjguOSA1MzEuNSwyMjUuNSA1MzguMCwyMjIuMCA1NDQuNSwyMTguNSA1NTEuMCwyMTUuMCA1NTcuNSwyMTEuNCA1NjQuMCwyMDcuOCA1NzAuNSwyMDQuMSA1NzcuMCwyMDAuNCA1ODMuNSwxOTYuNiA1OTAuMCwxOTIuOCA1OTYuNSwxODkuMCA2MDMuMCwxODUuMSA2MDkuNSwxODEuMSA2MTYuMCwxNzcuMiA2MjIuNSwxNzMuMSA2MjkuMCwxNjkuMSA2MzUuNSwxNjQuOSA2NDIuMCwxNjAuOCA2NDguNSwxNTYuNiA2NTUuMCwxNTIuMyA2NjEuNSwxNDguMSA2NjguMCwxNDMuNyA2NzQuNSwxMzkuMyA2ODEuMCwxMzQuOSA2ODcuNSwxMzAuNSA2OTQuMCwxMjYuMCA3MDAuNSwxMjEuNCA3MDcuMCwxMTYuOCA3MTMuNSwxMTIuMiA3MjAuMCwxMDcuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjMiLz4KPGxpbmUgeDE9Ijg5LjUiIHkxPSI0MyIgeDI9IjE0MS41IiB5Mj0iNDMiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjE1NC41IiB5PSI1MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzFmM2E2OCI+ZihuKSA9IDJuwrIgKyAzbiArIDEwPC90ZXh0Pgo8bGluZSB4MT0iODkuNSIgeTE9Ijc3IiB4Mj0iMTQxLjUiIHkyPSI3NyIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjEwIDYiLz4KPHRleHQgeD0iMTU0LjUiIHk9Ijg0IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMmU4YjU3Ij5jwrdnKG4pID0gM27CsjwvdGV4dD4KPC9zdmc+Cg==" height="420"></p>
+<p><span class="math inline">\(2n^2 + 3n + 10 = O(n^2)\)</span>, with <span class="math inline">\(c = 3\)</span> and <span class="math inline">\(n_0 = 5\)</span>.</p>
+</section>
+<section id="example-finding-c-and-n_0" class="slide level2">
+<h2>Example: finding <span class="math inline">\(c\)</span> and <span class="math inline">\(n_0\)</span></h2>
+<p>Show that <span class="math inline">\(2n^2 + 3n + 10 = O(n^2)\)</span>.</p>
+<p>For <span class="math inline">\(n \ge 1\)</span>: <span class="math inline">\(\;3n \le 3n^2\)</span> and <span class="math inline">\(10 \le 10n^2\)</span>. So</p>
+<p><span class="math display">\[
+2n^2 + 3n + 10 \;\le\; 2n^2 + 3n^2 + 10n^2 \;=\; 15\,n^2 \quad \text{for all } n \ge 1
+\]</span></p>
+<ul>
+<li><span class="math inline">\(c = 15\)</span>, <span class="math inline">\(n_0 = 1\)</span> works.</li>
+<li>The picture used <span class="math inline">\(c = 3\)</span>, <span class="math inline">\(n_0 = 5\)</span>. Both are correct: we need only <strong>one</strong> pair.</li>
+</ul>
+</section>
+<section id="example-insertion-sort" class="slide level2">
+<h2>Example: insertion sort</h2>
+<p>Worst case: <span class="math inline">\(f(n) = \frac{n(n-1)}{2}\)</span> comparisons.</p>
+<p><span class="math display">\[
+\frac{n(n-1)}{2} = \frac{n^2 - n}{2} \;\le\; \frac{1}{2}\,n^2 \quad \text{for all } n \ge 1
+\]</span></p>
+<p>So <span class="math inline">\(f(n) = O(n^2)\)</span>, with <span class="math inline">\(c = \frac{1}{2}\)</span> and <span class="math inline">\(n_0 = 1\)</span>.</p>
+</section>
+<section id="o-is-only-an-upper-bound" class="slide level2">
+<h2><span class="math inline">\(O\)</span> is only an upper bound</h2>
+<ul>
+<li><span class="math inline">\(n = O(n^2)\)</span>, and <span class="math inline">\(n^2 = O(n^3)\)</span>: <span class="math inline">\(O\)</span> means &quot;at most&quot;.</li>
+<li><span class="math inline">\(f = O(g)\)</span> and <span class="math inline">\(g = O(f)\)</span> can both be true. For example <span class="math inline">\(f(n) = 2n^2\)</span> and <span class="math inline">\(g(n) = n^2 + n\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+2n^2 &amp;\le 2\,(n^2 + n) &amp;&amp; \text{for all } n \ge 0, \text{ so } f = O(g) \\
+n^2 + n &amp;\le 2\,n^2 &amp;&amp; \text{for all } n \ge 1, \text{ so } g = O(f)
+\end{aligned}
+\]</span></p>
+<p>Then <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> grow at the same rate (see <span class="math inline">\(\Theta\)</span> below).</p>
+</section>
+<section id="proving-that-f-is-not-og" class="slide level2">
+<h2>Proving that <span class="math inline">\(f\)</span> is not <span class="math inline">\(O(g)\)</span></h2>
+<p>Claim: <span class="math inline">\(n^3\)</span> is <strong>not</strong> <span class="math inline">\(O(n^2)\)</span>.</p>
+<p>Suppose it were: there are <span class="math inline">\(c\)</span> and <span class="math inline">\(n_0\)</span> such that</p>
+<p><span class="math display">\[
+n^3 \le c \cdot n^2 \quad \text{for all } n \ge n_0
+\]</span></p>
+<p>Divide by <span class="math inline">\(n^2\)</span> (for <span class="math inline">\(n &gt; 0\)</span>): <span class="math inline">\(\;n \le c\)</span> for all <span class="math inline">\(n \ge n_0\)</span>.</p>
+<p>But <span class="math inline">\(n = \max(n_0, c + 1)\)</span> is <span class="math inline">\(\ge n_0\)</span> and <span class="math inline">\(&gt; c\)</span>. A contradiction. ✓</p>
+</section>
+<section id="omega-a-lower-bound" class="slide level2">
+<h2><span class="math inline">\(\Omega\)</span>: a lower bound</h2>
+<p><span class="math inline">\(f(n) = \Omega(g(n))\)</span> (&quot;<span class="math inline">\(f\)</span> is Omega of <span class="math inline">\(g\)</span>&quot;) if there are constants <span class="math inline">\(c &gt; 0\)</span> and <span class="math inline">\(n_0\)</span> such that</p>
+<p><span class="math display">\[
+f(n) \ge c \cdot g(n) \quad \text{for all } n \ge n_0
+\]</span></p>
+<ul>
+<li><span class="math inline">\(f\)</span> grows <strong>at least</strong> as fast as <span class="math inline">\(g\)</span>.</li>
+<li><span class="math inline">\(f = \Omega(g)\)</span> exactly when <span class="math inline">\(g = O(f)\)</span>.</li>
+<li>Insertion sort, worst case: <span class="math inline">\(\frac{n(n-1)}{2} \ge \frac{1}{4}\,n^2\)</span> for all <span class="math inline">\(n \ge 2\)</span>, so it is <span class="math inline">\(\Omega(n^2)\)</span>.</li>
+</ul>
+</section>
+<section id="theta-a-tight-bound" class="slide level2">
+<h2><span class="math inline">\(\Theta\)</span>: a tight bound</h2>
+<p><span class="math inline">\(f(n) = \Theta(g(n))\)</span> if <span class="math inline">\(f = O(g)\)</span> <strong>and</strong> <span class="math inline">\(f = \Omega(g)\)</span>: there are constants <span class="math inline">\(c_1, c_2 &gt; 0\)</span> and <span class="math inline">\(n_0\)</span> such that</p>
+<p><span class="math display">\[
+c_1 \cdot g(n) \;\le\; f(n) \;\le\; c_2 \cdot g(n) \quad \text{for all } n \ge n_0
+\]</span></p>
+<ul>
+<li><span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> grow at the same rate.</li>
+<li>Insertion sort, worst case: <span class="math inline">\(\frac{n(n-1)}{2} = \Theta(n^2)\)</span>, with <span class="math inline">\(c_1 = \frac{1}{4}\)</span>, <span class="math inline">\(c_2 = \frac{1}{2}\)</span>, <span class="math inline">\(n_0 = 2\)</span>.</li>
+</ul>
+</section>
+<section id="theta-a-picture" class="slide level2">
+<h2><span class="math inline">\(\Theta\)</span>: a picture</h2>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iNDIwIiB2aWV3Qm94PSIwIDAgNzYwIDQyMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjQyMCIgZmlsbD0iI2ZmZmZmZiIvPgo8cmVjdCB4PSIzOTUuMCIgeT0iMjAiIHdpZHRoPSIzMjUuMCIgaGVpZ2h0PSIzNTAuMCIgZmlsbD0iI2VlZjNmYiIvPgo8bGluZSB4MT0iNzAuMCIgeTE9IjM3MC4wIiB4Mj0iNzIwLjAiIHkyPSIzNzAuMCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8bGluZSB4MT0iNzAuMCIgeTE9IjM3MC4wIiB4Mj0iNzAuMCIgeTI9IjIwIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjcyMC4wIiB5PSI0MTAuMCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCIgdGV4dC1hbmNob3I9ImVuZCI+bjwvdGV4dD4KPGxpbmUgeDE9IjM5NS4wIiB5MT0iMzcwLjAiIHgyPSIzOTUuMCIgeTI9IjIwIiBzdHJva2U9IiM5OTk5OTkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI2IDQiLz4KPHRleHQgeD0iMzk1LjAiIHk9IjM5Ni4wIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMWYzYTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5u4oKAID0gNTwvdGV4dD4KPHRleHQgeD0iNTU3LjUiIHk9IjQ2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5mb3IgYWxsIG4g4omlIG7igoA8L3RleHQ+Cjx0ZXh0IHg9IjcwLjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4wPC90ZXh0Pgo8dGV4dCB4PSIxMzUuMCIgeT0iMzkyLjAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+Cjx0ZXh0IHg9IjIwMC4wIiB5PSIzOTIuMCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHRleHQgeD0iMjY1LjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0Pgo8dGV4dCB4PSIzMzAuMCIgeT0iMzkyLjAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+Cjx0ZXh0IHg9IjQ2MC4wIiB5PSIzOTIuMCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHRleHQgeD0iNTI1LjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj43PC90ZXh0Pgo8dGV4dCB4PSI1OTAuMCIgeT0iMzkyLjAiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjg8L3RleHQ+Cjx0ZXh0IHg9IjY1NS4wIiB5PSIzOTIuMCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+OTwvdGV4dD4KPHRleHQgeD0iNzIwLjAiIHk9IjM5Mi4wIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xMDwvdGV4dD4KPHBvbHlsaW5lIHBvaW50cz0iNzAuMCwzNzAuMCA3Ni41LDM3MC4wIDgzLjAsMzY5LjkgODkuNSwzNjkuNyA5Ni4wLDM2OS41IDEwMi41LDM2OS4yIDEwOS4wLDM2OC44IDExNS41LDM2OC40IDEyMi4wLDM2Ny45IDEyOC41LDM2Ny4zIDEzNS4wLDM2Ni43IDE0MS41LDM2Ni4wIDE0OC4wLDM2NS4zIDE1NC41LDM2NC41IDE2MS4wLDM2My42IDE2Ny41LDM2Mi42IDE3NC4wLDM2MS42IDE4MC41LDM2MC41IDE4Ny4wLDM1OS40IDE5My41LDM1OC4yIDIwMC4wLDM1Ni45IDIwNi41LDM1NS41IDIxMy4wLDM1NC4xIDIxOS41LDM1Mi42IDIyNi4wLDM1MS4xIDIzMi41LDM0OS41IDIzOS4wLDM0Ny44IDI0NS41LDM0Ni4xIDI1Mi4wLDM0NC4zIDI1OC41LDM0Mi40IDI2NS4wLDM0MC41IDI3MS41LDMzOC41IDI3OC4wLDMzNi40IDI4NC41LDMzNC4zIDI5MS4wLDMzMi4xIDI5Ny41LDMyOS44IDMwNC4wLDMyNy41IDMxMC41LDMyNS4xIDMxNy4wLDMyMi42IDMyMy41LDMyMC4xIDMzMC4wLDMxNy41IDMzNi41LDMxNC44IDM0My4wLDMxMi4xIDM0OS41LDMwOS4zIDM1Ni4wLDMwNi41IDM2Mi41LDMwMy42IDM2OS4wLDMwMC42IDM3NS41LDI5Ny41IDM4Mi4wLDI5NC40IDM4OC41LDI5MS4yIDM5NS4wLDI4OC4wIDQwMS41LDI4NC43IDQwOC4wLDI4MS4zIDQxNC41LDI3Ny44IDQyMS4wLDI3NC4zIDQyNy41LDI3MC43IDQzNC4wLDI2Ny4xIDQ0MC41LDI2My40IDQ0Ny4wLDI1OS42IDQ1My41LDI1NS44IDQ2MC4wLDI1MS45IDQ2Ni41LDI0Ny45IDQ3My4wLDI0My45IDQ3OS41LDIzOS44IDQ4Ni4wLDIzNS42IDQ5Mi41LDIzMS40IDQ5OS4wLDIyNy4xIDUwNS41LDIyMi43IDUxMi4wLDIxOC4zIDUxOC41LDIxMy44IDUyNS4wLDIwOS4yIDUzMS41LDIwNC42IDUzOC4wLDE5OS45IDU0NC41LDE5NS4xIDU1MS4wLDE5MC4zIDU1Ny41LDE4NS40IDU2NC4wLDE4MC41IDU3MC41LDE3NS41IDU3Ny4wLDE3MC40IDU4My41LDE2NS4yIDU5MC4wLDE2MC4wIDU5Ni41LDE1NC43IDYwMy4wLDE0OS40IDYwOS41LDE0NC4wIDYxNi4wLDEzOC41IDYyMi41LDEzMi45IDYyOS4wLDEyNy4zIDYzNS41LDEyMS42IDY0Mi4wLDExNS45IDY0OC41LDExMC4xIDY1NS4wLDEwNC4yIDY2MS41LDk4LjMgNjY4LjAsOTIuMyA2NzQuNSw4Ni4yIDY4MS4wLDgwLjEgNjg3LjUsNzMuOSA2OTQuMCw2Ny42IDcwMC41LDYxLjMgNzA3LjAsNTQuOSA3MTMuNSw0OC40IDcyMC4wLDQxLjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzJlOGI1NyIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSIxMCA2Ii8+Cjxwb2x5bGluZSBwb2ludHM9IjcwLjAsMzcwLjAgNzYuNSwzNzAuMCA4My4wLDM2OS45IDg5LjUsMzY5LjggOTYuMCwzNjkuNiAxMDIuNSwzNjkuNSAxMDkuMCwzNjkuMiAxMTUuNSwzNjguOSAxMjIuMCwzNjguNiAxMjguNSwzNjguMiAxMzUuMCwzNjcuOCAxNDEuNSwzNjcuNCAxNDguMCwzNjYuOSAxNTQuNSwzNjYuMyAxNjEuMCwzNjUuNyAxNjcuNSwzNjUuMSAxNzQuMCwzNjQuNCAxODAuNSwzNjMuNyAxODcuMCwzNjIuOSAxOTMuNSwzNjIuMSAyMDAuMCwzNjEuMiAyMDYuNSwzNjAuNCAyMTMuMCwzNTkuNCAyMTkuNSwzNTguNCAyMjYuMCwzNTcuNCAyMzIuNSwzNTYuMyAyMzkuMCwzNTUuMiAyNDUuNSwzNTQuMSAyNTIuMCwzNTIuOSAyNTguNSwzNTEuNiAyNjUuMCwzNTAuMyAyNzEuNSwzNDkuMCAyNzguMCwzNDcuNiAyODQuNSwzNDYuMiAyOTEuMCwzNDQuNyAyOTcuNSwzNDMuMiAzMDQuMCwzNDEuNiAzMTAuNSwzNDAuMSAzMTcuMCwzMzguNCAzMjMuNSwzMzYuNyAzMzAuMCwzMzUuMCAzMzYuNSwzMzMuMiAzNDMuMCwzMzEuNCAzNDkuNSwzMjkuNiAzNTYuMCwzMjcuNiAzNjIuNSwzMjUuNyAzNjkuMCwzMjMuNyAzNzUuNSwzMjEuNyAzODIuMCwzMTkuNiAzODguNSwzMTcuNSAzOTUuMCwzMTUuMyA0MDEuNSwzMTMuMSA0MDguMCwzMTAuOSA0MTQuNSwzMDguNiA0MjEuMCwzMDYuMiA0MjcuNSwzMDMuOCA0MzQuMCwzMDEuNCA0NDAuNSwyOTguOSA0NDcuMCwyOTYuNCA0NTMuNSwyOTMuOSA0NjAuMCwyOTEuMiA0NjYuNSwyODguNiA0NzMuMCwyODUuOSA0NzkuNSwyODMuMiA0ODYuMCwyODAuNCA0OTIuNSwyNzcuNiA0OTkuMCwyNzQuNyA1MDUuNSwyNzEuOCA1MTIuMCwyNjguOSA1MTguNSwyNjUuOSA1MjUuMCwyNjIuOCA1MzEuNSwyNTkuNyA1MzguMCwyNTYuNiA1NDQuNSwyNTMuNCA1NTEuMCwyNTAuMiA1NTcuNSwyNDcuMCA1NjQuMCwyNDMuNyA1NzAuNSwyNDAuMyA1NzcuMCwyMzYuOSA1ODMuNSwyMzMuNSA1OTAuMCwyMzAuMCA1OTYuNSwyMjYuNSA2MDMuMCwyMjIuOSA2MDkuNSwyMTkuMyA2MTYuMCwyMTUuNyA2MjIuNSwyMTIuMCA2MjkuMCwyMDguMiA2MzUuNSwyMDQuNCA2NDIuMCwyMDAuNiA2NDguNSwxOTYuNyA2NTUuMCwxOTIuOCA2NjEuNSwxODguOSA2NjguMCwxODQuOSA2NzQuNSwxODAuOCA2ODEuMCwxNzYuNyA2ODcuNSwxNzIuNiA2OTQuMCwxNjguNCA3MDAuNSwxNjQuMiA3MDcuMCwxNTkuOSA3MTMuNSwxNTUuNiA3MjAuMCwxNTEuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzI1YTAwIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNCIvPgo8cG9seWxpbmUgcG9pbnRzPSI3MC4wLDM1OS4xIDc2LjUsMzU4LjcgODMuMCwzNTguMyA4OS41LDM1Ny45IDk2LjAsMzU3LjQgMTAyLjUsMzU2LjkgMTA5LjAsMzU2LjMgMTE1LjUsMzU1LjcgMTIyLjAsMzU1LjAgMTI4LjUsMzU0LjMgMTM1LjAsMzUzLjYgMTQxLjUsMzUyLjggMTQ4LjAsMzUyLjAgMTU0LjUsMzUxLjEgMTYxLjAsMzUwLjIgMTY3LjUsMzQ5LjIgMTc0LjAsMzQ4LjIgMTgwLjUsMzQ3LjIgMTg3LjAsMzQ2LjEgMTkzLjUsMzQ0LjkgMjAwLjAsMzQzLjggMjA2LjUsMzQyLjUgMjEzLjAsMzQxLjMgMjE5LjUsMzM5LjkgMjI2LjAsMzM4LjYgMjMyLjUsMzM3LjIgMjM5LjAsMzM1LjcgMjQ1LjUsMzM0LjMgMjUyLjAsMzMyLjcgMjU4LjUsMzMxLjEgMjY1LjAsMzI5LjUgMjcxLjUsMzI3LjkgMjc4LjAsMzI2LjIgMjg0LjUsMzI0LjQgMjkxLjAsMzIyLjYgMjk3LjUsMzIwLjggMzA0LjAsMzE4LjkgMzEwLjUsMzE3LjAgMzE3LjAsMzE1LjAgMzIzLjUsMzEzLjAgMzMwLjAsMzEwLjkgMzM2LjUsMzA4LjggMzQzLjAsMzA2LjcgMzQ5LjUsMzA0LjUgMzU2LjAsMzAyLjMgMzYyLjUsMzAwLjAgMzY5LjAsMjk3LjcgMzc1LjUsMjk1LjMgMzgyLjAsMjkyLjkgMzg4LjUsMjkwLjUgMzk1LjAsMjg4LjAgNDAxLjUsMjg1LjQgNDA4LjAsMjgyLjkgNDE0LjUsMjgwLjIgNDIxLjAsMjc3LjYgNDI3LjUsMjc0LjggNDM0LjAsMjcyLjEgNDQwLjUsMjY5LjMgNDQ3LjAsMjY2LjQgNDUzLjUsMjYzLjYgNDYwLjAsMjYwLjYgNDY2LjUsMjU3LjcgNDczLjAsMjU0LjYgNDc5LjUsMjUxLjYgNDg2LjAsMjQ4LjUgNDkyLjUsMjQ1LjMgNDk5LjAsMjQyLjEgNTA1LjUsMjM4LjkgNTEyLjAsMjM1LjYgNTE4LjUsMjMyLjMgNTI1LjAsMjI4LjkgNTMxLjUsMjI1LjUgNTM4LjAsMjIyLjAgNTQ0LjUsMjE4LjUgNTUxLjAsMjE1LjAgNTU3LjUsMjExLjQgNTY0LjAsMjA3LjggNTcwLjUsMjA0LjEgNTc3LjAsMjAwLjQgNTgzLjUsMTk2LjYgNTkwLjAsMTkyLjggNTk2LjUsMTg5LjAgNjAzLjAsMTg1LjEgNjA5LjUsMTgxLjEgNjE2LjAsMTc3LjIgNjIyLjUsMTczLjEgNjI5LjAsMTY5LjEgNjM1LjUsMTY0LjkgNjQyLjAsMTYwLjggNjQ4LjUsMTU2LjYgNjU1LjAsMTUyLjMgNjYxLjUsMTQ4LjEgNjY4LjAsMTQzLjcgNjc0LjUsMTM5LjMgNjgxLjAsMTM0LjkgNjg3LjUsMTMwLjUgNjk0LjAsMTI2LjAgNzAwLjUsMTIxLjQgNzA3LjAsMTE2LjggNzEzLjUsMTEyLjIgNzIwLjAsMTA3LjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxsaW5lIHgxPSI4OS41IiB5MT0iNDMiIHgyPSIxNDEuNSIgeTI9IjQzIiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWRhc2hhcnJheT0iMTAgNiIvPgo8dGV4dCB4PSIxNTQuNSIgeT0iNTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyZThiNTciPmPigoLCt2cobikgPSAzbsKyPC90ZXh0Pgo8bGluZSB4MT0iODkuNSIgeTE9Ijc3IiB4Mj0iMTQxLjUiIHkyPSI3NyIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iMTU0LjUiIHk9Ijg0IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMWYzYTY4Ij5mKG4pID0gMm7CsiArIDNuICsgMTA8L3RleHQ+CjxsaW5lIHgxPSI4OS41IiB5MT0iMTExIiB4Mj0iMTQxLjUiIHkyPSIxMTEiIHN0cm9rZT0iI2MyNWEwMCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSI0IDQiLz4KPHRleHQgeD0iMTU0LjUiIHk9IjExOCIgZm9udC1zaXplPSIyMSIgZmlsbD0iI2MyNWEwMCI+Y+KCgcK3ZyhuKSA9IDJuwrI8L3RleHQ+Cjwvc3ZnPgo=" height="420"></p>
+<p><span class="math inline">\(2n^2 + 3n + 10 = \Theta(n^2)\)</span>, with <span class="math inline">\(c_1 = 2\)</span>, <span class="math inline">\(c_2 = 3\)</span> and <span class="math inline">\(n_0 = 5\)</span>.</p>
+</section>
+<section id="example-merge-sort-is-thetan-log-n" class="slide level2">
+<h2>Example: merge sort is <span class="math inline">\(\Theta(n \log n)\)</span></h2>
+<ul>
+<li><span class="math inline">\(n = 2^k\)</span>: <span class="math inline">\(\;T(n) = n \log_2 n\)</span>, so <span class="math inline">\(c_1 = c_2 = 1\)</span>.</li>
+<li>Any <span class="math inline">\(n\)</span>: at least <span class="math inline">\(\lfloor \log_2 n \rfloor\)</span> levels copy all <span class="math inline">\(n\)</span> items (every list there has 2 items or more), and there are at most <span class="math inline">\(\lceil \log_2 n \rceil\)</span> levels:</li>
+</ul>
+<p><span class="math display">\[
+n \lfloor \log_2 n \rfloor \;\le\; T(n) \;\le\; n \lceil \log_2 n \rceil
+\]</span></p>
+<ul>
+<li>For <span class="math inline">\(n \ge 4\)</span>: <span class="math inline">\(\;\frac{1}{2}\, n \log_2 n \;\le\; T(n) \;\le\; 2\, n \log_2 n\)</span>.</li>
+</ul>
+</section>
+<section id="the-base-of-the-logarithm-does-not-matter" class="slide level2">
+<h2>The base of the logarithm does not matter</h2>
+<p><span class="math display">\[
+\log_2 n = \frac{\log_{10} n}{\log_{10} 2} \approx 3.32 \cdot \log_{10} n
+\]</span></p>
+<ul>
+<li>Changing the base multiplies by a constant (see exercise 2).</li>
+<li>So <span class="math inline">\(\Theta(\log_2 n) = \Theta(\log_{10} n)\)</span>: we write <span class="math inline">\(O(\log n)\)</span> and <span class="math inline">\(\Theta(n \log n)\)</span>, without a base.</li>
+</ul>
+</section>
+<section id="polynomials-keep-the-highest-power" class="slide level2">
+<h2>Polynomials: keep the highest power</h2>
+<p>For <span class="math inline">\(n \ge 1\)</span>:</p>
+<p><span class="math display">\[
+5n^4 \;\le\; 5n^4 + 8n^3 + 7 \;\le\; 5n^4 + 8n^4 + 7n^4 = 20\,n^4
+\]</span></p>
+<p>So <span class="math inline">\(5n^4 + 8n^3 + 7 = \Theta(n^4)\)</span>, with <span class="math inline">\(c_1 = 5\)</span>, <span class="math inline">\(c_2 = 20\)</span>, <span class="math inline">\(n_0 = 1\)</span>.</p>
+<ul>
+<li>A polynomial of degree <span class="math inline">\(k\)</span> (with a positive leading coefficient) is <span class="math inline">\(\Theta(n^k)\)</span>.</li>
+<li>For two such polynomials, <span class="math inline">\(f\)</span> of degree <span class="math inline">\(k\)</span> and <span class="math inline">\(g\)</span> of degree <span class="math inline">\(m\)</span>: <span class="math inline">\(\;f = O(g)\)</span> exactly when <span class="math inline">\(k \le m\)</span>.</li>
+</ul>
+</section>
+<section id="common-growth-rates" class="slide level2">
+<h2>Common growth rates</h2>
+<p><span class="math display">\[
+1 \;&lt;\; \log n \;&lt;\; \sqrt{n} \;&lt;\; n \;&lt;\; n \log n \;&lt;\; n^2 \;&lt;\; n^3 \;&lt;\; 2^n
+\]</span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\(n = 1{,}000\)</span></th>
+<th><span class="math inline">\(n = 1{,}000{,}000\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\log_2 n\)</span></td>
+<td>10</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sqrt{n}\)</span></td>
+<td>32</td>
+<td>1,000</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n \log_2 n\)</span></td>
+<td>9,966</td>
+<td>about <span class="math inline">\(2 \cdot 10^7\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(n^2\)</span></td>
+<td><span class="math inline">\(10^6\)</span></td>
+<td><span class="math inline">\(10^{12}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(n^3\)</span></td>
+<td><span class="math inline">\(10^9\)</span></td>
+<td><span class="math inline">\(10^{18}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(2^n\)</span></td>
+<td>a number with 302 digits</td>
+<td>a number with 301,030 digits</td>
+</tr>
+</tbody>
+</table>
+<p>Here <span class="math inline">\(f &lt; g\)</span> means <span class="math inline">\(f = O(g)\)</span>, but not <span class="math inline">\(f = \Theta(g)\)</span>.</p>
+</section>
+<section id="our-algorithms-so-far" class="slide level2">
+<h2>Our algorithms so far</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>best case</th>
+<th>worst case</th>
+<th>extra memory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>linear search</td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="even">
+<td>binary search</td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+<td><span class="math inline">\(\Theta(\log n)\)</span></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>insertion sort</td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><span class="math inline">\(\Theta(n^2)\)</span></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+<tr class="even">
+<td><code>merge</code></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+</tr>
+<tr class="odd">
+<td>merge sort</td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="careful-with-the-notation" class="slide level2">
+<h2>Careful with the notation</h2>
+<ul>
+<li><span class="math inline">\(O(g)\)</span> is a <strong>set</strong> of functions: <span class="math inline">\(f = O(g)\)</span> really means <span class="math inline">\(f \in O(g)\)</span>.</li>
+<li>The &quot;=&quot; goes one way: <span class="math inline">\(n = O(n^2)\)</span>, but &quot;<span class="math inline">\(O(n^2) = n\)</span>&quot; means nothing.</li>
+<li>Best and worst case are a separate question: insertion sort is <span class="math inline">\(\Theta(n^2)\)</span> in the worst case and <span class="math inline">\(\Theta(n)\)</span> in the best case.</li>
+<li>In practice people often write <span class="math inline">\(O\)</span> when they mean <span class="math inline">\(\Theta\)</span> (&quot;merge sort is <span class="math inline">\(O(n \log n)\)</span>&quot;).</li>
+</ul>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>notation</th>
+<th>meaning, for all <span class="math inline">\(n \ge n_0\)</span></th>
+<th>like</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(f = O(g)\)</span></td>
+<td><span class="math inline">\(f(n) \le c \cdot g(n)\)</span></td>
+<td><span class="math inline">\(\le\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(f = \Omega(g)\)</span></td>
+<td><span class="math inline">\(f(n) \ge c \cdot g(n)\)</span></td>
+<td><span class="math inline">\(\ge\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(f = \Theta(g)\)</span></td>
+<td><span class="math inline">\(c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)\)</span></td>
+<td><span class="math inline">\(=\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Constant factors and lower-order terms do not matter: <span class="math inline">\(3n^2 + 100\,n = \Theta(n^2)\)</span>.</p>
+</section></section>
+<section>
+<section id="more-recurrences" class="title-slide slide level1 center">
+<h1>More recurrences</h1>
+
+</section>
+<section id="binary-search-tn-1-tn2" class="slide level2">
+<h2>Binary search: <span class="math inline">\(T(n) = 1 + T(n/2)\)</span></h2>
+<p>One step, then the same search in half of the list. <span class="math inline">\(\;T(1) = 1\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+T(n) &amp;= 1 + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n/2)}} \\
+&amp;\class{fragment}{= 1 + \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{1 + T(n/4)}}} \\
+&amp;\class{fragment}{= 1 + 1 + 1 + T(n/8)} \\
+&amp;\class{fragment}{\;\;\vdots} \\
+&amp;\class{fragment}{= k + T(n/2^k)} \\
+&amp;\class{fragment}{= \log_2 n + T(1) = \log_2 n + 1} &amp;&amp; \class{fragment}{\text{stop when } n/2^k = 1 \text{, that is } k = \log_2 n}
+\end{aligned}
+\]</span></p>
+<div class="fragment">
+<p><span class="math inline">\(T(n) = \Theta(\log n)\)</span>, as in &quot;Binary search: how many steps?&quot;.</p>
+</div>
+</section>
+<section id="largest-tn-2tn2-1" class="slide level2">
+<h2><code>largest</code>: <span class="math inline">\(T(n) = 2\,T(n/2) + 1\)</span></h2>
+<p><code>largest</code> (in &quot;Recursion: a reminder&quot;) makes two calls on halves, and one comparison (<code>max</code> of two). <span class="math inline">\(\;T(1) = 0\)</span>.</p>
+<p><span class="math display">\[
+\begin{aligned}
+T(n) &amp;= 1 + 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(n/2)}} \\
+&amp;\class{fragment}{= 1 + 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{(1 + 2\,T(n/4))}} = 1 + 2 + 4\,T(n/4)} \\
+&amp;\class{fragment}{= 1 + 2 + 4 + 8\,T(n/8)} \\
+&amp;\class{fragment}{\;\;\vdots} \\
+&amp;\class{fragment}{= 1 + 2 + \dots + 2^{k-1} + 2^k\,T(n/2^k)} \\
+&amp;\class{fragment}{= (2^k - 1) + n \cdot T(1) = n - 1} &amp;&amp; \class{fragment}{\text{geometric series, } k = \log_2 n}
+\end{aligned}
+\]</span></p>
+<div class="fragment">
+<p><span class="math inline">\(T(n) = n - 1 = \Theta(n)\)</span>: the same number of comparisons as a simple loop.</p>
+</div>
+</section>
+<section id="tn-n-tn2" class="slide level2">
+<h2><span class="math inline">\(T(n) = n + T(n/2)\)</span></h2>
+<p><span class="math inline">\(n\)</span> steps, then the same problem on half. <span class="math inline">\(\;T(1) = 1\)</span>.</p>
+<p><span class="math display">\[
+T(n) = n + \frac{n}{2} + \frac{n}{4} + \dots + 1 = n \left(1 + \frac{1}{2} + \frac{1}{4} + \dots + \frac{1}{n}\right)
+\]</span></p>
+<ul>
+<li>The series in the parentheses is less than 2 (see &quot;Geometric series: any ratio&quot;).</li>
+<li>So <span class="math inline">\(\;n \le T(n) &lt; 2n\)</span>. For <span class="math inline">\(n = 2^k\)</span>, exactly <span class="math inline">\(T(n) = 2n - 1\)</span>.</li>
+<li><span class="math inline">\(T(n) = \Theta(n)\)</span>: the first level does most of the work.</li>
+</ul>
+</section>
+<section id="tn-n-t3n4" class="slide level2">
+<h2><span class="math inline">\(T(n) = n + T(3n/4)\)</span></h2>
+<p><span class="math inline">\(n\)</span> steps, then the same problem on three quarters (ignoring rounding).</p>
+<p><span class="math display">\[
+T(n) \le n + \frac{3}{4}\,n + \left(\frac{3}{4}\right)^2 n + \dots = n \sum_{i=0}^{\infty} \left(\frac{3}{4}\right)^i = n \cdot \frac{1}{1 - 3/4} = 4n
+\]</span></p>
+<ul>
+<li>So <span class="math inline">\(\;n \le T(n) \le 4n\)</span>, and <span class="math inline">\(T(n) = \Theta(n)\)</span>.</li>
+<li>Any fixed fraction less than 1 gives <span class="math inline">\(\Theta(n)\)</span>; only the constant changes.</li>
+<li>We will meet this recurrence again in quickselect.</li>
+</ul>
+</section>
+<section id="recurrences-summary" class="slide level2">
+<h2>Recurrences: summary</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>recurrence</th>
+<th>solution</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(T(n) = 1 + T(n/2)\)</span></td>
+<td><span class="math inline">\(\Theta(\log n)\)</span></td>
+<td>binary search</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(T(n) = 2\,T(n/2) + 1\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><code>largest</code></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(T(n) = n + T(n/2)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(T(n) = n + T(3n/4)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td>quickselect (later)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(T(n) = 2\,T(n/2) + n\)</span></td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td>merge sort</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(T(n) = n + T(n - 1)\)</span></td>
+<td><span class="math inline">\(\Theta(n^2)\)</span></td>
+<td>insertion sort, recursive</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Half the size at each level: only <span class="math inline">\(\log_2 n\)</span> levels.</li>
+<li>One item less at each level: <span class="math inline">\(n\)</span> levels.</li>
+<li>The total is the sum over the levels: substitute, then sum the series.</li>
+</ul>
+</section></section>
+<section>
+<section id="quicksort" class="title-slide slide level1 center">
+<h1>Quicksort</h1>
+
+</section>
+<section id="quicksort-the-idea" class="slide level2">
+<h2>Quicksort: the idea</h2>
+<ol type="1">
+<li>Choose one item: the <strong>pivot</strong>.</li>
+<li><strong>Partition</strong>: move the items smaller than the pivot to its left, and the larger ones to its right. Now the pivot is in its final place.</li>
+<li>Sort the left part and the right part, recursively.</li>
+</ol>
+<ul>
+<li>No merge step: after the two recursive calls, the list is sorted.</li>
+<li>Merge sort does the work <strong>after</strong> the recursive calls (<code>merge</code>); quicksort does it <strong>before</strong> (<code>partition</code>).</li>
+<li>Everything happens inside the list (<strong>in place</strong>): no new lists.</li>
+</ul>
+</section>
+<section id="partition-what-it-does" class="slide level2">
+<h2>Partition: what it does</h2>
+<p>Pivot: the last item, 4.</p>
+<pre class="text"><code>before:  [5, 6, 1, 8, 3, 7, 2, 4]
+after:   [1, 3, 2, 4, 6, 7, 5, 8]
+          ≤ 4      ^   &gt; 4
+             pivot, index 3</code></pre>
+<ul>
+<li>The items on each side of the pivot are <strong>not</strong> sorted yet.</li>
+<li>The pivot is in the place it will have in the sorted list: <code>sorted(a)[3]</code> is 4.</li>
+</ul>
+</section>
+<section id="lomuto-partition-the-code" class="slide level2">
+<h2>Lomuto partition: the code</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partition_lomuto(a, lo, hi, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span>
+<span id="cb22-2"><a href aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Partition a[lo:hi] around the pivot a[hi - 1] (the last item).&quot;&quot;&quot;</span></span>
+<span id="cb22-3"><a href aria-hidden="true" tabindex="-1"></a>    pivot <span class="op">=</span> key(a[hi <span class="op">-</span> <span class="dv">1</span>])</span>
+<span id="cb22-4"><a href aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> lo                          <span class="co"># a[lo:i] holds the items &lt;= pivot</span></span>
+<span id="cb22-5"><a href aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(lo, hi <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb22-6"><a href aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> key(a[j]) <span class="op">&lt;=</span> pivot:</span>
+<span id="cb22-7"><a href aria-hidden="true" tabindex="-1"></a>            a[i], a[j] <span class="op">=</span> a[j], a[i]</span>
+<span id="cb22-8"><a href aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb22-9"><a href aria-hidden="true" tabindex="-1"></a>    a[i], a[hi <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> a[hi <span class="op">-</span> <span class="dv">1</span>], a[i]   <span class="co"># the pivot goes between the parts</span></span>
+<span id="cb22-10"><a href aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> i</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Half-open, as in binary search: the function works on <code>a[lo:hi]</code>.</li>
+<li><code>a[lo:i]</code>: <span class="math inline">\(\le\)</span> pivot. <code>a[i:j]</code>: <span class="math inline">\(&gt;\)</span> pivot. <code>a[j:hi - 1]</code>: not seen yet.</li>
+</ul>
+</section>
+<section id="lomuto-partition-step-by-step" class="slide level2">
+<h2>Lomuto partition: step by step</h2>
+<div class="r-stack">
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iNDUwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQ4NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NzwvdGV4dD4KPHJlY3QgeD0iNTIwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iNTkwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjYyNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHBhdGggZD0iTSAxMzUuMCAxMzQgTCAxMjYuMCAxNDggTCAxNDQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5pPC90ZXh0Pgo8cGF0aCBkPSJNIDEzNS4wIDE4NCBMIDEyNi4wIDE5OCBMIDE0NC4wIDE5OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIyMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmo8L3RleHQ+CjxyZWN0IHg9IjMwIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iNjAiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omkIDQ8L3RleHQ+CjxyZWN0IHg9IjEwMyIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjEzMyIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij4mZ3Q7IDQ8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdDwvdGV4dD4KPHRleHQgeD0iMzgwLjAiIHk9IjI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+cGl2b3QgPSBhWzddID0gNC4gaSA9IGogPSAwPC90ZXh0Pgo8L3N2Zz4K" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iNDUwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQ4NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NzwvdGV4dD4KPHJlY3QgeD0iNTIwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iNTkwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjYyNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHBhdGggZD0iTSAxMzUuMCAxMzQgTCAxMjYuMCAxNDggTCAxNDQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5pPC90ZXh0Pgo8cGF0aCBkPSJNIDIwNS4wIDEzNCBMIDE5Ni4wIDE0OCBMIDIxNC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmo8L3RleHQ+CjxyZWN0IHg9IjMwIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iNjAiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omkIDQ8L3RleHQ+CjxyZWN0IHg9IjEwMyIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjEzMyIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij4mZ3Q7IDQ8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdDwvdGV4dD4KPHRleHQgeD0iMzgwLjAiIHk9IjI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+YVswXSA9IDUgJmd0OyA0OiBub3RoaW5nIHRvIGRvPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iNDUwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQ4NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NzwvdGV4dD4KPHJlY3QgeD0iNTIwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iNTkwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjYyNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHBhdGggZD0iTSAxMzUuMCAxMzQgTCAxMjYuMCAxNDggTCAxNDQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5pPC90ZXh0Pgo8cGF0aCBkPSJNIDI3NS4wIDEzNCBMIDI2Ni4wIDE0OCBMIDI4NC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmo8L3RleHQ+CjxyZWN0IHg9IjMwIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iNjAiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omkIDQ8L3RleHQ+CjxyZWN0IHg9IjEwMyIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjEzMyIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij4mZ3Q7IDQ8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdDwvdGV4dD4KPHRleHQgeD0iMzgwLjAiIHk9IjI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+YVsxXSA9IDYgJmd0OyA0OiBub3RoaW5nIHRvIGRvPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+CjxyZWN0IHg9IjE3MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIyMDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjY8L3RleHQ+CjxyZWN0IHg9IjI0MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iMjc1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj41PC90ZXh0Pgo8cmVjdCB4PSIzMTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iMzQ1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj44PC90ZXh0Pgo8cmVjdCB4PSIzODAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDE1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0Pgo8cmVjdCB4PSI0NTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDg1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj43PC90ZXh0Pgo8cmVjdCB4PSI1MjAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNTU1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0Pgo8cmVjdCB4PSI1OTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNjI1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40PC90ZXh0Pgo8cGF0aCBkPSJNIDIwNS4wIDEzNCBMIDE5Ni4wIDE0OCBMIDIxNC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmk8L3RleHQ+CjxwYXRoIGQ9Ik0gMzQ1LjAgMTM0IEwgMzM2LjAgMTQ4IEwgMzU0LjAgMTQ4IFoiIGZpbGw9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzQ1LjAiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCI+ajwvdGV4dD4KPHJlY3QgeD0iMzAiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSI2MCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij7iiaQgNDwvdGV4dD4KPHJlY3QgeD0iMTAzIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iMTMzIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPiZndDsgNDwvdGV4dD4KPHJlY3QgeD0iMTc2IiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iMjA2IiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPm5vdCBzZWVuIHlldDwvdGV4dD4KPHJlY3QgeD0iMzQ4IiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2ZmZDI3ZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iMzc4IiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPnBpdm90PC90ZXh0Pgo8dGV4dCB4PSIzODAuMCIgeT0iMjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMWYzYTY4Ij5hWzJdID0gMSDiiaQgNDogc3dhcCBhWzBdIGFuZCBhWzJdLCBpICs9IDE8L3RleHQ+Cjwvc3ZnPgo=" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iNDUwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQ4NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NzwvdGV4dD4KPHJlY3QgeD0iNTIwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iNTkwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjYyNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHBhdGggZD0iTSAyMDUuMCAxMzQgTCAxOTYuMCAxNDggTCAyMTQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSIyMDUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5pPC90ZXh0Pgo8cGF0aCBkPSJNIDQxNS4wIDEzNCBMIDQwNi4wIDE0OCBMIDQyNC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmo8L3RleHQ+CjxyZWN0IHg9IjMwIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iNjAiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omkIDQ8L3RleHQ+CjxyZWN0IHg9IjEwMyIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjEzMyIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij4mZ3Q7IDQ8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdDwvdGV4dD4KPHRleHQgeD0iMzgwLjAiIHk9IjI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+YVszXSA9IDggJmd0OyA0OiBub3RoaW5nIHRvIGRvPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSIyMDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjM8L3RleHQ+CjxyZWN0IHg9IjI0MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIyNzUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjU8L3RleHQ+CjxyZWN0IHg9IjMxMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIzNDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjg8L3RleHQ+CjxyZWN0IHg9IjM4MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iNDE1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42PC90ZXh0Pgo8cmVjdCB4PSI0NTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDg1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj43PC90ZXh0Pgo8cmVjdCB4PSI1MjAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNTU1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0Pgo8cmVjdCB4PSI1OTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNjI1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40PC90ZXh0Pgo8cGF0aCBkPSJNIDI3NS4wIDEzNCBMIDI2Ni4wIDE0OCBMIDI4NC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmk8L3RleHQ+CjxwYXRoIGQ9Ik0gNDg1LjAgMTM0IEwgNDc2LjAgMTQ4IEwgNDk0LjAgMTQ4IFoiIGZpbGw9IiMxZjNhNjgiLz4KPHRleHQgeD0iNDg1LjAiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCI+ajwvdGV4dD4KPHJlY3QgeD0iMzAiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSI2MCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij7iiaQgNDwvdGV4dD4KPHJlY3QgeD0iMTAzIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iMTMzIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPiZndDsgNDwvdGV4dD4KPHJlY3QgeD0iMTc2IiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iMjA2IiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPm5vdCBzZWVuIHlldDwvdGV4dD4KPHJlY3QgeD0iMzQ4IiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2ZmZDI3ZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iMzc4IiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPnBpdm90PC90ZXh0Pgo8dGV4dCB4PSIzODAuMCIgeT0iMjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMWYzYTY4Ij5hWzRdID0gMyDiiaQgNDogc3dhcCBhWzFdIGFuZCBhWzRdLCBpICs9IDE8L3RleHQ+Cjwvc3ZnPgo=" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHJlY3QgeD0iNDUwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQ4NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NzwvdGV4dD4KPHJlY3QgeD0iNTIwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iNTkwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjYyNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHBhdGggZD0iTSAyNzUuMCAxMzQgTCAyNjYuMCAxNDggTCAyODQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSIyNzUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5pPC90ZXh0Pgo8cGF0aCBkPSJNIDU1NS4wIDEzNCBMIDU0Ni4wIDE0OCBMIDU2NC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmo8L3RleHQ+CjxyZWN0IHg9IjMwIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iNjAiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omkIDQ8L3RleHQ+CjxyZWN0IHg9IjEwMyIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjEzMyIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij4mZ3Q7IDQ8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdDwvdGV4dD4KPHRleHQgeD0iMzgwLjAiIHk9IjI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+YVs1XSA9IDcgJmd0OyA0OiBub3RoaW5nIHRvIGRvPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSIyNzUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+CjxyZWN0IHg9IjMxMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIzNDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjg8L3RleHQ+CjxyZWN0IHg9IjM4MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0MTUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjY8L3RleHQ+CjxyZWN0IHg9IjQ1MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0ODUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjc8L3RleHQ+CjxyZWN0IHg9IjUyMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iNTU1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj41PC90ZXh0Pgo8cmVjdCB4PSI1OTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNjI1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40PC90ZXh0Pgo8cGF0aCBkPSJNIDM0NS4wIDEzNCBMIDMzNi4wIDE0OCBMIDM1NC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmk8L3RleHQ+CjxyZWN0IHg9IjMwIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2RiZTZmNiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iNjAiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omkIDQ8L3RleHQ+CjxyZWN0IHg9IjEwMyIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjEzMyIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij4mZ3Q7IDQ8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdDwvdGV4dD4KPHRleHQgeD0iMzgwLjAiIHk9IjI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzFmM2E2OCI+YVs2XSA9IDIg4omkIDQ6IHN3YXAgYVsyXSBhbmQgYVs2XSwgaSArPSAxPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSIzNDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+CjxyZWN0IHg9IjM4MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0MTUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjY8L3RleHQ+CjxyZWN0IHg9IjQ1MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0ODUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjc8L3RleHQ+CjxyZWN0IHg9IjUyMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI1NTUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjU8L3RleHQ+CjxyZWN0IHg9IjU5MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iNjI1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj44PC90ZXh0Pgo8cmVjdCB4PSIzMCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjYwIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPuKJpCA0PC90ZXh0Pgo8cmVjdCB4PSIxMDMiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIxMzMiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+Jmd0OyA0PC90ZXh0Pgo8cmVjdCB4PSIxNzYiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIyMDYiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+bm90IHNlZW4geWV0PC90ZXh0Pgo8cmVjdCB4PSIzNDgiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIzNzgiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+cGl2b3Q8L3RleHQ+Cjx0ZXh0IHg9IjM4MC4wIiB5PSIyOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxZjNhNjgiPnN3YXAgdGhlIHBpdm90IGludG8gYVszXTogcmV0dXJuIDM8L3RleHQ+Cjwvc3ZnPgo=" class="fragment" style="width:100.0%"></p>
+</div>
+</section>
+<section id="lomuto-partition-how-many-steps" class="slide level2">
+<h2>Lomuto partition: how many steps?</h2>
+<p>For <span class="math inline">\(n\)</span> items (<code>hi - lo</code> <span class="math inline">\(= n\)</span>):</p>
+<ul>
+<li>Comparisons: exactly <span class="math inline">\(n - 1\)</span> (every item except the pivot, once).</li>
+<li>Swaps: at most <span class="math inline">\(n\)</span>.</li>
+<li>So partition is <span class="math inline">\(\Theta(n)\)</span>.</li>
+<li>Extra memory: a few variables, <span class="math inline">\(\Theta(1)\)</span>.</li>
+</ul>
+</section>
+<section id="hoare-partition-the-code" class="slide level2">
+<h2>Hoare partition: the code</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partition_hoare(a, lo, hi, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span>
+<span id="cb23-2"><a href aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Partition a[lo:hi] around the pivot a[lo] (the first item).&quot;&quot;&quot;</span></span>
+<span id="cb23-3"><a href aria-hidden="true" tabindex="-1"></a>    pivot <span class="op">=</span> key(a[lo])</span>
+<span id="cb23-4"><a href aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> lo <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb23-5"><a href aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> hi</span>
+<span id="cb23-6"><a href aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb23-7"><a href aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb23-8"><a href aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> key(a[i]) <span class="op">&lt;</span> pivot:    <span class="co"># from the left: an item &gt;= pivot</span></span>
+<span id="cb23-9"><a href aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb23-10"><a href aria-hidden="true" tabindex="-1"></a>        j <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb23-11"><a href aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> key(a[j]) <span class="op">&gt;</span> pivot:    <span class="co"># from the right: an item &lt;= pivot</span></span>
+<span id="cb23-12"><a href aria-hidden="true" tabindex="-1"></a>            j <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb23-13"><a href aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">&gt;=</span> j:                  <span class="co"># the indexes met</span></span>
+<span id="cb23-14"><a href aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> j</span>
+<span id="cb23-15"><a href aria-hidden="true" tabindex="-1"></a>        a[i], a[j] <span class="op">=</span> a[j], a[i]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="hoare-partition-step-by-step" class="slide level2">
+<h2>Hoare partition: step by step</h2>
+<div class="r-stack">
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iNDUwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQ4NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NzwvdGV4dD4KPHJlY3QgeD0iNTIwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iNTkwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjYyNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHJlY3QgeD0iMTA0IiB5PSI3NCIgd2lkdGg9IjYyIiBoZWlnaHQ9IjQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmQyN2YiIHN0cm9rZS13aWR0aD0iNSIvPgo8cmVjdCB4PSIzMCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjYwIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPuKJpCA1PC90ZXh0Pgo8cmVjdCB4PSIxMDMiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIxMzMiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omlIDU8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdCAob3V0bGluZSk8L3RleHQ+Cjx0ZXh0IHg9IjM4MC4wIiB5PSIyOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxZjNhNjgiPnBpdm90ID0gYVswXSA9IDUuIGkgc3RhcnRzIGxlZnQgb2YgYSwgaiByaWdodCBvZiBhPC90ZXh0Pgo8L3N2Zz4K" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+CjxyZWN0IHg9IjE3MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIyMDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjY8L3RleHQ+CjxyZWN0IHg9IjI0MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIyNzUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+CjxyZWN0IHg9IjMxMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIzNDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjg8L3RleHQ+CjxyZWN0IHg9IjM4MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0MTUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjM8L3RleHQ+CjxyZWN0IHg9IjQ1MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0ODUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjc8L3RleHQ+CjxyZWN0IHg9IjUyMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI1NTUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+CjxyZWN0IHg9IjU5MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iNjI1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj41PC90ZXh0Pgo8cmVjdCB4PSI1OTQiIHk9Ijc0IiB3aWR0aD0iNjIiIGhlaWdodD0iNDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDI3ZiIgc3Ryb2tlLXdpZHRoPSI1Ii8+CjxwYXRoIGQ9Ik0gMTM1LjAgMTM0IEwgMTI2LjAgMTQ4IEwgMTQ0LjAgMTQ4IFoiIGZpbGw9IiMxZjNhNjgiLz4KPHRleHQgeD0iMTM1LjAiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCI+aTwvdGV4dD4KPHBhdGggZD0iTSA2MjUuMCAxMzQgTCA2MTYuMCAxNDggTCA2MzQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSI2MjUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5qPC90ZXh0Pgo8cmVjdCB4PSIzMCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjYwIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPuKJpCA1PC90ZXh0Pgo8cmVjdCB4PSIxMDMiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIxMzMiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omlIDU8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdCAob3V0bGluZSk8L3RleHQ+Cjx0ZXh0IHg9IjM4MC4wIiB5PSIyOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxZjNhNjgiPmkgc3RvcHMgYXQgYVswXSA9IDUgKOKJpSA1KSwgaiBzdG9wcyBhdCBhWzddID0gNCAo4omkIDUpOiBzd2FwPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSIyMDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+CjxyZWN0IHg9IjI0MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIyNzUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+CjxyZWN0IHg9IjMxMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSIzNDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjg8L3RleHQ+CjxyZWN0IHg9IjM4MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0MTUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjM8L3RleHQ+CjxyZWN0IHg9IjQ1MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8dGV4dCB4PSI0ODUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjc8L3RleHQ+CjxyZWN0IHg9IjUyMCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iNTU1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42PC90ZXh0Pgo8cmVjdCB4PSI1OTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNjI1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj41PC90ZXh0Pgo8cmVjdCB4PSI1OTQiIHk9Ijc0IiB3aWR0aD0iNjIiIGhlaWdodD0iNDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDI3ZiIgc3Ryb2tlLXdpZHRoPSI1Ii8+CjxwYXRoIGQ9Ik0gMjA1LjAgMTM0IEwgMTk2LjAgMTQ4IEwgMjE0LjAgMTQ4IFoiIGZpbGw9IiMxZjNhNjgiLz4KPHRleHQgeD0iMjA1LjAiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCI+aTwvdGV4dD4KPHBhdGggZD0iTSA1NTUuMCAxMzQgTCA1NDYuMCAxNDggTCA1NjQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSI1NTUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5qPC90ZXh0Pgo8cmVjdCB4PSIzMCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjYwIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPuKJpCA1PC90ZXh0Pgo8cmVjdCB4PSIxMDMiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIxMzMiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omlIDU8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdCAob3V0bGluZSk8L3RleHQ+Cjx0ZXh0IHg9IjM4MC4wIiB5PSIyOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxZjNhNjgiPmkgc3RvcHMgYXQgYVsxXSA9IDYgKOKJpSA1KSwgaiBzdG9wcyBhdCBhWzZdID0gMiAo4omkIDUpOiBzd2FwPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMyZThiNTciIHN0cm9rZS13aWR0aD0iNCIvPgo8dGV4dCB4PSIzNDUuMCIgeT0iMTA3LjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjM8L3RleHQ+CjxyZWN0IHg9IjM4MCIgeT0iNzAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1NiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMmU4YjU3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHRleHQgeD0iNDE1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj44PC90ZXh0Pgo8cmVjdCB4PSI0NTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNDg1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj43PC90ZXh0Pgo8cmVjdCB4PSI1MjAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNTU1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42PC90ZXh0Pgo8cmVjdCB4PSI1OTAiIHk9IjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNTYiIGZpbGw9IiNmZGUzYzgiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KPHRleHQgeD0iNjI1LjAiIHk9IjEwNy4wIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj41PC90ZXh0Pgo8cmVjdCB4PSI1OTQiIHk9Ijc0IiB3aWR0aD0iNjIiIGhlaWdodD0iNDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDI3ZiIgc3Ryb2tlLXdpZHRoPSI1Ii8+CjxwYXRoIGQ9Ik0gMzQ1LjAgMTM0IEwgMzM2LjAgMTQ4IEwgMzU0LjAgMTQ4IFoiIGZpbGw9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzQ1LjAiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCI+aTwvdGV4dD4KPHBhdGggZD0iTSA0MTUuMCAxMzQgTCA0MDYuMCAxNDggTCA0MjQuMCAxNDggWiIgZmlsbD0iIzFmM2E2OCIvPgo8dGV4dCB4PSI0MTUuMCIgeT0iMTcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMWYzYTY4Ij5qPC90ZXh0Pgo8cmVjdCB4PSIzMCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNkYmU2ZjYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjYwIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPuKJpCA1PC90ZXh0Pgo8cmVjdCB4PSIxMDMiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIxMzMiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+4omlIDU8L3RleHQ+CjxyZWN0IHg9IjE3NiIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjIwNiIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5ub3Qgc2VlbiB5ZXQ8L3RleHQ+CjxyZWN0IHg9IjM0OCIgeT0iMjM4IiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIGZpbGw9IiNmZmQyN2YiIHN0cm9rZT0iIzFmM2E2OCIgc3Ryb2tlLXdpZHRoPSIxIi8+Cjx0ZXh0IHg9IjM3OCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij5waXZvdCAob3V0bGluZSk8L3RleHQ+Cjx0ZXh0IHg9IjM4MC4wIiB5PSIyOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxZjNhNjgiPmkgc3RvcHMgYXQgYVszXSA9IDggKOKJpSA1KSwgaiBzdG9wcyBhdCBhWzRdID0gMyAo4omkIDUpOiBzd2FwPC90ZXh0Pgo8L3N2Zz4K" class="fragment" style="width:100.0%"></p>
+<p><img role="img" data-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3NjAiIGhlaWdodD0iMzAwIiB2aWV3Qm94PSIwIDAgNzYwIDMwMCIgZm9udC1mYW1pbHk9IkNvbnNvbGFzLCBtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMjYiPgo8cmVjdCB3aWR0aD0iNzYwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgo8dGV4dCB4PSIxMzUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjA8L3RleHQ+Cjx0ZXh0IHg9IjIwNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+MTwvdGV4dD4KPHRleHQgeD0iMjc1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij4yPC90ZXh0Pgo8dGV4dCB4PSIzNDUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjM8L3RleHQ+Cjx0ZXh0IHg9IjQxNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NDwvdGV4dD4KPHRleHQgeD0iNDg1LjAiIHk9IjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5OTk5Ij41PC90ZXh0Pgo8dGV4dCB4PSI1NTUuMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTk5OTkiPjY8L3RleHQ+Cjx0ZXh0IHg9IjYyNS4wIiB5PSI1OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OTk5OSI+NzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjEzNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPHJlY3QgeD0iMTcwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjIwNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD4KPHJlY3QgeD0iMjQwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjI3NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD4KPHJlY3QgeD0iMzEwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjM0NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD4KPHJlY3QgeD0iMzgwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD4KPHJlY3QgeD0iNDUwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjQ4NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NzwvdGV4dD4KPHJlY3QgeD0iNTIwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjU1NS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD4KPHJlY3QgeD0iNTkwIiB5PSI3MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjU2IiBmaWxsPSIjZmRlM2M4IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMS41Ii8+Cjx0ZXh0IHg9IjYyNS4wIiB5PSIxMDcuMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD4KPHJlY3QgeD0iNTk0IiB5PSI3NCIgd2lkdGg9IjYyIiBoZWlnaHQ9IjQ4IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmQyN2YiIHN0cm9rZS13aWR0aD0iNSIvPgo8cGF0aCBkPSJNIDQxNS4wIDEzNCBMIDQwNi4wIDE0OCBMIDQyNC4wIDE0OCBaIiBmaWxsPSIjMWYzYTY4Ii8+Cjx0ZXh0IHg9IjQxNS4wIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxZjNhNjgiPmk8L3RleHQ+CjxwYXRoIGQ9Ik0gMzQ1LjAgMTM0IEwgMzM2LjAgMTQ4IEwgMzU0LjAgMTQ4IFoiIGZpbGw9IiMxZjNhNjgiLz4KPHRleHQgeD0iMzQ1LjAiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzFmM2E2OCI+ajwvdGV4dD4KPHJlY3QgeD0iMzAiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZGJlNmY2IiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSI2MCIgeT0iMjU2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMWYzYTY4Ij7iiaQgNTwvdGV4dD4KPHJlY3QgeD0iMTAzIiB5PSIyMzgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgZmlsbD0iI2ZkZTNjOCIgc3Ryb2tlPSIjMWYzYTY4IiBzdHJva2Utd2lkdGg9IjEiLz4KPHRleHQgeD0iMTMzIiB5PSIyNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxZjNhNjgiPuKJpSA1PC90ZXh0Pgo8cmVjdCB4PSIxNzYiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIyMDYiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+bm90IHNlZW4geWV0PC90ZXh0Pgo8cmVjdCB4PSIzNDgiIHk9IjIzOCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjIyIiBmaWxsPSIjZmZkMjdmIiBzdHJva2U9IiMxZjNhNjgiIHN0cm9rZS13aWR0aD0iMSIvPgo8dGV4dCB4PSIzNzgiIHk9IjI1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFmM2E2OCI+cGl2b3QgKG91dGxpbmUpPC90ZXh0Pgo8dGV4dCB4PSIzODAuMCIgeT0iMjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMWYzYTY4Ij5pID0gNCwgaiA9IDM6IHRoZXkgbWV0LiByZXR1cm4gMzwvdGV4dD4KPC9zdmc+Cg==" class="fragment" style="width:100.0%"></p>
+</div>
+</section>
+<section id="hoare-partition-the-result" class="slide level2">
+<h2>Hoare partition: the result</h2>
+<pre class="text"><code>before:  [5, 6, 1, 8, 3, 7, 2, 4]      pivot 5
+after:   [4, 2, 1, 3, 8, 7, 6, 5]      return 3
+          ≤ 5         ≥ 5</code></pre>
+<ul>
+<li>Every item of <code>a[lo:p + 1]</code> is <span class="math inline">\(\le\)</span> every item of <code>a[p + 1:hi]</code>.</li>
+<li>But the pivot is <strong>not</strong> necessarily between the two parts: here 5 ended up last.</li>
+<li>So quicksort with Hoare sorts <code>a[lo:p + 1]</code> and <code>a[p + 1:hi]</code>: the pivot is still inside one of them.</li>
+</ul>
+</section>
+<section id="lomuto-vs-hoare" class="slide level2">
+<h2>Lomuto vs Hoare</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Lomuto</th>
+<th>Hoare</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pivot</td>
+<td>last item</td>
+<td>first item</td>
+</tr>
+<tr class="even">
+<td>indexes</td>
+<td><code>i</code> and <code>j</code>, both from the left</td>
+<td><code>i</code> from the left, <code>j</code> from the right</td>
+</tr>
+<tr class="odd">
+<td>the pivot after partition</td>
+<td>in its final place, <code>a[p]</code></td>
+<td>somewhere in one of the parts</td>
+</tr>
+<tr class="even">
+<td>quicksort recurses on</td>
+<td><code>a[lo:p]</code> and <code>a[p + 1:hi]</code></td>
+<td><code>a[lo:p + 1]</code> and <code>a[p + 1:hi]</code></td>
+</tr>
+<tr class="odd">
+<td>steps</td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span>, usually fewer swaps</td>
+</tr>
+<tr class="even">
+<td>extra memory</td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quicksort-the-code" class="slide level2">
+<h2>Quicksort: the code</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quick_sort(a, lo<span class="op">=</span><span class="dv">0</span>, hi<span class="op">=</span><span class="va">None</span>, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span>
+<span id="cb25-2"><a href aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Sort a[lo:hi] in place (Lomuto partition).&quot;&quot;&quot;</span></span>
+<span id="cb25-3"><a href aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hi <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb25-4"><a href aria-hidden="true" tabindex="-1"></a>        hi <span class="op">=</span> <span class="bu">len</span>(a)</span>
+<span id="cb25-5"><a href aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> hi <span class="op">-</span> lo <span class="op">&lt;=</span> <span class="dv">1</span>:                     <span class="co"># 0 or 1 items: already sorted</span></span>
+<span id="cb25-6"><a href aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb25-7"><a href aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> partition_lomuto(a, lo, hi, key) <span class="co"># the pivot is now in a[p]</span></span>
+<span id="cb25-8"><a href aria-hidden="true" tabindex="-1"></a>    quick_sort(a, lo, p, key)            <span class="co"># the items before it</span></span>
+<span id="cb25-9"><a href aria-hidden="true" tabindex="-1"></a>    quick_sort(a, p <span class="op">+</span> <span class="dv">1</span>, hi, key)        <span class="co"># the items after it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>hi=None</code>: the first call is just <code>quick_sort(a)</code>; then <code>hi</code> becomes <code>len(a)</code>.</li>
+<li>Nothing is returned: the list <code>a</code> itself is sorted.</li>
+</ul>
+</section>
+<section id="quicksort-the-calls" class="slide level2">
+<h2>Quicksort: the calls</h2>
+<pre class="text"><code>quick_sort([5, 6, 1, 8, 3, 7, 2, 4]), pivot 4
+-&gt; [1, 3, 2] 4 [6, 7, 5, 8]
+    quick_sort([1, 3, 2]), pivot 2
+    -&gt; [1] 2 [3]
+        quick_sort([1])
+        quick_sort([3])
+    quick_sort([6, 7, 5, 8]), pivot 8
+    -&gt; [6, 7, 5] 8 []
+        quick_sort([6, 7, 5]), pivot 5
+        -&gt; [] 5 [7, 6]
+            ...</code></pre>
+<ul>
+<li>The parts are not halves: their sizes depend on the pivot.</li>
+</ul>
+<p>See <code>quick_sort_traced</code> in <code>code/quick_sort.py</code>.</p>
+</section>
+<section id="best-case-the-pivot-in-the-middle" class="slide level2">
+<h2>Best case: the pivot in the middle</h2>
+<p>Every partition splits the items into two halves:</p>
+<p><span class="math display">\[
+T(n) = 2\,T(n/2) + n
+\]</span></p>
+<ul>
+<li>The same recurrence as merge sort: <span class="math inline">\(T(n) = \Theta(n \log n)\)</span>.</li>
+<li>Recursion depth: <span class="math inline">\(\log_2 n\)</span>.</li>
+</ul>
+</section>
+<section id="worst-case-the-pivot-at-an-end" class="slide level2">
+<h2>Worst case: the pivot at an end</h2>
+<p>Every partition leaves all the other items on one side: sizes <span class="math inline">\(n - 1\)</span> and <span class="math inline">\(0\)</span>.</p>
+<p><span class="math display">\[
+T(n) = n + T(n - 1)
+\]</span></p>
+<ul>
+<li>The recurrence from &quot;Another recurrence&quot;: <span class="math inline">\(T(n) = \Theta(n^2)\)</span>, about <span class="math inline">\(\frac{n^2}{2}\)</span> comparisons.</li>
+<li>With the last item as the pivot, this happens for an input that is <strong>already sorted</strong>!</li>
+<li>Recursion depth: <span class="math inline">\(n\)</span>. In Python, <code>quick_sort(list(range(1000)))</code> raises <code>RecursionError</code> (the default limit is 1000 calls).</li>
+</ul>
+</section>
+<section id="random-input-the-average-case" class="slide level2">
+<h2>Random input: the average case</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th>input</th>
+<th>comparisons</th>
+<th>recursion depth</th>
+<th><span class="math inline">\(\frac{n(n-1)}{2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,000</td>
+<td>random</td>
+<td>about 11,000</td>
+<td>about 22</td>
+<td>499,500</td>
+</tr>
+<tr class="even">
+<td>1,000</td>
+<td>sorted</td>
+<td>499,500</td>
+<td>1,000</td>
+<td>499,500</td>
+</tr>
+<tr class="odd">
+<td>4,000</td>
+<td>random</td>
+<td>about 54,000</td>
+<td>about 27</td>
+<td>7,998,000</td>
+</tr>
+<tr class="even">
+<td>4,000</td>
+<td>sorted</td>
+<td>7,998,000</td>
+<td>4,000</td>
+<td>7,998,000</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>On random input, quicksort makes a little more comparisons than <span class="math inline">\(n \log_2 n\)</span>: the average is <span class="math inline">\(\Theta(n \log n)\)</span>.</li>
+<li>A split does not have to be in the middle: if both parts have at least <span class="math inline">\(\frac{1}{4}\)</span> of the items, the larger part has at most <span class="math inline">\(\frac{3}{4}\,n\)</span> (see <span class="math inline">\(T(n) = n + T(3n/4)\)</span>).</li>
+</ul>
+</section>
+<section id="a-random-pivot" class="slide level2">
+<h2>A random pivot</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> random.randrange(lo, hi)           <span class="co"># a random index in a[lo:hi]</span></span>
+<span id="cb27-2"><a href aria-hidden="true" tabindex="-1"></a>a[r], a[hi <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> a[hi <span class="op">-</span> <span class="dv">1</span>], a[r]      <span class="co"># move that item to the end</span></span>
+<span id="cb27-3"><a href aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> partition_lomuto(a, lo, hi, key)   <span class="co"># then partition as before</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th>last item, random input</th>
+<th>last item, sorted input</th>
+<th>random pivot, sorted input</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2,000</td>
+<td>2 ms</td>
+<td>190 ms</td>
+<td>2 ms</td>
+</tr>
+<tr class="even">
+<td>4,000</td>
+<td>4 ms</td>
+<td>800 ms</td>
+<td>4 ms</td>
+</tr>
+<tr class="odd">
+<td>8,000</td>
+<td>8 ms</td>
+<td>3,200 ms</td>
+<td>9 ms</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>No input is always bad: the worst case is still <span class="math inline">\(\Theta(n^2)\)</span>, but it is very unlikely.</li>
+</ul>
+</section>
+<section id="quicksort-memory-and-stability" class="slide level2">
+<h2>Quicksort: memory and stability</h2>
+<ul>
+<li><strong>Memory</strong>: in place, only the recursion: <span class="math inline">\(\Theta(\log n)\)</span> extra memory in the best and average case, <span class="math inline">\(\Theta(n)\)</span> in the worst case. Merge sort needs <span class="math inline">\(\Theta(n)\)</span> extra memory for the new lists.</li>
+<li><strong>Not stable</strong>: partition swaps items over long distances.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>), (<span class="dv">1</span>, <span class="st">&quot;b&quot;</span>), (<span class="dv">0</span>, <span class="st">&quot;c&quot;</span>)]</span>
+<span id="cb28-2"><a href aria-hidden="true" tabindex="-1"></a>quick_sort(a, key<span class="op">=</span><span class="kw">lambda</span> r: r[<span class="dv">0</span>])</span>
+<span id="cb28-3"><a href aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)        <span class="co"># [(0, &#39;c&#39;), (1, &#39;b&#39;), (1, &#39;a&#39;)]: &#39;b&#39; is now before &#39;a&#39;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="quicksort-timing" class="slide level2">
+<h2>Quicksort: timing</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(n\)</span></th>
+<th>quicksort</th>
+<th>random pivot</th>
+<th>Hoare</th>
+<th>merge sort</th>
+<th><code>sorted</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10,000</td>
+<td>~10 ms</td>
+<td>~12 ms</td>
+<td>~12 ms</td>
+<td>~16 ms</td>
+<td>~1 ms</td>
+</tr>
+<tr class="even">
+<td>20,000</td>
+<td>~23 ms</td>
+<td>~26 ms</td>
+<td>~25 ms</td>
+<td>~37 ms</td>
+<td>~2 ms</td>
+</tr>
+<tr class="odd">
+<td>40,000</td>
+<td>~48 ms</td>
+<td>~57 ms</td>
+<td>~54 ms</td>
+<td>~78 ms</td>
+<td>~4 ms</td>
+</tr>
+<tr class="even">
+<td>80,000</td>
+<td>~106 ms</td>
+<td>~123 ms</td>
+<td>~112 ms</td>
+<td>~170 ms</td>
+<td>~10 ms</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Double <span class="math inline">\(n\)</span>: a little more than twice the time, like merge sort.</li>
+<li>In practice quicksort is usually faster than merge sort: no new lists.</li>
+</ul>
+<p>See <code>code/quick_sort.py</code> (exact times depend on the computer).</p>
+</section>
+<section id="sorting-summary" class="slide level2">
+<h2>Sorting: summary</h2>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>best case</th>
+<th>average case</th>
+<th>worst case</th>
+<th>extra memory</th>
+<th>stable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>insertion sort</td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td><span class="math inline">\(\Theta(n^2)\)</span></td>
+<td><span class="math inline">\(\Theta(n^2)\)</span></td>
+<td><span class="math inline">\(\Theta(1)\)</span></td>
+<td>yes</td>
+</tr>
+<tr class="even">
+<td>merge sort</td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td><span class="math inline">\(\Theta(n)\)</span></td>
+<td>yes</td>
+</tr>
+<tr class="odd">
+<td>quicksort</td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td><span class="math inline">\(\Theta(n \log n)\)</span></td>
+<td><span class="math inline">\(\Theta(n^2)\)</span></td>
+<td><span class="math inline">\(\Theta(\log n)\)</span> to <span class="math inline">\(\Theta(n)\)</span></td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
 
 </section></section>
     </div>

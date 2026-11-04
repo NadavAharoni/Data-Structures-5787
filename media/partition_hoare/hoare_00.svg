@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" font-family="Consolas, monospace" font-size="26">
+<rect width="760" height="300" fill="#ffffff"/>
+<text x="135.0" y="58" text-anchor="middle" font-size="16" fill="#999999">0</text>
+<text x="205.0" y="58" text-anchor="middle" font-size="16" fill="#999999">1</text>
+<text x="275.0" y="58" text-anchor="middle" font-size="16" fill="#999999">2</text>
+<text x="345.0" y="58" text-anchor="middle" font-size="16" fill="#999999">3</text>
+<text x="415.0" y="58" text-anchor="middle" font-size="16" fill="#999999">4</text>
+<text x="485.0" y="58" text-anchor="middle" font-size="16" fill="#999999">5</text>
+<text x="555.0" y="58" text-anchor="middle" font-size="16" fill="#999999">6</text>
+<text x="625.0" y="58" text-anchor="middle" font-size="16" fill="#999999">7</text>
+<rect x="100" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="135.0" y="107.0" text-anchor="middle">5</text>
+<rect x="170" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="205.0" y="107.0" text-anchor="middle">6</text>
+<rect x="240" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="275.0" y="107.0" text-anchor="middle">1</text>
+<rect x="310" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="345.0" y="107.0" text-anchor="middle">8</text>
+<rect x="380" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="415.0" y="107.0" text-anchor="middle">3</text>
+<rect x="450" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="485.0" y="107.0" text-anchor="middle">7</text>
+<rect x="520" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="555.0" y="107.0" text-anchor="middle">2</text>
+<rect x="590" y="70" width="70" height="56" fill="#ffffff" stroke="#1f3a68" stroke-width="1.5"/>
+<text x="625.0" y="107.0" text-anchor="middle">4</text>
+<rect x="104" y="74" width="62" height="48" fill="none" stroke="#ffd27f" stroke-width="5"/>
+<rect x="30" y="238" width="22" height="22" fill="#dbe6f6" stroke="#1f3a68" stroke-width="1"/>
+<text x="60" y="256" font-size="18" fill="#1f3a68">≤ 5</text>
+<rect x="103" y="238" width="22" height="22" fill="#fde3c8" stroke="#1f3a68" stroke-width="1"/>
+<text x="133" y="256" font-size="18" fill="#1f3a68">≥ 5</text>
+<rect x="176" y="238" width="22" height="22" fill="#ffffff" stroke="#1f3a68" stroke-width="1"/>
+<text x="206" y="256" font-size="18" fill="#1f3a68">not seen yet</text>
+<rect x="348" y="238" width="22" height="22" fill="#ffd27f" stroke="#1f3a68" stroke-width="1"/>
+<text x="378" y="256" font-size="18" fill="#1f3a68">pivot (outline)</text>
+<text x="380.0" y="290" text-anchor="middle" font-size="20" fill="#1f3a68">pivot = a[0] = 5. i starts left of a, j right of a</text>
+</svg>
