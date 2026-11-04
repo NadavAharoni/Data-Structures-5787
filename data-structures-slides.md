@@ -749,19 +749,63 @@ def merge_sort(a, key=lambda x: x):
 ## Merge sort: an example
 
 ::: {.r-stack}
-![](media/merge_sort_tree/tree_00.svg){height=540px}
+![](media/merge_sort_calls/calls_00.svg){height=470px}
 
-![](media/merge_sort_tree/tree_01.svg){.fragment height=540px}
+![](media/merge_sort_calls/calls_01.svg){.fragment height=470px}
 
-![](media/merge_sort_tree/tree_02.svg){.fragment height=540px}
+![](media/merge_sort_calls/calls_02.svg){.fragment height=470px}
 
-![](media/merge_sort_tree/tree_03.svg){.fragment height=540px}
+![](media/merge_sort_calls/calls_03.svg){.fragment height=470px}
 
-![](media/merge_sort_tree/tree_04.svg){.fragment height=540px}
+![](media/merge_sort_calls/calls_04.svg){.fragment height=470px}
 
-![](media/merge_sort_tree/tree_05.svg){.fragment height=540px}
+![](media/merge_sort_calls/calls_05.svg){.fragment height=470px}
 
-![](media/merge_sort_tree/tree_06.svg){.fragment height=540px}
+![](media/merge_sort_calls/calls_06.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_07.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_08.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_09.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_10.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_11.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_12.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_13.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_14.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_15.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_16.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_17.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_18.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_19.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_20.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_21.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_22.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_23.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_24.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_25.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_26.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_27.svg){.fragment height=470px}
+
+![](media/merge_sort_calls/calls_28.svg){.fragment height=470px}
 :::
 
 ## Merge sort: the calls
@@ -783,6 +827,20 @@ merge_sort([6, 5, 3, 1])
 - The left half is sorted completely before the right half starts.
 
 See `merge_sort_traced` in `code/merge_sort.py`.
+
+## Merge sort: counting the copies
+
+::: {.r-stack}
+![](media/merge_sort_cost/cost_00.svg){height=480px}
+
+![](media/merge_sort_cost/cost_01.svg){.fragment height=480px}
+
+![](media/merge_sort_cost/cost_02.svg){.fragment height=480px}
+
+![](media/merge_sort_cost/cost_03.svg){.fragment height=480px}
+
+![](media/merge_sort_cost/cost_04.svg){.fragment height=480px}
+:::
 
 ## Merge sort: how many steps?
 
