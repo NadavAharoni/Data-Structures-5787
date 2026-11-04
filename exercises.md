@@ -387,11 +387,13 @@ def binary_search(a, target):
 
    steps:
    step #, lo, hi, mid, a[mid]
-   <a line for each step>
-   after the loop: lo=<lo>, hi=<hi>    (only if the value was not found)
+   <a line for each step, in csv format>
+   <x> not found: lo=<lo>, hi=<hi>
 
    <return value>
    ```
+
+   את השורה עם not found יש להדפיס רק אם הערך לא נמצא ברשימה.
 
    את הערך המוחזר (השורה האחרונה) מדפיס הקוד של סעיף 2, ולא הפונקציה.
 
