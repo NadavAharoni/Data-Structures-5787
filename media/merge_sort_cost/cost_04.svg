@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="928" height="368" viewBox="0 0 928 368" font-family="Consolas, monospace" font-size="24">
-<rect width="928" height="368" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="928" height="398" viewBox="0 0 928 398" font-family="Consolas, monospace" font-size="24">
+<rect width="928" height="398" fill="#ffffff"/>
 <g transform="translate(0, 34)">
 <text x="678" y="2" font-size="20" fill="#1f3a68" font-weight="bold">copies</text>
 <text x="20" y="44" font-size="20" fill="#1f3a68">depth 0</text>
@@ -87,6 +87,7 @@
 <text x="678" y="168" font-size="20" fill="#2e8b57">4 merges × 2 = 8</text>
 <text x="678" y="106" font-size="20" fill="#2e8b57">2 merges × 4 = 8</text>
 <text x="678" y="44" font-size="20" fill="#2e8b57">1 merge × 8 = 8</text>
-<text x="464.0" y="320" text-anchor="middle" font-size="22" fill="#1f3a68" font-weight="bold">total: 8 + 8 + 8 = 24 = 8 · 3 = n · log₂ n</text>
+<text x="464.0" y="320" text-anchor="middle" font-size="22" fill="#1f3a68" font-weight="bold">total: 8 + 8 + 8 = 24 = 8 · 3</text>
+<text x="464.0" y="350" text-anchor="middle" font-size="22" fill="#1f3a68" font-weight="bold">= n · (depth of the recursion) = n · log₂ n</text>
 </g>
 </svg>

@@ -12,6 +12,39 @@ format:
     css: slides.css
     code-line-numbers: false
     highlight-style: github
+    # \class{fragment}{...} in a formula reveals that part on a click. After MathJax typesets:
+    # - remove the class from MathJax's hidden copy of the formula (for screen readers), which would add empty clicks;
+    # - in an aligned formula, give the cells of one row (e.g. a line and its reason after &&) the same click,
+    #   and number the other fragments of that slide after them, in page order.
+    include-after-body:
+      text: |
+        <script>
+        window.addEventListener("load", function () {
+          function renumber(slide) {
+            var keys = new Map(), step = 0;
+            slide.querySelectorAll(".fragment").forEach(function (f) {
+              var cell = f.closest(".mtd"), key = f;
+              if (cell && cell.parentElement && cell.parentElement.style.top) {
+                key = f.closest(".MathJax").id + "@" + cell.parentElement.style.top;   // same row, any column
+              }
+              if (!keys.has(key)) keys.set(key, step++);
+              f.setAttribute("data-fragment-index", keys.get(key));
+            });
+          }
+          (function hook() {
+            if (!window.MathJax || !MathJax.Hub) { setTimeout(hook, 200); return; }
+            MathJax.Hub.Register.MessageHook("End Process", function () {
+              document.querySelectorAll(".MJX_Assistive_MathML .fragment").forEach(function (e) {
+                e.classList.remove("fragment");
+              });
+              document.querySelectorAll(".reveal .slides section").forEach(function (slide) {
+                if (slide.querySelector(".MathJax .fragment")) renumber(slide);
+              });
+              Reveal.sync();
+            });
+          })();
+        });
+        </script>
 ---
 
 # Introduction
@@ -842,11 +875,17 @@ See `merge_sort_traced` in `code/merge_sort.py`.
 ![](media/merge_sort_cost/cost_04.svg){.fragment height=480px}
 :::
 
-## Merge sort: how many steps?
+## Merge sort: number of steps
 
-- In the example, each **merge level** copies all $n$ items once: $n$ copies per level.
-- The number of levels: how many times can we halve $n$? $\log_2 n$.
-- Total: $n \log_2 n$ copies (exactly, when $n$ is a power of 2), and fewer comparisons.
+- Each **merge level** copies $n$ items.\
+  Number of comparisons can be less, because "tails" can be merged without comparison.
+- Number of levels:\
+  The number of times we can halve $n$: $\quad\log_2 n$.
+- Total: $\quad n \log_2 n$\
+  Copies: $\quad n \log_2 n$ (exactly, when $n$ is a power of 2)\
+  Comparisons: fewer.
+
+## Merge sort vs. insertion sort
 
 | $n$ | merge sort: $n \log_2 n$ | insertion sort: about $n^2/4$ |
 |---|---|---|
@@ -858,21 +897,44 @@ For small lists insertion sort is fine; for large lists $n^2$ grows much faster.
 
 ## The recurrence
 
-$T(n)$ = the number of copies when sorting $n$ items:
+$T(n)$ = number of steps when sorting $n$ items:
 
 $$
 T(1) = 0 \qquad\qquad T(n) = \underbrace{2\,T(n/2)}_{\text{sort the two halves}} + \underbrace{n}_{\text{merge}}
 $$
 
-For $n = 8$:
+For $n=2$ and $n=4$:
+$$
+\begin{aligned}
+T(2) &= 2\,T(1) + 2 = 2\\
+T(4) &= 2\,T(2) + 4 = 4 + 4 = 8
+\end{aligned}
+$$
+
+## The recurrence for $n = 8$
+
+$$
+T(n) = 2\,T(n/2) + n
+$$
+
+
 
 $$
 \begin{aligned}
-T(2) &= 2\,T(1) + 2 = 2 \\
-T(4) &= 2\,T(2) + 4 = 8 \\
-T(8) &= 2\,T(4) + 8 = 24 = 8 \cdot 3 = 8 \log_2 8
+T(8) &= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(4)}} + 8 \\
+&\class{fragment}{= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{(2\,T(2) + 4)}} + 8} \\
+&\class{fragment}{= (4\,T(2) + 8) + 8} \\
+&\class{fragment}{= 4\,\bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{T(2)}} + 8 + 8} \\
+&\class{fragment}{= 4\,\bbox[2px,border:1px solid #1f5fbf]{\color{#1f5fbf}{(2\,T(1) + 2)}} + 8 + 8} \\
+&\class{fragment}{= (8\,T(1) + 8) + 8 + 8} \\
+&\class{fragment}{= 8\,\bbox[2px,border:1px solid #c25a00]{\color{#c25a00}{T(1)}} + 8 + 8 + 8} \\
+&\class{fragment}{= \bbox[2px,border:1px solid #c25a00]{\color{#c25a00}{0}} + 8 + 8 + 8 = 24 = 8 \cdot 3 = 8 \log_2 8}
 \end{aligned}
 $$
+
+<!-- Each expanded term and its expansion on the next line share a color, with a thin box of the same color
+     (for color vision). \class{fragment}{...} shows one line per click and keeps the lines aligned. -->
+
 
 ## Solving the recurrence
 
@@ -893,6 +955,81 @@ Stop when $n/2^k = 1$, that is $k = \log_2 n$:
 $$
 T(n) = n \cdot T(1) + n \log_2 n = n \log_2 n
 $$
+
+## Proof by induction: the claim
+
+Let $n = 2^k$, that is $k = \log_2 n$. Then
+
+$$
+T(n) = T(2^k)
+$$
+
+**Claim**: for every $k \ge 0$,
+
+$$
+T(2^k) = k \cdot 2^k
+$$
+
+which is the same as $T(n) = n \log_2 n$.
+
+We prove it by induction on $k$.
+
+- **Base**: $k = 0$, that is $n = 2^0 = 1$:
+
+$$
+T(1) = 0 = 0 \cdot 2^0 \quad ✓
+$$
+
+## Proof by induction: the step
+
+**Assume** the claim holds for $k$: $\;T(2^k) = k \cdot 2^k$.
+
+**Show** that it holds for $k + 1$: $\;T(2^{k+1}) = (k + 1) \cdot 2^{k+1}$.
+
+$$
+\begin{aligned}
+T(2^{k+1}) &= 2\,T(2^{k+1} / 2) + 2^{k+1} && \text{the recurrence, with } n = 2^{k+1} \\
+&\class{fragment}{= 2\,\bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{T(2^k)}} + 2^{k+1}} && \class{fragment}{\text{because } 2^{k+1} / 2 = 2^k} \\
+&\class{fragment}{= 2 \cdot \bbox[2px,border:1px solid #2e8b57]{\color{#2e8b57}{k \cdot 2^k}} + 2^{k+1}} && \class{fragment}{\text{the assumption}} \\
+&\class{fragment}{= k \cdot 2^{k+1} + 2^{k+1}} && \class{fragment}{\text{because } 2 \cdot 2^k = 2^{k+1}} \\
+&\class{fragment}{= (k + 1) \cdot 2^{k+1}} && \class{fragment}{\text{common factor } 2^{k+1}}
+\end{aligned}
+$$
+
+::: {.fragment}
+This is the claim for $k + 1$. ✓
+:::
+
+<!-- Each line and its reason (after &&) are both \class{fragment}; the script in the header shows them on the same click. -->
+
+
+## When $n$ is not a power of 2
+
+`mid = len(a) // 2`: the halves have $\lfloor n/2 \rfloor$ and $\lceil n/2 \rceil$ items.
+
+$$
+T(1) = 0 \qquad\qquad T(n) = T(\lfloor n/2 \rfloor) + T(\lceil n/2 \rceil) + n
+$$
+
+- Halving until 1 item, rounding up: $\lceil \log_2 n \rceil$ merge levels.
+- Each level copies at most $n$ items (fewer at the bottom, where some lists already stopped at 1 item).
+
+$$
+T(n) \le n \lceil \log_2 n \rceil < n\,(\log_2 n + 1)
+$$
+
+## Not a power of 2: how close to $n \log_2 n$?
+
+| $n$ | $T(n)$ | $n \log_2 n$ | $n \lceil \log_2 n \rceil$ |
+|---|---|---|---|
+| 5 | 12 | 11.6 | 15 |
+| 6 | 16 | 15.5 | 18 |
+| 7 | 20 | 19.7 | 21 |
+| 10 | 34 | 33.2 | 40 |
+| 1,000 | 9,976 | 9,965.8 | 10,000 |
+| 1,000,000 | 19,951,424 | 19,931,569 | 20,000,000 |
+
+$n \log_2 n \le T(n) \le n \lceil \log_2 n \rceil$ (checked for every $n$ up to 2,000,000): still about $n \log_2 n$.
 
 ## Merge sort: memory
 
