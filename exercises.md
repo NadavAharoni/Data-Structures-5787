@@ -385,7 +385,7 @@ def binary_search(a, target):
    ``` text
    search term <x>
 
-   steps (a list in csv format):
+   steps:
    step #, lo, hi, mid, a[mid]
    <a line for each step>
    after the loop: lo=<lo>, hi=<hi>    (only if the value was not found)
@@ -401,12 +401,12 @@ def binary_search(a, target):
    41, 3, 77, 20
    ```
 
-   עבור ערך החיפוש 41, הפלט צריך להיראות כך:
+   לדוגמא, עבור ערך החיפוש 41, הפלט צריך להיראות כך:
 
    ``` text
    search term 41
 
-   steps (a list in csv format):
+   steps:
    step #, lo, hi, mid, a[mid]
    1, 0, 15, 7, 34
    2, 8, 15, 11, 58
