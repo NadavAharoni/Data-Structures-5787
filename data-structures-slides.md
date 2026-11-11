@@ -1,14 +1,16 @@
 ---
 title: "Data Structures"
-subtitle: "Michlala Jerusalem College, 2026–2027"
+subtitle: "44019.1.1 — Michlala Jerusalem College, 2026–2027"
 author: "Nadav Aharoni"
+date: now                      # render time, shown in the footer
+date-format: "YYYY-MM-DD HH:mm"
 lang: en
 dir: ltr
 format:
   revealjs:
     embed-resources: true
     slide-number: true
-    footer: "Data Structures"
+    footer: "Data Structures · updated {{< meta date >}}"
     css: slides.css
     code-line-numbers: false
     highlight-style: github
@@ -1068,11 +1070,13 @@ $$
 T(1) = 0 \qquad\qquad T(n) = T(\lfloor n/2 \rfloor) + T(\lceil n/2 \rceil) + n
 $$
 
-- Halving until 1 item, rounding up: $\lceil \log_2 n \rceil$ merge levels.
-- Each level copies at most $n$ items (fewer at the bottom, where some lists already stopped at 1 item).
+- Upper bound: halving until 1 item, rounding up, takes $\lceil \log_2 n \rceil$ merge levels.
+  Each level copies at most $n$ items (fewer at the bottom, where some lists already stopped at 1 item).
+- Lower bound: in the top $\lfloor \log_2 n \rfloor$ levels, every list has 2 items or more,
+  so each of these levels copies all $n$ items.
 
 $$
-T(n) \le n \lceil \log_2 n \rceil < n\,(\log_2 n + 1)
+n \lfloor \log_2 n \rfloor \;\le\; T(n) \;\le\; n \lceil \log_2 n \rceil
 $$
 
 ## Not a power of 2: how close to $n \log_2 n$?
@@ -1086,7 +1090,7 @@ $$
 | 1,000 | 9,976 | 9,965.8 | 10,000 |
 | 1,000,000 | 19,951,424 | 19,931,569 | 20,000,000 |
 
-$n \log_2 n \le T(n) \le n \lceil \log_2 n \rceil$ (checked for every $n$ up to 2,000,000): still about $n \log_2 n$.
+In these examples, $T(n)$ is close to $n \log_2 n$.
 
 ## Merge sort: memory
 
@@ -1162,15 +1166,26 @@ Cutting the problem in **half** at each level is what makes merge sort fast.
 
 # Asymptotic notation
 
-## Why not count exactly?
+## Asymptotic analysis
 
-- Insertion sort, worst case: $\frac{n(n-1)}{2}$ comparisons.
-- Merge sort: $n \log_2 n$ copies, and fewer comparisons.
-- The exact count depends on details: what we count (comparisons? copies?), the computer, the language.
+A common way to compare algorithms is **asymptotic analysis**. It makes two assumptions:
 
-What matters for large inputs is **how fast the count grows** with $n$.
+1. We care mainly about the performance for **large inputs** (large $n$).
+2. A difference in a **constant factor** is not significant: $2n$ and $100\,n$ count as the same.
 
-Asymptotic notation keeps the growth rate, and drops the details: constant factors and lower-order terms.
+It is a mathematical **model**: important, accepted in computer science, and useful in many cases.
+But it is not the whole truth: in practice, making a program 2 or 10 times faster does matter.
+
+## Why this model?
+
+- Insertion sort, worst case: $\frac{n(n-1)}{2}$ comparisons. Merge sort: $n \log_2 n$ copies.
+- The exact count depends on what we count (comparisons? copies?).
+  The running time also depends on the computer, the language and the implementation.
+- These details change the **constant factors**. **How fast the count grows** with $n$ depends only on the algorithm.
+- For large $n$, the growth rate matters more than any constant (next slide).
+
+Asymptotic notation keeps the growth rate, and drops constant factors and lower-order terms.
+It compares **algorithms**, not programs.
 
 ## Growth beats constants
 
@@ -1184,9 +1199,13 @@ Asymptotic notation keeps the growth rate, and drops the details: constant facto
 | 1,000,000 | 100,000,000 | 10,000,000,000 |
 
 - For small $n$, $n^2/100$ is smaller. From $n = 10{,}000$ on, $100\,n$ is smaller, and the gap keeps growing.
-- For large $n$, a slower-growing function wins, whatever the constants.
+- For large enough $n$, a slower-growing function wins, whatever the constants.
 
 ## What happens when $n$ doubles?
+
+- Another reason to ignore constants: what happens when $n$ **doubles**?
+- It does not depend on the constant: $3n^2$ and $100\,n^2$ both grow $\times 4$.
+- So we compare algorithms by **how much worse they get when $n$ doubles**:
 
 | steps | from $n$ to $2n$ |
 |---|---|
@@ -1196,8 +1215,6 @@ Asymptotic notation keeps the growth rate, and drops the details: constant facto
 | $n^2$ | $\times 4$ |
 | $n^3$ | $\times 8$ |
 | $2^n$ | squared: $2^{2n} = (2^n)^2$ |
-
-Compare with "Merge sort: timing": merge sort takes a little more than twice as long, insertion sort 4 times.
 
 ## $O$: an upper bound
 
@@ -1210,11 +1227,13 @@ $$
 - From some point on ($n_0$), $f$ is at most a constant times $g$.
 - $f$ grows **at most** as fast as $g$.
 
-## $O$: a picture
+## $O(n^2)$: a graph
 
-![](media/asymptotic/big_o.svg){height=420px}
+![](media/asymptotic/big_o.svg){height=400px}
 
-$2n^2 + 3n + 10 = O(n^2)$, with $c = 3$ and $n_0 = 5$.
+We choose $c = 3$ and $n_0 = 5$. Then for all $n \ge 5$: $\;2n^2 + 3n + 10 \le 3n^2$.
+
+So $2n^2 + 3n + 10 = O(n^2)$.
 
 ## Example: finding $c$ and $n_0$
 
@@ -1227,7 +1246,7 @@ $$
 $$
 
 - $c = 15$, $n_0 = 1$ works.
-- The picture used $c = 3$, $n_0 = 5$. Both are correct: we need only **one** pair.
+- The graph used $c = 3$, $n_0 = 5$. Both are correct: we need only **one** pair.
 
 ## Example: insertion sort
 
@@ -1290,22 +1309,23 @@ $$
 - $f$ and $g$ grow at the same rate.
 - Insertion sort, worst case: $\frac{n(n-1)}{2} = \Theta(n^2)$, with $c_1 = \frac{1}{4}$, $c_2 = \frac{1}{2}$, $n_0 = 2$.
 
-## $\Theta$: a picture
+## $\Theta(n^2)$: a graph
 
-![](media/asymptotic/big_theta.svg){height=420px}
+![](media/asymptotic/big_theta.svg){height=360px}
 
-$2n^2 + 3n + 10 = \Theta(n^2)$, with $c_1 = 2$, $c_2 = 3$ and $n_0 = 5$.
+We choose $c_1 = 2$, $c_2 = 3$ and $n_0 = 5$. Then for all $n \ge 5$: $\;2n^2 \le 2n^2 + 3n + 10 \le 3n^2$.
+
+So $2n^2 + 3n + 10 = \Theta(n^2)$.
 
 ## Example: merge sort is $\Theta(n \log n)$
 
-- $n = 2^k$: $\;T(n) = n \log_2 n$, so $c_1 = c_2 = 1$.
-- Any $n$: at least $\lfloor \log_2 n \rfloor$ levels copy all $n$ items (every list there has 2 items or more), and there are at most $\lceil \log_2 n \rceil$ levels:
+**Goal**: show that for every $n$, not only powers of 2, $T(n)$ is bounded from both sides by a constant times $n \log_2 n$.
 
-$$
-n \lfloor \log_2 n \rfloor \;\le\; T(n) \;\le\; n \lceil \log_2 n \rceil
-$$
+- We showed: $\;n \lfloor \log_2 n \rfloor \le T(n) \le n \lceil \log_2 n \rceil$.
+- For $n \ge 4$: $\;\lfloor \log_2 n \rfloor \ge \log_2 n - 1 \ge \frac{1}{2} \log_2 n\;$ and $\;\lceil \log_2 n \rceil \le \log_2 n + 1 \le 2 \log_2 n$.
+- So for all $n \ge 4$: $\;\frac{1}{2}\, n \log_2 n \le T(n) \le 2\, n \log_2 n$, which means $T(n) = \Theta(n \log n)$.
 
-- For $n \ge 4$: $\;\frac{1}{2}\, n \log_2 n \;\le\; T(n) \;\le\; 2\, n \log_2 n$.
+$T(n)$ is not exactly $n \log_2 n$, but it is $\Theta(n \log n)$: for asymptotic analysis, the exact count is not needed.
 
 ## The base of the logarithm does not matter
 
@@ -1371,7 +1391,17 @@ Here $f < g$ means $f = O(g)$, but not $f = \Theta(g)$.
 | $f = \Omega(g)$ | $f(n) \ge c \cdot g(n)$ | $\ge$ |
 | $f = \Theta(g)$ | $c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n)$ | $=$ |
 
-Constant factors and lower-order terms do not matter: $3n^2 + 100\,n = \Theta(n^2)$.
+In this model, constant factors and lower-order terms do not matter: $3n^2 + 100\,n = \Theta(n^2)$.
+
+## Constants still matter in practice
+
+- Our `merge_sort` and Python's `sorted` are both $\Theta(n \log n)$.
+  But `sorted` is **over 20 times faster** (8,000 items: ~18 ms vs ~0.8 ms, see "Merge sort: timing").
+- For small $n$, an algorithm with a better growth rate may be slower.
+  That is why `sorted` (Timsort) uses insertion sort for short pieces.
+- Some algorithms have the best known growth rate, but constants so large that nobody uses them.
+
+Asymptotic analysis tells us how an algorithm **scales**. To choose a program, we also **measure**.
 
 # More recurrences
 

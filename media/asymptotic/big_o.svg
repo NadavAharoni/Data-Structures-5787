@@ -22,5 +22,5 @@
 <line x1="89.5" y1="43" x2="141.5" y2="43" stroke="#1f3a68" stroke-width="3"/>
 <text x="154.5" y="50" font-size="21" fill="#1f3a68">f(n) = 2n² + 3n + 10</text>
 <line x1="89.5" y1="77" x2="141.5" y2="77" stroke="#2e8b57" stroke-width="3" stroke-dasharray="10 6"/>
-<text x="154.5" y="84" font-size="21" fill="#2e8b57">c·g(n) = 3n²</text>
+<text x="154.5" y="84" font-size="21" fill="#2e8b57">3n²</text>
 </svg>
