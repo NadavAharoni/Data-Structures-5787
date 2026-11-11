@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="he-IL" xml:lang="he-IL" dir="rtl"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>מבנה נתונים – תרגילים</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="exercises_files/libs/clipboard/clipboard.min.js"></script>
+<script src="exercises_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="exercises_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="exercises_files/libs/quarto-html/popper.min.js"></script>
+<script src="exercises_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="exercises_files/libs/quarto-html/anchor.min.js"></script>
+<link href="exercises_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="exercises_files/libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="exercises_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="exercises_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="exercises_files/libs/bootstrap/bootstrap-6a69643430251b619cc0525313f3a6e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="exercises.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">תוכן עניינים</h2>
+   
+  <ul class="collapse">
+  <li><a href="#הנחיות-כלליות" id="toc-הנחיות-כלליות" class="nav-link active" data-scroll-target="#הנחיות-כלליות">הנחיות כלליות</a></li>
+  <li><a href="#חזקות-ולוגריתמים" id="toc-חזקות-ולוגריתמים" class="nav-link" data-scroll-target="#חזקות-ולוגריתמים">חזקות ולוגריתמים</a>
+  <ul class="collapse">
+  <li><a href="#תרגיל-1-חישוב-בראש-בלי-בינה-מלאכותית" id="toc-תרגיל-1-חישוב-בראש-בלי-בינה-מלאכותית" class="nav-link" data-scroll-target="#תרגיל-1-חישוב-בראש-בלי-בינה-מלאכותית">תרגיל 1 – חישוב בראש (בלי בינה מלאכותית)</a></li>
+  <li><a href="#תרגיל-2-כללי-לוגריתמים-בלי-בינה-מלאכותית" id="toc-תרגיל-2-כללי-לוגריתמים-בלי-בינה-מלאכותית" class="nav-link" data-scroll-target="#תרגיל-2-כללי-לוגריתמים-בלי-בינה-מלאכותית">תרגיל 2 – כללי לוגריתמים (בלי בינה מלאכותית)</a></li>
+  <li><a href="#תרגיל-3-כמה-פעמים-אפשר-לחלק-ב-k" id="toc-תרגיל-3-כמה-פעמים-אפשר-לחלק-ב-k" class="nav-link" data-scroll-target="#תרגיל-3-כמה-פעמים-אפשר-לחלק-ב-k">תרגיל 3 – כמה פעמים אפשר לחלק ב-k?</a></li>
+  </ul></li>
+  <li><a href="#סכומים" id="toc-סכומים" class="nav-link" data-scroll-target="#סכומים">סכומים</a>
+  <ul class="collapse">
+  <li><a href="#תרגיל-4-טור-חשבוני-וטור-הנדסי-בלי-בינה-מלאכותית" id="toc-תרגיל-4-טור-חשבוני-וטור-הנדסי-בלי-בינה-מלאכותית" class="nav-link" data-scroll-target="#תרגיל-4-טור-חשבוני-וטור-הנדסי-בלי-בינה-מלאכותית">תרגיל 4 – טור חשבוני וטור הנדסי (בלי בינה מלאכותית)</a></li>
+  <li><a href="#תרגיל-5-כמה-פעמים-רצה-הלולאה-בלי-בינה-מלאכותית" id="toc-תרגיל-5-כמה-פעמים-רצה-הלולאה-בלי-בינה-מלאכותית" class="nav-link" data-scroll-target="#תרגיל-5-כמה-פעמים-רצה-הלולאה-בלי-בינה-מלאכותית">תרגיל 5 – כמה פעמים רצה הלולאה? (בלי בינה מלאכותית)</a></li>
+  </ul></li>
+  <li><a href="#חיפוש" id="toc-חיפוש" class="nav-link" data-scroll-target="#חיפוש">חיפוש</a>
+  <ul class="collapse">
+  <li><a href="#תרגיל-6-חיפוש-לינארי-ופונקציית-מפתח" id="toc-תרגיל-6-חיפוש-לינארי-ופונקציית-מפתח" class="nav-link" data-scroll-target="#תרגיל-6-חיפוש-לינארי-ופונקציית-מפתח">תרגיל 6 – חיפוש לינארי ופונקציית מפתח</a></li>
+  <li><a href="#תרגיל-7-מעקב-אחרי-חיפוש-בינארי" id="toc-תרגיל-7-מעקב-אחרי-חיפוש-בינארי" class="nav-link" data-scroll-target="#תרגיל-7-מעקב-אחרי-חיפוש-בינארי">תרגיל 7 – מעקב אחרי חיפוש בינארי</a></li>
+  <li><a href="#תרגיל-8-חיפוש-בינארי-לפי-מפתח" id="toc-תרגיל-8-חיפוש-בינארי-לפי-מפתח" class="nav-link" data-scroll-target="#תרגיל-8-חיפוש-בינארי-לפי-מפתח">תרגיל 8 – חיפוש בינארי לפי מפתח</a></li>
+  <li><a href="#תרגיל-9-מדידת-זמנים" id="toc-תרגיל-9-מדידת-זמנים" class="nav-link" data-scroll-target="#תרגיל-9-מדידת-זמנים">תרגיל 9 – מדידת זמנים</a></li>
+  <li><a href="#תרגיל-10-בונוס-המודול-bisect-ושורש-שלם" id="toc-תרגיל-10-בונוס-המודול-bisect-ושורש-שלם" class="nav-link" data-scroll-target="#תרגיל-10-בונוס-המודול-bisect-ושורש-שלם">תרגיל 10 – בונוס: המודול bisect ושורש שלם</a></li>
+  </ul></li>
+  <li><a href="#מיון" id="toc-מיון" class="nav-link" data-scroll-target="#מיון">מיון</a>
+  <ul class="collapse">
+  <li><a href="#תרגיל-11-מיון-לפי-מפתח" id="toc-תרגיל-11-מיון-לפי-מפתח" class="nav-link" data-scroll-target="#תרגיל-11-מיון-לפי-מפתח">תרגיל 11 – מיון לפי מפתח</a></li>
+  <li><a href="#תרגיל-12-מעקב-אחרי-מיון-הכנסה" id="toc-תרגיל-12-מעקב-אחרי-מיון-הכנסה" class="nav-link" data-scroll-target="#תרגיל-12-מעקב-אחרי-מיון-הכנסה">תרגיל 12 – מעקב אחרי מיון הכנסה</a></li>
+  <li><a href="#תרגיל-13-מימוש-מיון-הכנסה-לפי-מפתח" id="toc-תרגיל-13-מימוש-מיון-הכנסה-לפי-מפתח" class="nav-link" data-scroll-target="#תרגיל-13-מימוש-מיון-הכנסה-לפי-מפתח">תרגיל 13 – מימוש מיון הכנסה לפי מפתח</a></li>
+  <li><a href="#תרגיל-14-כמה-צעדים" id="toc-תרגיל-14-כמה-צעדים" class="nav-link" data-scroll-target="#תרגיל-14-כמה-צעדים">תרגיל 14 – כמה צעדים?</a></li>
+  <li><a href="#תרגיל-15-מצאו-את-ההבדל-בלי-בינה-מלאכותית" id="toc-תרגיל-15-מצאו-את-ההבדל-בלי-בינה-מלאכותית" class="nav-link" data-scroll-target="#תרגיל-15-מצאו-את-ההבדל-בלי-בינה-מלאכותית">תרגיל 15 – מצאו את ההבדל (בלי בינה מלאכותית)</a></li>
+  <li><a href="#תרגיל-16-בונוס-זמנים-ומיון-הכנסה-עם-חיפוש-בינארי" id="toc-תרגיל-16-בונוס-זמנים-ומיון-הכנסה-עם-חיפוש-בינארי" class="nav-link" data-scroll-target="#תרגיל-16-בונוס-זמנים-ומיון-הכנסה-עם-חיפוש-בינארי">תרגיל 16 – בונוס: זמנים, ומיון הכנסה עם חיפוש בינארי</a></li>
+  </ul></li>
+  <li><a href="#מיון-מיזוג" id="toc-מיון-מיזוג" class="nav-link" data-scroll-target="#מיון-מיזוג">מיון מיזוג</a>
+  <ul class="collapse">
+  <li><a href="#תרגיל-17-מיזוג" id="toc-תרגיל-17-מיזוג" class="nav-link" data-scroll-target="#תרגיל-17-מיזוג">תרגיל 17 – מיזוג</a></li>
+  <li><a href="#תרגיל-18-הקריאות-של-מיון-מיזוג" id="toc-תרגיל-18-הקריאות-של-מיון-מיזוג" class="nav-link" data-scroll-target="#תרגיל-18-הקריאות-של-מיון-מיזוג">תרגיל 18 – הקריאות של מיון מיזוג</a></li>
+  <li><a href="#תרגיל-19-כמה-העתקות-וכמה-השוואות" id="toc-תרגיל-19-כמה-העתקות-וכמה-השוואות" class="nav-link" data-scroll-target="#תרגיל-19-כמה-העתקות-וכמה-השוואות">תרגיל 19 – כמה העתקות וכמה השוואות?</a></li>
+  <li><a href="#תרגיל-20-נוסחת-הנסיגה-של-מיון-מיזוג" id="toc-תרגיל-20-נוסחת-הנסיגה-של-מיון-מיזוג" class="nav-link" data-scroll-target="#תרגיל-20-נוסחת-הנסיגה-של-מיון-מיזוג">תרגיל 20 – נוסחת הנסיגה של מיון מיזוג</a></li>
+  <li><a href="#תרגיל-21-בונוס-מיון-הכנסה-בתוך-מיון-מיזוג" id="toc-תרגיל-21-בונוס-מיון-הכנסה-בתוך-מיון-מיזוג" class="nav-link" data-scroll-target="#תרגיל-21-בונוס-מיון-הכנסה-בתוך-מיון-מיזוג">תרגיל 21 – בונוס: מיון הכנסה בתוך מיון מיזוג</a></li>
+  </ul></li>
+  <li><a href="#נוסחת-נסיגה-נוספת" id="toc-נוסחת-נסיגה-נוספת" class="nav-link" data-scroll-target="#נוסחת-נסיגה-נוספת">נוסחת נסיגה נוספת</a>
+  <ul class="collapse">
+  <li><a href="#תרגיל-22-חלוקה-לחצאים-לעומת-פריט-אחד-פחות" id="toc-תרגיל-22-חלוקה-לחצאים-לעומת-פריט-אחד-פחות" class="nav-link" data-scroll-target="#תרגיל-22-חלוקה-לחצאים-לעומת-פריט-אחד-פחות">תרגיל 22 – חלוקה לחצאים לעומת פריט אחד פחות</a></li>
+  </ul></li>
+  <li><a href="#סימון-אסימפטוטי" id="toc-סימון-אסימפטוטי" class="nav-link" data-scroll-target="#סימון-אסימפטוטי">סימון אסימפטוטי</a>
+  <ul class="collapse">
+  <li><a href="#תרגיל-23-קצב-גידול" id="toc-תרגיל-23-קצב-גידול" class="nav-link" data-scroll-target="#תרגיל-23-קצב-גידול">תרגיל 23 – קצב גידול</a></li>
+  <li><a href="#תרגיל-24-מציאת-c-ו-n0" id="toc-תרגיל-24-מציאת-c-ו-n0" class="nav-link" data-scroll-target="#תרגיל-24-מציאת-c-ו-n0">תרגיל 24 – מציאת c ו-n0</a></li>
+  <li><a href="#תרגיל-25-נכון-או-לא-נכון" id="toc-תרגיל-25-נכון-או-לא-נכון" class="nav-link" data-scroll-target="#תרגיל-25-נכון-או-לא-נכון">תרגיל 25 – נכון או לא נכון?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">מבנה נתונים – חוברת תרגילים</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><strong>עודכן לאחרונה: 04.11.2026</strong></p>
+<p>התרגילים של הקורס מרוכזים בקובץ הזה. המטלות ב-Moodle יהיו מתוך הקובץ הזה (למשל "תרגילים 1–6").</p>
+<p>הקובץ יעודכן במהלך הסמסטר.</p>
+<section id="הנחיות-כלליות" class="level1">
+<h1>הנחיות כלליות</h1>
+<ul>
+<li><p>תרגילי תכנות יש לכתוב בשפת Python. הערות (comments), שמות משתנים ופלט – באנגלית.</p></li>
+<li><p>פתרונות ניתן להגיש באחד משני אופנים:</p>
+<ul>
+<li>ב-GitHub, על ידי העלאה למאגר האישי שלכן. שימו לב לא לשנות את הקבצים אחרי מועד ההגשה.</li>
+<li>על ידי העלאת הקבצים ישירות למטלה ב-Moodle. יש להעלות את הקבצים המקוריים (קבצי py, md, txt או docx) ולא צילומי מסך של קוד.</li>
+</ul></li>
+<li><p>בכל תרגיל מופיעים שמות הקבצים להגשה, בתחילת התרגיל או בסופו. יש להגיש את הקבצים בשמות האלו.</p></li>
+<li><p>קובץ התשובות של כל תרגיל הוא הקובץ שבו כותבים את התשובות במילים, הטבלאות וההוכחות: <code>exNN.md</code> או <code>exNN.docx</code>, למשל <code>ex07.md</code>.</p></li>
+<li><p>את קובץ התשובות אפשר לכתוב בפורמט md או ב-Word, לבחירתכן. השימוש ב-md הופך להיות נפוץ מפני שמנועי ה-AI "אוהבים" פורמט טקסטואלי. גם git מיועד בעיקר לקבצים טקסטואליים. יחד עם זאת, נכון להיום, אין תמיכה טובה בעברית בעורך של Visual Studio Code. ישנם תוספים שונים שניתן לנסות, וניתן גם לכתוב ב-Word ואז לבקש ממנוע AI להמיר את הקובץ ל-md עבורכן.</p></li>
+<li><p>קוד מגישים רק כשהוא מופיע בשורת ההגשה. כשרק מריצים קוד קיים, או מוסיפים לו הדפסות כדי לבדוק את התשובות, אין צורך להגיש את הקוד.</p></li>
+<li><p>כשהקוד של כמה סעיפים נמצא באותו קובץ, סמנו כל סעיף בהערה (למשל <code dir="ltr"># Part 3</code>) לפני הקוד שלו.</p></li>
+<li><p>בחלק מהתרגילים מגישים גם את הפלט של התוכנית, בקובץ טקסט (למשל <code>ex11_output.txt</code>). אפשר להעתיק את הפלט מהטרמינל לקובץ, או לשמור אותו בקובץ ישירות, בפקודה הבאה בטרמינל של VS Code (הפלט לא יוצג אז בטרמינל):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> ex11.py <span class="op">&gt;</span> ex11_output.txt</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>נוסחאות: ב-Word אפשר להשתמש בעורך המשוואות. בקובץ md אפשר לכתוב נוסחה בין שני סימני דולר, ו-GitHub יציג אותה כנוסחה. למשל, השורה הבאה:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>$\log_2 1024 = 10$</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>מוצגת כך:</p>
+<p><span class="math inline">\(\log_2 1024 = 10\)</span></p>
+<p>שימו לב שנוסחאות שמופיעות בשורה שבה יש גם עברית עלולות "להתהפך" (תלוי במערכת שמציגה את ה-md). מומלץ לכתוב את הנוסחאות בשורה נפרדת, אלא אם כן השורה מכילה רק נוסחאות או אנגלית.</p>
+<ul>
+<li>חלק מהתרגילים נפתור בכיתה. גם תרגיל שפתרתן בכיתה יש להגיש ב-Moodle כרגיל.</li>
+<li>מותר להתייעץ ולעבוד בצוות, אבל כל אחת מגישה בנפרד.</li>
+<li>מותר להשתמש בבינה מלאכותית, אבל חובה להבין את התשובה ואת הקוד. יהיו בחנים ומבחן ללא בינה מלאכותית, ובהם תתבקשו להסביר קוד ותשובות שהופיעו בשיעור ובתרגילים.</li>
+<li>סעיפים שמסומנים <strong>בלי בינה מלאכותית</strong> הם תרגול לבחנים ולמבחן: מומלץ לעשות אותם בעצמכן.</li>
+<li>הקבצים שבתיקייה <code>code</code> משמשים בתרגילים. מריצים אותם מתוך התיקייה הזו.</li>
+</ul>
+</section>
+<section id="חזקות-ולוגריתמים" class="level1">
+<h1>חזקות ולוגריתמים</h1>
+<section id="תרגיל-1-חישוב-בראש-בלי-בינה-מלאכותית" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-1-חישוב-בראש-בלי-בינה-מלאכותית">תרגיל 1 – חישוב בראש (בלי בינה מלאכותית)</h2>
+<p>חשבו בלי מחשבון את הביטויים הבאים. אם התשובה אינה מספר שלם, מספיק ערך מקורב.</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+\text{(a)} &amp; \log_2 1024 \\
+\text{(b)} &amp; \log_2 8, \quad \log_2 1, \quad \log_2 2, \quad \log_2 \tfrac{1}{2} \\
+\text{(c)} &amp; \log_2 1{,}000{,}000 \\
+\text{(d)} &amp; \log_8 1024 \\
+\text{(e)} &amp; 2^{20}, \quad 2^{30} \\
+\text{(f)} &amp; 2^{64} \\
+\text{(g)} &amp; 9^{1/2}, \quad 8^{1/3}
+\end{array}
+\]</span></p>
+<p>בסעיפים (c), (e) ו-(f) השתמשו בקירוב הבא:</p>
+<p><span class="math display">\[
+2^{10} = 1024 \approx 10^3
+\]</span></p>
+<p>אחר כך בדקו את התשובות בפייתון, בעזרת הפונקציות שבמודול הבא:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>רכזו את התשובות בטבלה עם שלוש עמודות: הביטוי, התשובה שלכן, והתוצאה בפייתון.</p>
+<p>בנוסף, הסבירו את החישוב של סעיפים (c), (d), (f) ו-(g), בעזרת ההגדרות והכללים של חזקות ולוגריתמים. כתבו את ההסברים מתחת לטבלה, כל שלב בשורה נפרדת. הנה שני חישובים לדוגמא:</p>
+<p><span class="math display">\[
+2^{40} = (2^{10})^4 \approx (10^3)^4 = 10^{12}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\log_4 32 = x
+&amp;\Rightarrow 4^x = 32 \\
+&amp;\Rightarrow (2^2)^x = 2^5 \\
+&amp;\Rightarrow 2^{2x} = 2^5 \\
+&amp;\Rightarrow 2x = 5 \\
+&amp;\Rightarrow x = \tfrac{5}{2}
+\end{aligned}
+\]</span></p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הטבלה, ומתחתיה ההסברים לסעיפים (c), (d), (f) ו-(g).</p>
+<p>כדי ליצור טבלה בקובץ md, העתיקו את הדוגמה הבאה והוסיפו שורה לכל ביטוי:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> expression <span class="pp">|</span> my answer <span class="pp">|</span> Python result <span class="pp">|</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------|-----------|---------------|</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> log2(16)   <span class="pp">|</span> 4         <span class="pp">|</span> 4.0           <span class="pp">|</span></span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>השורה השנייה (עם המקפים) חייבת להופיע מתחת לשורת הכותרות. אין צורך ליישר את העמודות: מספיק שבכל שורה יהיה אותו מספר של קווים אנכיים.</p>
+</section>
+<section id="תרגיל-2-כללי-לוגריתמים-בלי-בינה-מלאכותית" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-2-כללי-לוגריתמים-בלי-בינה-מלאכותית">תרגיל 2 – כללי לוגריתמים (בלי בינה מלאכותית)</h2>
+<p>הראו כי:</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+\text{(a)} &amp; \log_2 (2x) = \log_2 x + 1 \\
+\text{(b)} &amp; \log_b (x \cdot y) = \log_b x + \log_b y \\
+\text{(c)} &amp; \log_b x = \dfrac{\log_a x}{\log_a b}
+\end{array}
+\]</span></p>
+<p>בנוסף, הראו שהיחס הבא זהה לכל <span class="math inline">\(n &gt; 1\)</span>, ומצאו מהו:</p>
+<p><span class="math display">\[
+\frac{\log_2 n}{\log_{10} n}
+\]</span></p>
+<p>הדרכה: סמנו <span class="math inline">\(x = b^m\)</span> וגם <span class="math inline">\(y = b^n\)</span>, והשתמשו בכללי החזקות.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – ההוכחות של סעיפים (a), (b) ו-(c), והתשובה לגבי היחס.</p>
+</section>
+<section id="תרגיל-3-כמה-פעמים-אפשר-לחלק-ב-k" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-3-כמה-פעמים-אפשר-לחלק-ב-k">תרגיל 3 – כמה פעמים אפשר לחלק ב-k?</h2>
+<ol type="1">
+<li><p>כתבו פונקציה שמקבלת שני מספרים שלמים חיוביים, <code>n</code> ו-<code>k</code>, ומחזירה כמה פעמים צריך לחלק את <code>n</code> ב-<code>k</code> (חלוקה שלמה) עד שמגיעים ל-1. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> num_divisions_to_1(n, k):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> הפונקציה בקובץ <code>ex03.py</code>.</p></li>
+<li><p>לפני שאתן מריצות: מה תחזיר הפונקציה עבור כל אחד מהערכים הבאים? (בלי בינה מלאכותית)</p>
+<p>עבור <code>k = 2</code>, והערכים הבאים של <code>n</code>:</p>
+<pre class="text"><code>8, 10, 100, 1000, 1024, 1000000, 1000000000</code></pre>
+<p>עבור <code>k = 10</code>, והערכים הבאים של <code>n</code>:</p>
+<pre class="text"><code>1000, 1000000</code></pre>
+<p><strong>להגשה:</strong> בקובץ התשובות – התחזיות, בטבלה של סעיף 4.</p></li>
+<li><p>מה יקרה אם נקרא לפונקציה עם <code>k = 1</code>? (בלי בינה מלאכותית) הוסיפו לפונקציה בדיקה שמונעת את המצב הזה.</p>
+<p><strong>להגשה:</strong> הבדיקה – בפונקציה שבקובץ <code>ex03.py</code>. בקובץ התשובות – מה יקרה.</p></li>
+<li><p>הריצו, והשוו לערך של הלוגריתם המתאים. במודול <code>math</code> יש פונקציה כללית שמקבלת גם את הבסיס, ויש גם פונקציות מיוחדות לבסיסים 2 ו-10:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>math.log(n, k)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>math.log2(n)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>math.log10(n)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>עבור <code>k = 10</code>, השוו את התוצאות של שתי הדרכים לחשב את הלוגריתם:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>math.log(n, <span class="dv">10</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>math.log10(n)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>מה אתן רואות? מותר להיעזר בבינה מלאכותית כדי להבין את ההבדל.</p>
+<p>רכזו בטבלה, לכל זוג של <code>n</code> ו-<code>k</code>, את התחזית שלכן מסעיף 2, את התוצאה ואת הלוגריתם.</p>
+<p><strong>להגשה:</strong> הקוד שמשווה את התוצאות ללוגריתם בקובץ <code>ex03.py</code>. בקובץ התשובות – הטבלה, ומה ראיתן בהשוואה בין שתי הדרכים לחשב את הלוגריתם.</p></li>
+<li><p>מה הקשר בין התוצאה של הפונקציה לבין הערך של הלוגריתם? מתי הם שווים? ועבור <code>k = 10</code>, מה הקשר בין התוצאה לבין מספר הספרות של <code>n</code>?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובות.</p></li>
+<li><p>בונוס: בעזרת הפונקציה <code>num_divisions_to_1</code>, כתבו פונקציה שסופרת כמה פעמים צריך להכפיל את <code>n</code> ב-<code>k</code> עד שמגיעים ל-1, כאשר <code>k</code> קטן מ-1 (למשל, עבור <code>k = 0.75</code> בכל צעד נשארים שלושה רבעים מהמספר). ודאו בעזרת <code>assert</code> ש-<code>k</code> קטן מ-1. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> num_multiplications_to_1(n, k):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>שימו לב ש-<code>num_divisions_to_1</code> עובדת גם כאשר <code>k</code> אינו מספר שלם. כמה צעדים יש עבור מיליון, עם <code>k = 0.75</code>? לאיזה לוגריתם זה קרוב?</p>
+<p><strong>להגשה:</strong> הפונקציה <code>num_multiplications_to_1</code> בקובץ <code>ex03.py</code>. בקובץ התשובות – מספר הצעדים עבור מיליון, והלוגריתם שהוא קרוב אליו.</p></li>
+</ol>
+</section>
+</section>
+<section id="סכומים" class="level1">
+<h1>סכומים</h1>
+<section id="תרגיל-4-טור-חשבוני-וטור-הנדסי-בלי-בינה-מלאכותית" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-4-טור-חשבוני-וטור-הנדסי-בלי-בינה-מלאכותית">תרגיל 4 – טור חשבוני וטור הנדסי (בלי בינה מלאכותית)</h2>
+<ol type="1">
+<li><p>חשבו את הסכום <span class="math inline">\(1 + 2 + \dots + 100\)</span>, והסבירו את השיטה.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הסכום וההסבר.</p></li>
+<li><p>הוכיחו באינדוקציה ש:</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\]</span></p>
+<p><strong>להגשה:</strong> בקובץ התשובות – ההוכחה.</p></li>
+<li><p>הוכיחו באינדוקציה ש:</p>
+<p><span class="math display">\[
+\sum_{i=0}^{k} 2^i = 2^{k+1} - 1
+\]</span></p>
+<p><strong>להגשה:</strong> בקובץ התשובות – ההוכחה.</p></li>
+<li><p>כמה זה <span class="math inline">\(1 + \frac{1}{2} + \frac{1}{4} + \dots + \frac{1}{2^k}\)</span>? האם הסכום יכול להיות גדול מ-2?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה וההסבר.</p></li>
+<li><p>בדקו את סעיפים 2 ו-3 בפייתון, עבור כמה ערכים של <code>n</code> ושל <code>k</code> לבחירתכן.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – תוצאות הבדיקה.</p></li>
+</ol>
+</section>
+<section id="תרגיל-5-כמה-פעמים-רצה-הלולאה-בלי-בינה-מלאכותית" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-5-כמה-פעמים-רצה-הלולאה-בלי-בינה-מלאכותית">תרגיל 5 – כמה פעמים רצה הלולאה? (בלי בינה מלאכותית)</h2>
+<p>לכל אחד מקטעי הקוד הבאים: כתבו נוסחה לערך של <code>count</code> בסוף הריצה (כפונקציה של <code>n</code>), וחשבו את הערך עבור <code>n = 10</code> ועבור <code>n = 1000</code> לפני ההרצה.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (a)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i):</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co"># (d)</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> n</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># (e)</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> n</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> j <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> j <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>אחר כך הריצו את הקוד ובדקו. אפשר להיעזר בקובץ הבא:</p>
+<pre class="text"><code>code/count_steps.py</code></pre>
+<p>רכזו בטבלה, לכל קטע קוד: הנוסחה, התחזית לכל ערך של <code>n</code>, והתוצאה בפועל.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הטבלה.</p>
+</section>
+</section>
+<section id="חיפוש" class="level1">
+<h1>חיפוש</h1>
+<p>בתרגילים הבאים נשתמש ברשימת המדענים שבקובץ הבא:</p>
+<pre class="text"><code>code/scientists_list.py</code></pre>
+<p>כל פריט ברשימה הוא tuple עם ארבעה ערכים: שם משפחה, שם פרטי, שנת התגלית, והתגלית עצמה. אלה שלושת הפריטים הראשונים ברשימה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">"Einstein"</span>, <span class="st">"Albert"</span>, <span class="dv">1905</span>, <span class="st">"Theory of Relativity"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(<span class="st">"Newton"</span>, <span class="st">"Isaac"</span>, <span class="dv">1687</span>, <span class="st">"Laws of Motion and Universal Gravitation"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>(<span class="st">"Curie"</span>, <span class="st">"Marie"</span>, <span class="dv">1898</span>, <span class="st">"Radioactivity"</span>)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>כדי להשתמש ברשימה, העתיקי את הקובץ <code>scientists_list.py</code> לתיקייה של הקוד שלך, וכתבי בתחילת הקוד:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scientists_list <span class="im">import</span> scientists</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>אין צורך להגיש את הקובץ.</p>
+<section id="תרגיל-6-חיפוש-לינארי-ופונקציית-מפתח" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-6-חיפוש-לינארי-ופונקציית-מפתח">תרגיל 6 – חיפוש לינארי ופונקציית מפתח</h2>
+<p>את הקוד לשאלה זו יש להגיש בקובץ <code>ex06.py</code>.</p>
+<ol type="1">
+<li><p>כתבי פונקציה שמחזירה זוג (tuple): הפריט המינימלי והפריט המקסימלי ברשימה, בלי להשתמש בפונקציות <code>min</code> ו-<code>max</code> של פייתון. אם יש כמה פריטים עם המפתח הקטן ביותר (או הגדול ביותר), על הפונקציה להחזיר את הראשון מהם ברשימה. חתימת הפונקציה (בשלב הזה, בלי ערך ברירת מחדל לפרמטר <code>key</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_min_max(a, key):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>הפרמטר <code>key</code> הוא פונקציה שמקבלת פריט ומחזירה את הערך שלפיו משווים, כמו בפונקציה <code>linear_search</code> שבמצגת.</p></li>
+<li><p>הגדירי בעזרת <code>def</code> ארבע פונקציות מפתח, אחת לכל ערך ברשימת המדענים. למשל:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> year(s):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s[<span class="dv">2</span>]</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>כתבי קוד שמדפיס את המינימום ואת המקסימום ברשימת המדענים לפי כל אחת מארבע הפונקציות. למשל, הקריאה הבאה תחזיר את הפריט עם שנת התגלית המוקדמת ביותר, ואת הפריט עם שנת התגלית המאוחרת ביותר:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>find_min_max(scientists, year)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ההדפסה צריכה להיות בפורמט הבא:</p>
+<pre class="text"><code>first and last scientist by year:
+&lt;min item&gt;
+&lt;max item&gt;</code></pre>
+<p>ובאופן דומה לגבי: first name, last name, discovery</p></li>
+<li><p>כתבי קוד שמבצע את אותו דבר בעזרת <code>lambda</code>, בלי להגדיר פונקציות בעזרת <code>def</code>. למשל:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>find_min_max(scientists, <span class="kw">lambda</span> s: s[<span class="dv">2</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>פורמט ההדפסה:</p>
+<pre class="text"><code>first and last scientist by year using lambda:
+&lt;min item&gt;
+&lt;max item&gt;</code></pre>
+<p>כתבי קוד שמדפיס את המינימום ואת המקסימום לפי האורך של שם המשפחה. השתמשי בפונקציית lambda. פורמט ההדפסה:</p>
+<pre class="text"><code>shortest and longest last name:
+&lt;min item&gt;
+&lt;max item&gt;</code></pre>
+<p>ובאופן דומה לגבי first name.</p></li>
+<li><p>כתבי פונקציה חדשה <code>find_min_max_default</code> שבה לפרמטר <code>key</code> יש ערך ברירת מחדל, בדקי שהקריאה הבאה מחזירה את המספר הקטן ביותר ואת המספר הגדול ביותר ברשימה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>find_min_max_default([<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">8</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>פורמט ההדפסה:</p>
+<pre class="text"><code>min and max with the default key:
+&lt;min item&gt;
+&lt;max item&gt;</code></pre></li>
+<li><p>בקובץ התשובות המילוליות כתבי: כמה השוואות מבצעת הפונקציה שלך, כפונקציה של אורך הרשימה <code>n</code>? כמה זיכרון נוסף היא צריכה (מעבר לרשימה עצמה)?</p></li>
+</ol>
+</section>
+<section id="תרגיל-7-מעקב-אחרי-חיפוש-בינארי" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-7-מעקב-אחרי-חיפוש-בינארי">תרגיל 7 – מעקב אחרי חיפוש בינארי</h2>
+<p>נתונים הרשימה הממוינת והפונקציה הבאות (מתוך המצגת). העתיקי אותן לקובץ <code>ex07.py</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">17</span>, <span class="dv">21</span>, <span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">34</span>, <span class="dv">41</span>, <span class="dv">47</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">77</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_search(a, target):</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    lo <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    hi <span class="op">=</span> <span class="bu">len</span>(a)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> lo <span class="op">&lt;</span> hi:</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        mid <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a[mid] <span class="op">==</span> target:</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> mid</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> target <span class="op">&lt;</span> a[mid]:</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>            hi <span class="op">=</span> mid</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>            lo <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">None</span></span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li><p>הוסיפי לפונקציה קוד שמסייע לעקוב אחרי הריצה של הפונקציה. על הפונקציה להדפיס לכל צעד את מספר הצעד ואת הערכים של <code>lo</code>, <code>hi</code>, <code>mid</code> ו-<code>a[mid]</code>. אם הלולאה מסתיימת בלי שהערך נמצא, על הפונקציה להדפיס גם את הערכים של <code>lo</code> ו-<code>hi</code> אחרי הלולאה.</p>
+<p>ההדפסה צריכה להיות בפורמט הבא:</p>
+<pre class="text"><code>search term &lt;x&gt;
+
+steps:
+step #, lo, hi, mid, a[mid]
+&lt;a line for each step, in csv format&gt;
+&lt;x&gt; not found: lo=&lt;lo&gt;, hi=&lt;hi&gt;
+
+&lt;return value&gt;</code></pre>
+<p>את השורה עם not found יש להדפיס רק אם הערך לא נמצא ברשימה.</p>
+<p>את הערך המוחזר (השורה האחרונה) מדפיס הקוד של סעיף 2, ולא הפונקציה.</p></li>
+<li><p>כתבי קוד שמריץ את הפונקציה עם ערכי החיפוש הבאים, ומדפיס את הערך שהפונקציה מחזירה:</p>
+<pre class="text"><code>41, 3, 77, 20</code></pre>
+<p>לדוגמא, עבור ערך החיפוש 41, הפלט צריך להיראות כך:</p>
+<pre class="text"><code>search term 41
+
+steps:
+step #, lo, hi, mid, a[mid]
+1, 0, 15, 7, 34
+2, 8, 15, 11, 58
+3, 8, 11, 9, 47
+4, 8, 9, 8, 41
+
+8</code></pre>
+<p>שמרי את הפלט של ארבעת החיפושים בקובץ <code>ex07_output.txt</code>.</p></li>
+<li><p>(בקובץ התשובות המילוליות:) מה אפשר לומר על הערכים האחרונים של <code>hi</code> ו-<code>lo</code> כאשר הערך אינו נמצא ברשימה?</p></li>
+<li><p>(בקובץ התשובות המילוליות:) אם נשנה את התנאי <code>lo &lt; hi</code> לתנאי <code>lo &lt;= hi</code> (בלי לשנות שום דבר אחר), הפונקציה תיכשל. יש שני סוגים של כישלון: תני דוגמא לכל אחד מהם, והסבירי את סיבת הכישלון.</p>
+<p>שימי לב: אם התוכנית נכנסת ללולאה אינסופית, ההדפסות ימשיכו בלי סוף. אפשר לעצור אותה בטרמינל בעזרת Ctrl+C.</p></li>
+</ol>
+</section>
+<section id="תרגיל-8-חיפוש-בינארי-לפי-מפתח" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-8-חיפוש-בינארי-לפי-מפתח">תרגיל 8 – חיפוש בינארי לפי מפתח</h2>
+<p>את הקוד של תרגיל זה יש להגיש בקובץ <code>ex08.py</code>.</p>
+<ol type="1">
+<li><p>כתבי פונקציה לחיפוש בינארי ברשימה שממוינת לפי מפתח. הפונקציה מחזירה את האינדקס של פריט שהמפתח שלו שווה ל-<code>target</code>, או <code>None</code> אם אין כזה. חתימת הפונקציה צריכה להיות:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_search(a, target, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ניתן להשתמש בפונקציה מהשאלה הקודמת כבסיס.</p></li>
+<li><p>הוסיפי לפונקציה ספירה של מספר הצעדים (צעד הוא סיבוב אחד של הלולאה, כמו בתרגיל 7). על הפונקציה להחזיר את המספר יחד עם האינדקס.</p>
+<p>הדרכה: ב-python ניתן להחזיר שני ערכים מפונקציה, על ידי שורה כמו</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> index, steps</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>בקובץ <code>ex08.py</code> יש לכתוב את הגרסה של הפונקציה שמחזירה את האינדקס ואת מספר הצעדים.</p></li>
+<li><p>כתבי קוד שממיין את רשימת המדענים לפי שם המשפחה, בעזרת השורה הבאה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>a_sorted <span class="op">=</span> <span class="bu">sorted</span>(scientists, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">0</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>כתבי קוד שמחפש ברשימה הממוינת 4 שמות משפחה (חלקם קיימים ברשימה וחלקם לא), ומדפיס לכל חיפוש את ערך החיפוש, את האינדקס שהפונקציה מחזירה ואת מספר הצעדים, בפורמט הבא:</p>
+<pre class="text"><code>search &lt;target&gt;: index &lt;index&gt;, steps &lt;steps&gt;</code></pre>
+<p>למשל:</p>
+<pre class="text"><code>search Curie: index 1, steps 4
+search Turing: index None, steps 4</code></pre></li>
+<li><p>כתבי קוד שממיין לפי שנת התגלית, ומחפש ברשימה תגליות מ-4 שנים, ומדפיס את מספר הצעדים, באותו פורמט.</p></li>
+<li><p>בקובץ התשובות המילוליות: מה מספר הצעדים המקסימלי בחיפוש בינארי ברשימה של 20 פריטים? של 1000 פריטים? של מיליון? ושל מיליארד?</p></li>
+<li><p>בקובץ התשובות המילוליות: אם יש ברשימה כמה פריטים עם אותו מפתח – איזה מהם הפונקציה מחזירה? האם זה תמיד הראשון? בדקי בעזרת רשימה שממוינת לפי המאה של התגלית:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>by_century <span class="op">=</span> <span class="bu">sorted</span>(scientists, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">2</span>] <span class="op">//</span> <span class="dv">100</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>binary_search(by_century, <span class="dv">18</span>, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">2</span>] <span class="op">//</span> <span class="dv">100</span>)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+</section>
+<section id="תרגיל-9-מדידת-זמנים" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-9-מדידת-זמנים">תרגיל 9 – מדידת זמנים</h2>
+<p>הריצו את הקובץ הבא:</p>
+<pre class="text"><code>code/search_timing.py</code></pre>
+<ol type="1">
+<li><p><strong>בלי בינה מלאכותית</strong>: לפני ההרצה, נחשו פי כמה החיפוש הבינארי יהיה מהיר יותר מהחיפוש הלינארי ברשימה של מיליון מספרים.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התחזית.</p></li>
+<li><p>הריצו. מה היחס בפועל? הסבירו בעזרת מספר הצעדים של כל אחד מהחיפושים.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – היחס וההסבר.</p></li>
+<li><p>שנו את גודל הרשימה (‏<code>n</code>) למאה אלף ולעשרה מיליון. איך משתנה הזמן של כל אחת משלוש השיטות? רכזו בטבלה את הזמנים של שלוש השיטות, לכל אחד משלושת הגדלים של הרשימה.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הטבלה וההסבר.</p></li>
+<li><p>החיפוש בקבוצה (‏<code>set</code>) מהיר אפילו מהחיפוש הבינארי. מה המחיר שלו? (רמז: בדקו כמה זמן לוקח לבנות את הקבוצה.)</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה.</p></li>
+</ol>
+</section>
+<section id="תרגיל-10-בונוס-המודול-bisect-ושורש-שלם" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-10-בונוס-המודול-bisect-ושורש-שלם">תרגיל 10 – בונוס: המודול bisect ושורש שלם</h2>
+<ol type="1">
+<li><p>קראו את התיעוד של המודול <code>bisect</code> בכתובת הבאה:</p>
+<pre class="text"><code>https://docs.python.org/3/library/bisect.html</code></pre>
+<p><strong>בלי בינה מלאכותית</strong>: מה מחזירות הקריאות הבאות?</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> bisect</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>bisect.bisect_left(a, <span class="dv">3</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>bisect.bisect_right(a, <span class="dv">3</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>bisect.bisect_left(a, <span class="dv">4</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>bisect.bisect_left(a, <span class="dv">0</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>bisect.bisect_left(a, <span class="dv">9</span>)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> בקובץ התשובות – התחזיות לצד התוצאות בפועל.</p></li>
+<li><p>בעזרת שתי הפונקציות שבסעיף 1, כתבו פונקציה שסופרת כמה פעמים מופיע ערך ברשימה ממוינת, ושמספר הצעדים שלה הוא בערך <span class="math inline">\(2 \log_2 n\)</span> בלבד.</p>
+<p><strong>להגשה:</strong> הפונקציה והבדיקות שלה בקובץ <code>ex10.py</code>.</p></li>
+<li><p>חיפוש בינארי עובד גם בלי רשימה: כתבו פונקציה שמחשבת את השורש השלם של מספר שלם חיובי (המספר השלם הגדול ביותר שהריבוע שלו לא גדול מהמספר), בעזרת חיפוש בינארי ובלי להשתמש בשורש או בחזקה של 0.5. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> int_sqrt(n):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>בדקו את הפונקציה מול הפונקציה הבאה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>math.isqrt(n)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> הפונקציה והבדיקות שלה בקובץ <code>ex10.py</code>.</p></li>
+</ol>
+</section>
+</section>
+<section id="מיון" class="level1">
+<h1>מיון</h1>
+<section id="תרגיל-11-מיון-לפי-מפתח" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-11-מיון-לפי-מפתח">תרגיל 11 – מיון לפי מפתח</h2>
+<p>נתונה הרשימה הבאה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> [(<span class="st">"Yael"</span>, <span class="dv">88</span>), (<span class="st">"Shira"</span>, <span class="dv">92</span>), (<span class="st">"Ayala"</span>, <span class="dv">88</span>), (<span class="st">"Miri"</span>, <span class="dv">75</span>), (<span class="st">"Hadas"</span>, <span class="dv">92</span>)]</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li><p>כתבו תוכנית שמדפיסה את התוצאה של כל אחת מהקריאות הבאות. לפני כל תוצאה הדפיסו את המספר של הקריאה (1 עד 7):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">0</span>])                 <span class="co"># 1</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">1</span>])                 <span class="co"># 2</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)   <span class="co"># 3</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: (<span class="op">-</span>s[<span class="dv">1</span>], s[<span class="dv">0</span>]))        <span class="co"># 4</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: <span class="bu">len</span>(s[<span class="dv">0</span>]))            <span class="co"># 5</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(students)                                     <span class="co"># 6</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>students.sort(key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">1</span>])                    <span class="co"># 7</span></span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>למשל, כך מדפיסים את הקריאה הראשונה, וזו השורה הראשונה בפלט:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span>, <span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">0</span>]))</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>1 [('Ayala', 88), ('Hadas', 92), ('Miri', 75), ('Shira', 92), ('Yael', 88)]</code></pre>
+<p>בקריאה 7, הדפיסו את מה שהקריאה מחזירה, ובשורה נפרדת גם את <code>students</code> אחריה. שימו לב שהקריאה הזו משנה את הרשימה, ולכן היא צריכה להיות האחרונה בתוכנית.</p>
+<p><strong>להגשה:</strong> התוכנית בקובץ <code>ex11.py</code>, והפלט שלה בקובץ <code>ex11_output.txt</code>.</p></li>
+<li><p>צרו טבלה עם שתי עמודות: הקריאה, והסבר קצר במילים של מה שהיא עושה. ההסבר צריך להיות מדויק מספיק כדי שאפשר יהיה לכתוב לפיו את הקריאה בחזרה. אפשר לכתוב את ההסבר בעברית או באנגלית. למשל:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> call <span class="pp">|</span> what it does <span class="pp">|</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|--------------|</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`sorted(students, key=lambda s: s[0])`</span> <span class="pp">|</span> sort by name <span class="pp">|</span></span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> בקובץ התשובות – הטבלה.</p></li>
+<li><p>בפלט של קריאה 2, יעל מופיעה לפני איילה, למרות שאיילה קודמת לה לפי האלף-בית. למה?</p>
+<p>ובקריאה 3: באיזה סדר מופיעות יעל ואיילה, ובאיזה סדר שירה והדס? השוו לפלט של קריאה 2, מהסוף להתחלה. מה זה אומר על הפרמטר <code>reverse</code>?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובות.</p></li>
+<li><p>קריאות 1 ו-6 החזירו את אותה תוצאה. למה? (רמז: איך פייתון משווה שני tuples?) האם יש רשימה של זוגות שעבורה התוצאות של שתי הקריאות שונות? תנו דוגמה, ובדקו אותה.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה והדוגמה.</p></li>
+<li><p>מה הדפיסה קריאה 7, ומה הודפס כשהדפסתן את <code>students</code> אחריה? מה ההבדל בין הפונקציה <code>sorted</code> לבין הפעולה <code>sort</code> של רשימה?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה.</p></li>
+<li><p>הוסיפו לתוכנית את שתי הקריאות הבאות (לפני קריאה 7), והדפיסו את התוצאות שלהן:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: (<span class="op">-</span>s[<span class="dv">1</span>], s[<span class="dv">0</span>]))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">sorted</span>(<span class="bu">sorted</span>(students, key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">0</span>]), key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">1</span>], reverse<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>הסבירו במילים מה עושה כל אחת מהן, ולמה התוצאות זהות. האם יש רשימה שעבורה התוצאות שלהן שונות?</p>
+<p><strong>להגשה:</strong> הקריאות בקובץ <code>ex11.py</code>, והפלט בקובץ <code>ex11_output.txt</code>. בקובץ התשובות – ההסבר.</p></li>
+<li><p>בכיוון ההפוך: כתבו קריאה לפונקציה <code>sorted</code> לכל אחד מהתיאורים הבאים. הוסיפו אותן לתוכנית (לפני קריאה 7), ובדקו בפלט שהן עושות את מה שכתוב:</p>
+<ul>
+<li>מיון לפי האות האחרונה של השם.</li>
+<li>מיון לפי אורך השם, מהארוך לקצר.</li>
+<li>מיון לפי הציון, מהנמוך לגבוה, וכשהציון שווה – לפי השם, לפי האלף-בית.</li>
+</ul>
+<p><strong>להגשה:</strong> הקריאות בקובץ <code>ex11.py</code>, והפלט בקובץ <code>ex11_output.txt</code>.</p></li>
+</ol>
+</section>
+<section id="תרגיל-12-מעקב-אחרי-מיון-הכנסה" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-12-מעקב-אחרי-מיון-הכנסה">תרגיל 12 – מעקב אחרי מיון הכנסה</h2>
+<p>נתונה הפונקציה מהמצגת:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertion_sort(a, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(a)):</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>        item <span class="op">=</span> a[i]</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> i <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> key(a[j]) <span class="op">&gt;</span> key(item):</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>            a[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> a[j]</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>            j <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>        a[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> item</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li><p>כתבו גרסה של הפונקציה שמדפיסה מה קורה בכל צעד של הלולאה החיצונית. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertion_sort_trace(a, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>בהתחלה הפונקציה מדפיסה את הרשימה. בסוף כל צעד היא מדפיסה שורה אחת, ובה: הערך של <code>i</code>, הערך של <code>item</code>, מספר ההשוואות ומספר ההזזות בצעד הזה, החלק הממוין של הרשימה, והחלק שעוד לא מוין. בסוף היא מדפיסה את סך כל ההשוואות וההזזות.</p>
+<p>השוואה היא בדיקה אחת של התנאי <code dir="ltr">key(a[j]) &gt; key(item)</code>, והזזה היא ביצוע אחד של השורה <code dir="ltr">a[j + 1] = a[j]</code>. כדי לספור את ההשוואות, צריך לפרק את התנאי של לולאת ה-while. אפשר להיעזר בפונקציה <code>insertion_sort_counted</code> שבקובץ הבא, שכבר סופרת השוואות והזזות:</p>
+<pre class="text"><code>code/insertion_sort.py</code></pre>
+<p>כך צריכות להיראות שלוש השורות הראשונות של הפלט, עבור הרשימה הראשונה של סעיף 2:</p>
+<pre class="text"><code>start: [7, 3, 9, 3, 1, 8]
+i=1 item=3 comparisons=1 shifts=1 sorted=[3, 7] remaining=[9, 3, 1, 8]
+i=2 item=9 comparisons=1 shifts=0 sorted=[3, 7, 9] remaining=[3, 1, 8]</code></pre>
+<p>והשורה האחרונה של הפלט נראית כך (עם המספרים שלכן במקום הנקודות):</p>
+<pre class="text"><code>total: comparisons=... shifts=...</code></pre>
+<p><strong>להגשה:</strong> הפונקציה בקובץ <code>ex12.py</code>.</p></li>
+<li><p>הריצו את הפונקציה על כל אחת מהרשימות הבאות:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>insertion_sort_trace([<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">8</span>])</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>insertion_sort_trace([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>insertion_sort_trace([<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> הקריאות בקובץ <code>ex12.py</code>, והפלט בקובץ <code>ex12_output.txt</code>.</p></li>
+<li><p>ענו על השאלות הבאות בעזרת הפלט:</p>
+<ul>
+<li>מה סך כל ההשוואות וההזזות בכל אחת משלוש הרשימות?</li>
+<li>בכל צעד, מספר ההשוואות שווה למספר ההזזות, או גדול ממנו ב-1. מתי קורה כל אחד מהמקרים? למה?</li>
+<li>הסבירו את המספרים של הרשימה הממוינת ושל הרשימה שממוינת בסדר הפוך. כמה השוואות וכמה הזזות יהיו עבור רשימות כאלה באורך 100?</li>
+</ul>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובות.</p></li>
+<li><p>ברשימה הראשונה יש שני מופעים של 3. כדי לראות איזה מהם מגיע ראשון, הריצו את הפונקציה על רשימה של זוגות, שבה כל מספר מקבל אות, ומיינו לפי המספר:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>insertion_sort_trace([(<span class="dv">7</span>, <span class="st">"a"</span>), (<span class="dv">3</span>, <span class="st">"b"</span>), (<span class="dv">9</span>, <span class="st">"c"</span>), (<span class="dv">3</span>, <span class="st">"d"</span>), (<span class="dv">1</span>, <span class="st">"e"</span>), (<span class="dv">8</span>, <span class="st">"f"</span>)], key<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="dv">0</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>באיזה סדר מופיעים <code dir="ltr">(3, 'b')</code> ו-<code dir="ltr">(3, 'd')</code> בסוף? באיזה צעד נקבע הסדר ביניהם, ולמה דווקא בסדר הזה?</p>
+<p><strong>להגשה:</strong> הקריאה בקובץ <code>ex12.py</code>, והפלט בקובץ <code>ex12_output.txt</code>. בקובץ התשובות – התשובה.</p></li>
+</ol>
+</section>
+<section id="תרגיל-13-מימוש-מיון-הכנסה-לפי-מפתח" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-13-מימוש-מיון-הכנסה-לפי-מפתח">תרגיל 13 – מימוש מיון הכנסה לפי מפתח</h2>
+<ol type="1">
+<li><p>כתבו בעצמכן את הפונקציה של מיון הכנסה, בלי להעתיק מהמצגת. הפונקציה ממיינת את הרשימה במקום, ולא מחזירה כלום. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> insertion_sort(a, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> הפונקציה בקובץ <code>ex13.py</code>.</p></li>
+<li><p>מיינו עותק של רשימת המדענים לפי כל אחד מארבעת הערכים, ובדקו שהתוצאה זהה לתוצאה של <code>sorted</code>, כשמעבירים לה את אותו פרמטר <code>key</code> שהעברתן לפונקציה שלכן.</p>
+<p><strong>להגשה:</strong> הבדיקות בקובץ <code>ex13.py</code>.</p></li>
+<li><p>בדיקת יציבות: מיינו לפי מפתח שיש בו הרבה ערכים שווים, למשל האות הראשונה של שם המשפחה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>key<span class="op">=</span><span class="kw">lambda</span> s: s[<span class="dv">0</span>][<span class="dv">0</span>]</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ובדקו שגם עכשיו התוצאה זהה לתוצאה של <code>sorted</code>. למה הבדיקה הזו בודקת גם את היציבות?</p>
+<p><strong>להגשה:</strong> הבדיקה בקובץ <code>ex13.py</code>. בקובץ התשובות – ההסבר.</p></li>
+</ol>
+</section>
+<section id="תרגיל-14-כמה-צעדים" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-14-כמה-צעדים">תרגיל 14 – כמה צעדים?</h2>
+<ol type="1">
+<li><p><strong>בלי בינה מלאכותית</strong>: כתבו נוסחה למספר ההשוואות ולמספר ההזזות של מיון הכנסה, כפונקציה של אורך הרשימה <code>n</code>: עבור רשימה ממוינת, עבור רשימה ממוינת בסדר הפוך, ועבור רשימה אקראית (בערך).</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הנוסחאות.</p></li>
+<li><p>הוסיפו לפונקציה שלכן ספירה של ההשוואות ושל ההזזות, והחזירו את שני המספרים.</p>
+<p><strong>להגשה:</strong> הפונקציה בקובץ <code>ex14.py</code>.</p></li>
+<li><p>מלאו טבלה עבור <code>n = 10, 100, 1000</code>, ולכל אחד מסוגי הרשימות שבסעיף 1. השוו לנוסחאות.</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex14.py</code>. בקובץ התשובות – הטבלה וההשוואה לנוסחאות.</p></li>
+<li><p>רשימה "כמעט ממוינת": קחו רשימה ממוינת של 1000 מספרים, והחליפו 10 פעמים בין שני מספרים סמוכים שנבחרו באקראי. כמה השוואות וכמה הזזות יש עכשיו? הסבירו.</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex14.py</code>. בקובץ התשובות – המספרים וההסבר.</p></li>
+<li><p><strong>בלי בינה מלאכותית</strong>: מה הקשר בין מספר ההשוואות למספר ההזזות? למה ההפרש ביניהם לעולם לא גדול מ-<code>n - 1</code> השוואות?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – ההסבר.</p></li>
+</ol>
+</section>
+<section id="תרגיל-15-מצאו-את-ההבדל-בלי-בינה-מלאכותית" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-15-מצאו-את-ההבדל-בלי-בינה-מלאכותית">תרגיל 15 – מצאו את ההבדל (בלי בינה מלאכותית)</h2>
+<p>בכל אחת מהגרסאות הבאות שונתה רק השורה של לולאת ה-while בפונקציה מתרגיל 12:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (a)</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> j <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> key(a[j]) <span class="op">&gt;=</span> key(item):</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (b)</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> j <span class="op">&gt;</span> <span class="dv">0</span> <span class="kw">and</span> key(a[j]) <span class="op">&gt;</span> key(item):</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (c)</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> key(a[j]) <span class="op">&gt;</span> key(item) <span class="kw">and</span> j <span class="op">&gt;=</span> <span class="dv">0</span>:</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>לכל גרסה ענו:</p>
+<ol type="1">
+<li><p>האם היא עדיין ממיינת כל רשימה? אם לא – מצאו רשימה קצרה שעבורה התוצאה שגויה.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה לכל אחת מהגרסאות, עם הדוגמה.</p></li>
+<li><p>האם המיון עדיין יציב? אם לא – מצאו דוגמה.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה לכל אחת מהגרסאות, עם הדוגמה.</p></li>
+<li><p>אם התשובה לשני הסעיפים היא "כן" – האם יש בכל זאת חיסרון לגרסה הזו?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה.</p></li>
+</ol>
+<p>רמז לגרסה (c): מה קורה בפייתון כשכותבים <code>a[-1]</code>? האם בשפה אחרת זה היה עובד?</p>
+<p>אחר כך הריצו את שלוש הגרסאות ובדקו את התשובות שלכן.</p>
+</section>
+<section id="תרגיל-16-בונוס-זמנים-ומיון-הכנסה-עם-חיפוש-בינארי" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-16-בונוס-זמנים-ומיון-הכנסה-עם-חיפוש-בינארי">תרגיל 16 – בונוס: זמנים, ומיון הכנסה עם חיפוש בינארי</h2>
+<ol type="1">
+<li><p>הריצו את הקובץ הבא:</p>
+<pre class="text"><code>code/insertion_sort.py</code></pre>
+<p>מה קורה לזמן של מיון הכנסה כשמכפילים את <code>n</code>? <strong>בלי בינה מלאכותית</strong>: נחשו כמה זמן ייקח למיין 16,000 מספרים, ואז בדקו.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התחזית והתוצאה.</p></li>
+<li><p>את המקום של <code>item</code> בחלק הממוין אפשר למצוא בחיפוש בינארי. כתבו גרסה של מיון הכנסה שמשתמשת בפונקציה <code>bisect.bisect_right</code> כדי למצוא את המקום, ובפעולות <code>pop</code> ו-<code>insert</code> של רשימה כדי להעביר את הפריט. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_insertion_sort(a, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> הפונקציה בקובץ <code>ex16.py</code>.</p></li>
+<li><p>כמה השוואות היא מבצעת עכשיו (בערך)? וכמה הזזות?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה.</p></li>
+<li><p>השוו את הזמנים שלה לזמנים של מיון ההכנסה הרגיל. מה יותר מהיר? הסבירו את התוצאה, למרות שמספר ההזזות לא השתנה.</p>
+<p><strong>להגשה:</strong> הקוד שמשווה את הזמנים בקובץ <code>ex16.py</code>. בקובץ התשובות – הזמנים וההסבר.</p></li>
+<li><p>האם הגרסה שלכן יציבה? מה היה קורה אם הייתן משתמשות בפונקציה <code>bisect_left</code> במקום בפונקציה <code>bisect_right</code> שבסעיף 2?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובה.</p></li>
+</ol>
+</section>
+</section>
+<section id="מיון-מיזוג" class="level1">
+<h1>מיון מיזוג</h1>
+<p>בתרגילים הבאים נשתמש בפונקציות שבקובץ הבא:</p>
+<pre class="text"><code>code/merge_sort.py</code></pre>
+<p>הקובץ משתמש בקבצים <code>insertion_sort.py</code> ו-<code>random_tuples.py</code> שבאותה תיקייה. כדי להשתמש בפונקציות, שמרו את הקוד שלכן בתיקייה <code>code</code> (או העתיקו את שלושת הקבצים לתיקייה של הקוד שלכן), וכתבו בתחילת הקוד, למשל:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> merge_sort <span class="im">import</span> merge, merge_sort</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="תרגיל-17-מיזוג" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-17-מיזוג">תרגיל 17 – מיזוג</h2>
+<ol type="1">
+<li><p>העתיקו את הפונקציה <code>merge</code> לקובץ שלכן, ושנו את השם שלה ל-<code>merge_trace</code>. הוסיפו לה הדפסות: בכל השוואה היא מדפיסה אילו שני פריטים הושוו, ומאיזו רשימה נלקח הפריט. אחרי הלולאה היא מדפיסה מה נשאר בכל אחת מהרשימות, ובסוף את התוצאה ואת מספר ההשוואות. עבור הדוגמה מהמצגת:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>merge_trace([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>הפלט צריך להיראות כך:</p>
+<pre class="text"><code>compare 1 and 2: take 1 from a
+compare 3 and 2: take 2 from b
+compare 3 and 4: take 3 from a
+compare 5 and 4: take 4 from b
+compare 5 and 7: take 5 from a
+compare 6 and 7: take 6 from a
+rest of a: [], rest of b: [7, 8]
+result: [1, 2, 3, 4, 5, 6, 7, 8], comparisons: 6</code></pre>
+<p><strong>להגשה:</strong> הפונקציה בקובץ <code>ex17.py</code>.</p></li>
+<li><p>הריצו את הפונקציה על הזוגות הבאים:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>merge_trace([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>])</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>merge_trace([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>])</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>merge_trace([<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>], [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>])</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>merge_trace([<span class="dv">5</span>], [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>merge_trace([], [<span class="dv">1</span>, <span class="dv">2</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> הקריאות בקובץ <code>ex17.py</code>, והפלט בקובץ <code>ex17_output.txt</code>.</p></li>
+<li><p>בעזרת הפלט, רכזו בטבלה לכל קריאה: האורך של כל אחת משתי הרשימות, מספר ההשוואות, ומספר הפריטים שהועתקו בסוף, בלי השוואה. אחר כך ענו:</p>
+<ul>
+<li>בכל השוואה מועתק פריט אחד לתוצאה. למה מספר ההשוואות אף פעם לא גדול מ-<code>n - 1</code>, כאשר <code>n</code> הוא מספר הפריטים בשתי הרשימות יחד?</li>
+<li><strong>בלי בינה מלאכותית</strong>: ברשימה אחת יש <code>p</code> פריטים, ובשנייה <code>q</code> פריטים. מה מספר ההשוואות הקטן ביותר האפשרי, ומה הגדול ביותר? תנו דוגמה לכל אחד מהמקרים.</li>
+</ul>
+<p><strong>להגשה:</strong> בקובץ התשובות – הטבלה והתשובות.</p></li>
+<li><p>יציבות: נמזג שני חלקים של רשימת המדענים, כשכל חלק ממוין לפי המאה של התגלית:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> century(s):</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s[<span class="dv">2</span>] <span class="op">//</span> <span class="dv">100</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="bu">sorted</span>(scientists[:<span class="dv">10</span>], key<span class="op">=</span>century)</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">sorted</span>(scientists[<span class="dv">10</span>:], key<span class="op">=</span>century)</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>merged <span class="op">=</span> merge(a, b, key<span class="op">=</span>century)</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged <span class="op">==</span> <span class="bu">sorted</span>(scientists, key<span class="op">=</span>century))</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>אחר כך העתיקו את הפונקציה <code>merge</code>, ושנו בעותק את <code dir="ltr">&lt;=</code> ל-<code dir="ltr">&lt;</code>. מזגו שוב את <code>a</code> ו-<code>b</code> בעזרת העותק, והשוו שוב לתוצאה של <code>sorted</code>.</p>
+<p>הדפיסו את שתי התוצאות של המיזוג (רק שם המשפחה ושנת התגלית, פריט בכל שורה), ומצאו את הפריטים שהסדר שלהם השתנה. הסבירו: למה הסדר השתנה, ולמה עם <code dir="ltr">&lt;=</code> התוצאה זהה לתוצאה של <code>sorted</code>?</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex17.py</code>, והפלט בקובץ <code>ex17_output.txt</code>. בקובץ התשובות – ההסבר.</p></li>
+</ol>
+</section>
+<section id="תרגיל-18-הקריאות-של-מיון-מיזוג" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-18-הקריאות-של-מיון-מיזוג">תרגיל 18 – הקריאות של מיון מיזוג</h2>
+<ol type="1">
+<li><p>הפונקציה <code>merge_sort_traced</code> שבקובץ <code>merge_sort.py</code> ממיינת כמו <code>merge_sort</code>, ומדפיסה כל קריאה, עם הזחה לפי העומק של הרקורסיה. הריצו אותה על שתי הרשימות הבאות:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>merge_sort_traced([<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>merge_sort_traced([<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">3</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> הפלט בקובץ <code>ex18_output.txt</code>.</p></li>
+<li><p>בעזרת הפלט, רכזו בטבלה לכל אחת משתי הרשימות:</p>
+<ul>
+<li>מספר הקריאות לפונקציה (מספר השורות שמתחילות ב-<code>merge_sort</code>).</li>
+<li>מספר הקריאות עם פריט אחד.</li>
+<li>מספר המיזוגים (מספר השורות עם החץ).</li>
+<li>העומק הגדול ביותר של הרקורסיה (הקריאה הראשונה בעומק 0, הקריאות שהיא קוראת להן בעומק 1, וכן הלאה).</li>
+</ul>
+<p>מה הקשר בין כל אחד מהמספרים האלה לבין מספר הפריטים ברשימה?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הטבלה והקשר למספר הפריטים.</p></li>
+<li><p>בפלט של הרשימה השנייה: למה החצי השמאלי הוא <code dir="ltr">[5, 2, 4]</code>, ואיך הוא מתחלק בהמשך? איזה מיזוג מתבצע ראשון? למה הקריאה <code dir="ltr">merge_sort([7, 1, 3])</code> מתחילה רק אחרי שהחצי השמאלי כבר ממוין?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובות.</p></li>
+<li><p>מקרה הבסיס: העתיקו את הפונקציה <code>merge_sort</code>, ושנו בעותק את התנאי <code>len(a) &lt;= 1</code> לתנאי <code>len(a) == 1</code>. הריצו את העותק על שתי הרשימות של סעיף 1, ועל רשימה ריקה. מה קורה? הסבירו: למה שתי הרשימות עדיין ממוינות, ומה קורה ברשימה הריקה?</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – מה קרה, וההסבר.</p></li>
+<li><p><strong>בלי בינה מלאכותית</strong> (תרגול למבחן): כתבו ביד את הפלט של הקריאה הבאה. אחר כך הריצו, ובדקו.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>merge_sort_traced([<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>])</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>להגשה:</strong> בקובץ התשובות – הפלט שכתבתן ביד, והטעויות שמצאתן (אם היו).</p></li>
+</ol>
+</section>
+<section id="תרגיל-19-כמה-העתקות-וכמה-השוואות" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-19-כמה-העתקות-וכמה-השוואות">תרגיל 19 – כמה העתקות וכמה השוואות?</h2>
+<p>הפונקציה <code>merge_sort_counted</code> שבקובץ <code>merge_sort.py</code> מחזירה את הרשימה הממוינת, את מספר ההשוואות, ואת מספר הפריטים שהעתיקה הפונקציה <code>merge</code> (בכל הקריאות יחד). הפונקציה <code>insertion_sort_counted</code> שבקובץ <code>insertion_sort.py</code> ממיינת במקום, ומחזירה את מספר ההשוואות ואת מספר ההזזות.</p>
+<p>כך יוצרים רשימה אקראית של המספרים 0 עד <code dir="ltr">n - 1</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> random.sample(<span class="bu">range</span>(n), n)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li><p>הריצו את <code>merge_sort_counted</code> על רשימות אקראיות באורכים הבאים:</p>
+<pre class="text"><code>8, 16, 1024, 5, 6, 7, 10, 1000</code></pre>
+<p>רכזו בטבלה, לכל אורך <code>n</code>: את מספר ההעתקות, את <span class="math inline">\(n \log_2 n\)</span>, ואת <span class="math inline">\(n \lceil \log_2 n \rceil\)</span> (בפייתון: <code>math.ceil</code>). אחר כך ענו:</p>
+<ul>
+<li>למה עבור חזקות של 2 מספר ההעתקות שווה בדיוק ל- <span class="math inline">\(n \log_2 n\)</span>?</li>
+<li>האם מספר ההעתקות תלוי בסדר של הפריטים ברשימה? בדקו גם על רשימה ממוינת, והסבירו.</li>
+</ul>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex19.py</code>. בקובץ התשובות – הטבלה והתשובות.</p></li>
+<li><p>השוו את מספר ההשוואות של מיון מיזוג ושל מיון הכנסה, עבור <code>n = 1024</code>, על שלוש רשימות: ממוינת, ממוינת בסדר הפוך, ואקראית. שימו לב ש-<code>insertion_sort_counted</code> משנה את הרשימה, ולכן העבירו לה עותק. רכזו בטבלה, ואחר כך ענו:</p>
+<ul>
+<li>עבור הרשימה הממוינת, מספר ההשוואות של מיון מיזוג הוא בדיוק מחצית ממספר ההעתקות. למה? (רמז: הקריאה השנייה של סעיף 2 בתרגיל 17.) ולמה זה נכון גם עבור הרשימה שממוינת בסדר הפוך?</li>
+<li>איזה מיון עדיף לרשימה ממוינת? ולרשימה אקראית?</li>
+</ul>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex19.py</code>. בקובץ התשובות – הטבלה והתשובות.</p></li>
+</ol>
+</section>
+<section id="תרגיל-20-נוסחת-הנסיגה-של-מיון-מיזוג" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-20-נוסחת-הנסיגה-של-מיון-מיזוג">תרגיל 20 – נוסחת הנסיגה של מיון מיזוג</h2>
+<p>נוסחת הנסיגה (recurrence) של מיון מיזוג, כאשר <span class="math inline">\(n\)</span> הוא חזקה של 2:</p>
+<p><span class="math display">\[
+T(1) = 0 \qquad\qquad T(n) = 2\,T(n/2) + n
+\]</span></p>
+<ol type="1">
+<li><p><strong>בלי בינה מלאכותית</strong>: במצגת חישבנו ש- <span class="math inline">\(T(8) = 24\)</span>. חשבו בעזרת הנוסחה את <span class="math inline">\(T(16)\)</span> ואת <span class="math inline">\(T(32)\)</span>, והשוו ל- <span class="math inline">\(n \log_2 n\)</span>.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – החישוב.</p></li>
+<li><p>כתבו פונקציה רקורסיבית שמחשבת את <span class="math inline">\(T(n)\)</span> לכל <span class="math inline">\(n\)</span>, גם כשהוא אינו חזקה של 2, כמו במצגת: החצאים הם <code>n // 2</code> ו-<code>n - n // 2</code> פריטים. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> T_halves(n):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>בדקו שלכל <code>n</code> מ-1 עד 300, הפונקציה מחזירה בדיוק את מספר ההעתקות של <code>merge_sort_counted</code>. הדפיסו את הערכים עבור <code>n = 5, 6, 7, 10, 1000, 1000000</code>, והשוו לטבלה במצגת. למה התוצאות שוות בדיוק?</p>
+<p><strong>להגשה:</strong> הפונקציה והבדיקה בקובץ <code>ex20.py</code>. בקובץ התשובות – ההסבר.</p></li>
+<li><p><strong>בלי בינה מלאכותית</strong>: נסמן ב- <span class="math inline">\(C(n)\)</span> את מספר הקריאות לפונקציה <code>merge_sort</code> במיון של <span class="math inline">\(n\)</span> פריטים (כולל הקריאה הראשונה). כאשר <span class="math inline">\(n\)</span> הוא חזקה של 2:</p>
+<p><span class="math display">\[
+C(1) = 1 \qquad\qquad C(n) = 2\,C(n/2) + 1
+\]</span></p>
+<p>הסבירו למה זו הנוסחה. חשבו את <span class="math inline">\(C(2)\)</span>, <span class="math inline">\(C(4)\)</span>, <span class="math inline">\(C(8)\)</span> ו- <span class="math inline">\(C(16)\)</span>, ונחשו נוסחה כללית. הוכיחו באינדוקציה על <span class="math inline">\(k\)</span> ש:</p>
+<p><span class="math display">\[
+C(2^k) = 2^{k+1} - 1
+\]</span></p>
+<p><strong>להגשה:</strong> בקובץ התשובות – ההסבר, החישובים וההוכחה.</p></li>
+<li><p>כתבו פונקציה רקורסיבית שמחשבת את <span class="math inline">\(C(n)\)</span> לכל <span class="math inline">\(n\)</span> (עם אותם חצאים כמו בסעיף 2). חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calls(n):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>בדקו את הנוסחה שמצאתן בסעיף 3 לכל <code>n</code> מ-1 עד 1000, גם כשהוא אינו חזקה של 2. האם זה מתאים לטבלה של תרגיל 18?</p>
+<p><strong>להגשה:</strong> הפונקציה והבדיקה בקובץ <code>ex20.py</code>. בקובץ התשובות – התוצאה.</p></li>
+</ol>
+</section>
+<section id="תרגיל-21-בונוס-מיון-הכנסה-בתוך-מיון-מיזוג" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-21-בונוס-מיון-הכנסה-בתוך-מיון-מיזוג">תרגיל 21 – בונוס: מיון הכנסה בתוך מיון מיזוג</h2>
+<ol type="1">
+<li><p>מדדו את הזמן של <code>insertion_sort</code> ושל <code>merge_sort</code> על רשימות אקראיות קצרות, באורכים הבאים:</p>
+<pre class="text"><code>5, 10, 20, 50, 100, 200</code></pre>
+<p>כל מיון לוקח רק מיקרו-שניות, ולכן חזרו על כל מדידה הרבה פעמים (למשל 1000) ובכל פעם על עותק של אותה רשימה, ומדדו בעזרת <code>time.perf_counter</code>. רכזו בטבלה. מאיזה אורך מיון מיזוג מהיר יותר? למה מיון הכנסה מהיר יותר ברשימות קצרות, למרות שמספר הצעדים שלו גדל כמו <span class="math inline">\(n^2\)</span>?</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex21.py</code>. בקובץ התשובות – הטבלה וההסבר.</p></li>
+<li><p>כתבו גרסה של מיון מיזוג שממיינת רשימה קצרה (עם <code>k</code> פריטים לכל היותר) בעזרת מיון הכנסה, במקום להמשיך לחלק אותה. הפונקציה מחזירה רשימה חדשה, כמו <code>merge_sort</code>. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hybrid_merge_sort(a, k, key<span class="op">=</span><span class="kw">lambda</span> x: x):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>בדקו שהתוצאה זהה לתוצאה של <code>sorted</code>.</p>
+<p><strong>להגשה:</strong> הפונקציה והבדיקה בקובץ <code>ex21.py</code>.</p></li>
+<li><p>מדדו את הזמן של <code>hybrid_merge_sort</code> על רשימה אקראית של 100,000 מספרים, עם ערכים שונים של <code>k</code>:</p>
+<pre class="text"><code>1, 4, 8, 16, 32, 64, 128, 256</code></pre>
+<p>רכזו בטבלה. איזה <code>k</code> הכי מהיר? למה ערך גדול מדי של <code>k</code> מאט את המיון? (הפונקציה <code>sorted</code> של פייתון משתמשת באותו רעיון, ראו במצגת.)</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex21.py</code>. בקובץ התשובות – הטבלה וההסבר.</p></li>
+</ol>
+</section>
+</section>
+<section id="נוסחת-נסיגה-נוספת" class="level1">
+<h1>נוסחת נסיגה נוספת</h1>
+<section id="תרגיל-22-חלוקה-לחצאים-לעומת-פריט-אחד-פחות" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-22-חלוקה-לחצאים-לעומת-פריט-אחד-פחות">תרגיל 22 – חלוקה לחצאים לעומת פריט אחד פחות</h2>
+<ol type="1">
+<li><p><strong>בלי בינה מלאכותית</strong>: נתונה נוסחת הנסיגה:</p>
+<p><span class="math display">\[
+T(1) = 1 \qquad\qquad T(n) = n + T(n - 1)
+\]</span></p>
+<p>חשבו את <span class="math inline">\(T(2)\)</span>, <span class="math inline">\(T(3)\)</span>, <span class="math inline">\(T(4)\)</span> ו- <span class="math inline">\(T(5)\)</span>. הוכיחו באינדוקציה שלכל <span class="math inline">\(n \ge 1\)</span>:</p>
+<p><span class="math display">\[
+T(n) = \frac{n(n+1)}{2}
+\]</span></p>
+<p><strong>להגשה:</strong> בקובץ התשובות – החישובים וההוכחה.</p></li>
+<li><p>כתבו פונקציה רקורסיבית שמחשבת את <span class="math inline">\(T(n)\)</span> לפי הנוסחה. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> T_one_less(n):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>הדפיסו את הערכים עבור <code>n</code> מ-1 עד 10 ועבור <code>n = 100</code>, והשוו לנוסחה של סעיף 1. אחר כך חשבו את הערך עבור <code>n = 2000</code>. מה קורה? הפונקציה <code>T_halves</code> מתרגיל 20 חישבה את הערך עבור מיליון בלי בעיה. למה? (רמז: כמה קריאות מחכות זו לזו בכל רגע? פייתון מגביל את המספר הזה לכ-1000.)</p>
+<p><strong>להגשה:</strong> הפונקציה והקריאות בקובץ <code>ex22.py</code>. בקובץ התשובות – מה קרה, וההסבר.</p></li>
+<li><p>מיון מיזוג "לא מאוזן": העתיקו את הפונקציה <code>merge_sort_counted</code>, ושנו את השם שלה ל-<code>merge_sort_one_less</code>. בעותק, שנו את השורה של <code>mid</code> לשורה הבאה (וגם את הקריאות הרקורסיביות, לשם החדש):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>mid <span class="op">=</span> <span class="bu">len</span>(a) <span class="op">-</span> <span class="dv">1</span></span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>עכשיו החצי השמאלי כולל את כל הפריטים חוץ מהאחרון, והחצי הימני כולל פריט אחד. בדקו שהפונקציה עדיין ממיינת. רכזו בטבלה את מספר ההעתקות עבור רשימות אקראיות באורכים הבאים:</p>
+<pre class="text"><code>2, 3, 4, 5, 10, 100, 500</code></pre>
+<p>כתבו נוסחת נסיגה למספר ההעתקות של הפונקציה, ופתרו אותה בעזרת סעיף 1. האם הפתרון מתאים לטבלה? מה קורה עבור רשימה של 2000 פריטים? לאיזה מיון שלמדנו דומה הפונקציה הזו, ולמה?</p>
+<p><strong>להגשה:</strong> הפונקציה והמדידות בקובץ <code>ex22.py</code>. בקובץ התשובות – הטבלה, נוסחת הנסיגה והפתרון שלה, וההסברים.</p></li>
+</ol>
+</section>
+</section>
+<section id="סימון-אסימפטוטי" class="level1">
+<h1>סימון אסימפטוטי</h1>
+<section id="תרגיל-23-קצב-גידול" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-23-קצב-גידול">תרגיל 23 – קצב גידול</h2>
+<ol type="1">
+<li><p>כתבו תוכנית שמדפיסה טבלה של הפונקציות הבאות, עבור <code>n = 10, 100, 1000, 1000000</code>:</p>
+<p><span class="math display">\[
+\log_2 n, \quad \sqrt{n}, \quad n \log_2 n, \quad n^2, \quad n^3, \quad 2^n
+\]</span></p>
+<p>את <span class="math inline">\(2^n\)</span> אי אפשר להדפיס עבור מיליון: הדפיסו במקום זה את מספר הספרות שלו. עבור <code>n = 1000</code> אפשר לספור את הספרות כך:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(<span class="bu">str</span>(<span class="dv">2</span> <span class="op">**</span> n))</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>אבל עבור מיליון פייתון מסרב להמיר מספר כל כך גדול למחרוזת. השתמשו במקום זה בנוסחה הבאה, ובדקו שעבור <code>n = 1000</code> היא נותנת אותה תוצאה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>math.floor(n <span class="op">*</span> math.log10(<span class="dv">2</span>)) <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>למה הנוסחה נותנת את מספר הספרות? (רמז: תרגיל 3, סעיף 5.)</p>
+<p><strong>להגשה:</strong> התוכנית בקובץ <code>ex23.py</code>. בקובץ התשובות – הטבלה, וההסבר לנוסחה.</p></li>
+<li><p>לכל אחת מהפונקציות, חשבו פי כמה היא גדלה כשמכפילים את <code>n</code> מ-1000 ל-2000. השוו לטבלה "What happens when n doubles" במצגת.</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex23.py</code>. בקובץ התשובות – היחסים.</p></li>
+<li><p>כל אחת מהפונקציות הבאות סופרת כמה פעמים רצה השורה <code dir="ltr">count += 1</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(n):</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> n:</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i):</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>            count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> i <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2(n):</span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a>        j <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> j <span class="op">&lt;</span> n:</span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a>            count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a>            j <span class="op">=</span> j <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb78-19"><a href="#cb78-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-20"><a href="#cb78-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-21"><a href="#cb78-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f3(n):</span>
+<span id="cb78-22"><a href="#cb78-22" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb78-23"><a href="#cb78-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb78-24"><a href="#cb78-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i, n):</span>
+<span id="cb78-25"><a href="#cb78-25" aria-hidden="true" tabindex="-1"></a>            count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb78-26"><a href="#cb78-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span>
+<span id="cb78-27"><a href="#cb78-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-28"><a href="#cb78-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-29"><a href="#cb78-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f4(n):</span>
+<span id="cb78-30"><a href="#cb78-30" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb78-31"><a href="#cb78-31" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb78-32"><a href="#cb78-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">*</span> i <span class="op">&lt;</span> n:</span>
+<span id="cb78-33"><a href="#cb78-33" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb78-34"><a href="#cb78-34" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb78-35"><a href="#cb78-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>הריצו כל אחת מהן עבור <code>n = 1000, 2000, 4000, 8000</code>. רכזו בטבלה את התוצאות, ופי כמה גדלה התוצאה בכל הכפלה של <code>n</code>. לפי היחסים, מה קצב הגידול של כל פונקציה (בסימון <span class="math inline">\(\Theta\)</span>)? אחר כך הסבירו את קצב הגידול מתוך הקוד. בפונקציה <code>f1</code> יש לולאה בתוך לולאה, והלולאה החיצונית רצה בערך <span class="math inline">\(\log_2 n\)</span> פעמים. למה בכל זאת התוצאה אינה בערך <span class="math inline">\(n \log_2 n\)</span>?</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex23.py</code>. בקובץ התשובות – הטבלה, קצב הגידול של כל פונקציה, וההסברים.</p></li>
+</ol>
+</section>
+<section id="תרגיל-24-מציאת-c-ו-n0" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-24-מציאת-c-ו-n0">תרגיל 24 – מציאת c ו-n0</h2>
+<ol type="1">
+<li><p><strong>בלי בינה מלאכותית</strong>: לכל אחת מהטענות הבאות, מצאו קבועים <span class="math inline">\(c\)</span> ו- <span class="math inline">\(n_0\)</span> (או <span class="math inline">\(c_1\)</span>, <span class="math inline">\(c_2\)</span> ו- <span class="math inline">\(n_0\)</span>), והראו שהם מתאימים, כמו בדוגמאות שבמצגת:</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+\text{(a)} &amp; 3n + 7 = O(n) \\
+\text{(b)} &amp; n^2 - 3n = \Omega(n^2) \\
+\text{(c)} &amp; n \log_2 n = O(n^2) \\
+\text{(d)} &amp; 5n^3 + 2n + 100 = \Theta(n^3)
+\end{array}
+\]</span></p>
+<p>בנוסף, הוכיחו ש- <span class="math inline">\(n^2\)</span> אינו <span class="math inline">\(O(n)\)</span>.</p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הקבועים וההוכחות.</p></li>
+<li><p>כתבו פונקציה שבודקת אם <span class="math inline">\(f(n) \le c \cdot g(n)\)</span> לכל <code>n</code> בין <code>n0</code> ל-<code>n_max</code>. הפונקציה מקבלת את <code>f</code> ואת <code>g</code> כפרמטרים (פונקציות), ומחזירה את ה-<code>n</code> הראשון שעבורו אי-השוויון לא מתקיים, או <code>None</code> אם הוא מתקיים לכל <code>n</code> בתחום. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_bound(f, g, c, n0, n_max):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>למשל, הקריאה הראשונה מחזירה <code>None</code> (הדוגמה מהמצגת, עם <span class="math inline">\(c = 3\)</span> ו- <span class="math inline">\(n_0 = 5\)</span>), והשנייה מחזירה 4:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>check_bound(<span class="kw">lambda</span> n: <span class="dv">2</span> <span class="op">*</span> n<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> n <span class="op">+</span> <span class="dv">10</span>, <span class="kw">lambda</span> n: n<span class="op">**</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span><span class="op">**</span><span class="dv">6</span>)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>check_bound(<span class="kw">lambda</span> n: <span class="dv">2</span> <span class="op">*</span> n<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> n <span class="op">+</span> <span class="dv">10</span>, <span class="kw">lambda</span> n: n<span class="op">**</span><span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">10</span><span class="op">**</span><span class="dv">6</span>)</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>בדקו בעזרת הפונקציה את הקבועים שמצאתן בסעיף 1, עם <code>n_max = 10**5</code>. בטענה (b) צריך לבדוק אי-שוויון בכיוון ההפוך: איך אפשר לעשות את זה עם אותה פונקציה?</p>
+<p><strong>להגשה:</strong> הפונקציה והבדיקות בקובץ <code>ex24.py</code>. בקובץ התשובות – התוצאות.</p></li>
+<li><p>ככל ש- <span class="math inline">\(c\)</span> קטן יותר, צריך <span class="math inline">\(n_0\)</span> גדול יותר. כתבו פונקציה שמחזירה את ה-<code>n</code> הגדול ביותר בין 1 ל-<code>n_max</code> שעבורו <span class="math inline">\(f(n) &gt; c \cdot g(n)\)</span>, או 0 אם אין כזה. ה- <span class="math inline">\(n_0\)</span> הקטן ביותר הוא המספר שאחריו. חתימת הפונקציה:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> last_violation(f, g, c, n_max):</span></code></pre></div><button title="העתק ללוח" class="code-copy-button"><i class="bi"></i></button></div>
+<p>עבור <span class="math inline">\(f(n) = 2n^2 + 3n + 10\)</span> ו- <span class="math inline">\(g(n) = n^2\)</span>, ועם <code>n_max = 10**6</code>, רכזו בטבלה את <span class="math inline">\(n_0\)</span> הקטן ביותר לכל אחד מהערכים הבאים של <span class="math inline">\(c\)</span>:</p>
+<pre class="text"><code>15, 3, 2.1, 2.01, 2</code></pre>
+<p>מה קורה עבור <span class="math inline">\(c = 2\)</span>? הסבירו למה אין <span class="math inline">\(n_0\)</span> שמתאים ל- <span class="math inline">\(c = 2\)</span>, ולמה בכל זאת <span class="math inline">\(f(n) = O(n^2)\)</span>.</p>
+<p><strong>להגשה:</strong> הפונקציה בקובץ <code>ex24.py</code>. בקובץ התשובות – הטבלה וההסבר.</p></li>
+<li><p>עבור <span class="math inline">\(f(n) = n^2\)</span> ו- <span class="math inline">\(g(n) = n\)</span>, מצאו בעזרת <code>check_bound</code> (עם <code>n0 = 1</code>) את ה-<code>n</code> הראשון שבו אי-השוויון לא מתקיים, עבור <code>c = 10, 100, 1000</code>. מה הקשר להוכחה של סעיף 1, ש- <span class="math inline">\(n^2\)</span> אינו <span class="math inline">\(O(n)\)</span>?</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex24.py</code>. בקובץ התשובות – התוצאות וההסבר.</p></li>
+</ol>
+</section>
+<section id="תרגיל-25-נכון-או-לא-נכון" class="level2">
+<h2 class="anchored" data-anchor-id="תרגיל-25-נכון-או-לא-נכון">תרגיל 25 – נכון או לא נכון?</h2>
+<ol type="1">
+<li><p><strong>בלי בינה מלאכותית</strong>: לכל אחת מהטענות הבאות, כתבו אם היא נכונה, ונמקו במשפט אחד (למשל: אילו <span class="math inline">\(c\)</span> ו- <span class="math inline">\(n_0\)</span> מתאימים, או למה אין כאלה).</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+\text{(a)} &amp; 100n = O(n^2) \\
+\text{(b)} &amp; n^2 = O(100n) \\
+\text{(c)} &amp; n^2 / 1000 = \Omega(n) \\
+\text{(d)} &amp; 3n^2 + 100n = \Theta(n^2) \\
+\text{(e)} &amp; \log_2 n = \Theta(\log_{10} n) \\
+\text{(f)} &amp; n \log_2 n = O(n) \\
+\text{(g)} &amp; 2^{n+1} = O(2^n) \\
+\text{(h)} &amp; 2^{2n} = O(2^n) \\
+\text{(i)} &amp; \sqrt{n} = O(\log_2 n) \\
+\text{(j)} &amp; \log_2 (n^2) = \Theta(\log_2 n)
+\end{array}
+\]</span></p>
+<p>ועוד שלוש טענות:</p>
+<ul>
+<li>טענה (k): מיון הכנסה מבצע <span class="math inline">\(\Theta(n^2)\)</span> השוואות על כל רשימה באורך <span class="math inline">\(n\)</span>.</li>
+<li>טענה (l): מיון מיזוג מבצע <span class="math inline">\(\Theta(n \log n)\)</span> השוואות על כל רשימה באורך <span class="math inline">\(n\)</span>.</li>
+<li>טענה (m): מספר הצעדים של חיפוש בינארי במקרה הגרוע הוא <span class="math inline">\(O(n)\)</span>.</li>
+</ul>
+<p><strong>להגשה:</strong> בקובץ התשובות – התשובות והנימוקים.</p></li>
+<li><p><strong>בלי בינה מלאכותית</strong>: סדרו את הפונקציות הבאות לפי קצב הגידול שלהן, מהאיטית למהירה. פונקציות שקצב הגידול שלהן זהה (‏ <span class="math inline">\(\Theta\)</span> זה של זה) כתבו באותה קבוצה.</p>
+<p><span class="math display">\[
+n^2, \quad n \log_2 n, \quad 2^n, \quad \log_2 n, \quad \sqrt{n}, \quad 100n, \quad \frac{n^3}{1000}, \quad \log_2 (n^2), \quad n^2 + n, \quad 2^{n/2}
+\]</span></p>
+<p><strong>להגשה:</strong> בקובץ התשובות – הסדר.</p></li>
+<li><p>חשבו בפייתון את הערכים של כל הפונקציות של סעיף 2 עבור <code>n = 10</code> ועבור <code>n = 1000000</code> (עבור <span class="math inline">\(2^n\)</span> ו- <span class="math inline">\(2^{n/2}\)</span> מספיק מספר הספרות, כמו בתרגיל 23). האם הסדר של הערכים זהה לסדר שמצאתן בסעיף 2? מצאו זוגות של פונקציות שהסדר שלהן "הפוך" עבור <code>n = 1000000</code>. מאיזה <code>n</code> הסדר שלהן נכון? למה זה לא סותר את התשובה של סעיף 2?</p>
+<p><strong>להגשה:</strong> הקוד בקובץ <code>ex25.py</code>. בקובץ התשובות – הערכים, הזוגות, וההסבר.</p></li>
+</ol>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "הועתק!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "הועתק!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

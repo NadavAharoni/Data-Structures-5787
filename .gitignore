@@ -1,8 +1,11 @@
 # Rendered Quarto output (re-render with: quarto render <file>.md)
-# The rendered slides are committed, so students can view them without Quarto.
+# Published with GitHub Pages (from main, root): the rendered slides and exercises are committed,
+# so students can view them without Quarto.
 *.html
 !data-structures-slides.html
+!exercises.html
 *_files/
+!exercises_files/
 .quarto/
 __pycache__/
 
