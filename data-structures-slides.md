@@ -1216,9 +1216,59 @@ It compares **algorithms**, not programs.
 | $n^3$ | $\times 8$ |
 | $2^n$ | squared: $2^{2n} = (2^n)^2$ |
 
+## $O$: the idea
+
+Informally, $f = O(g)$ means: $f$ is **"smaller than or equal to"** $g$, that is, $f$ grows at most as fast as $g$.
+
+::: {.incremental}
+- $n = O(n^2)$
+- $n \log_2 n = O(n^2)$
+- $n = O(n \log_2 n)$
+- $\log_2 n = O(n)$
+- $n^2 = O(n^3)$
+- $n^3 \ne O(n^2)$: $n^3$ grows faster than $n^2$.
+- $n^2 \ne O(n \log_2 n)$
+:::
+
+## $O$: constants do not matter
+
+::: {.incremental}
+- $n^2 = O(n^2)$: "smaller than **or equal to**".
+- $2n^2 = O(n^2)$ too!
+:::
+
+::: {.fragment}
+- $2n^2$ counts as "the same as" $n^2$, not worse: they differ only by a **constant** factor.
+- To show $2n^2 = O(n^2)$, it is enough that $2n^2 \le 3n^2$: $\;n^2$ times some constant.
+- In the same way $100\,n^2 = O(n^2)$, because $100\,n^2 \le 101\,n^2$.
+:::
+
+## $O$: lower-order terms do not matter
+
+A surprise: $\;2n^2 + 10n + 20 = O(n^2)$ too.
+
+| $n$ | $2n^2 + 10n + 20$ | $3n^2$ |
+|---|---|---|
+| 1 | 32 | 3 |
+| 5 | 120 | 75 |
+| 11 | 372 | 363 |
+| 12 | 428 | 432 |
+| 20 | 1,020 | 1,200 |
+| 100 | 21,020 | 30,000 |
+
+From $n_0 = 12$ on, $\;2n^2 + 10n + 20 \le 3n^2$.
+
+That is enough: we only care about large $n$, so $\;2n^2 + 10n + 20 = O(n^2)$.
+
 ## $O$: an upper bound
 
-$f(n) = O(g(n))$ ("$f$ is big O of $g$") if there are constants $c > 0$ and $n_0$ such that
+Definition:
+
+$$
+f(n) = O(g(n))
+$$
+
+("$f$ is big O of $g$") if there are constants $c > 0$ and $n_0$ such that
 
 $$
 f(n) \le c \cdot g(n) \quad \text{for all } n \ge n_0
